@@ -1,4 +1,7 @@
+using ApiBolsaTrabajoUTN.API.DBContexts;
+using ApiBolsaTrabajoUTN.API.Entities;
 using ApiBolsaTrabajoUTN.API.Services;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
@@ -31,10 +34,14 @@ builder.Services.AddSwaggerGen(setupAction =>
 });
 
 
-builder.Services.AddDbContext<ApiBolsaTrabajoUTN.API.DBContexts.AppContext>(dbContextOptions => dbContextOptions.UseSqlite(
+
+builder.Services.AddDbContext<BolsaTrabajoContext>(dbContextOptions => dbContextOptions.UseSqlite(
     builder.Configuration["ConnectionStrings:ContentsDBConnectionString"]));
 
-builder.Services.AddScoped<IAppRepository, AppRepository>();
+builder.Services.AddIdentity<User, IdentityRole>()
+    .AddEntityFrameworkStores<BolsaTrabajoContext>();
+
+//builder.Services.AddScoped<IAppRepository, AppRepository>();
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 

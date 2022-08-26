@@ -4,35 +4,35 @@ using ApiBolsaTrabajoUTN.API.Models;
 using ApiBolsaTrabajoUTN.API.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Identity;
 
 namespace ApiBolsaTrabajoUTN.API.Controllers
 {
     [ApiController]
-    [Authorize]
     [Route("api/users")]
     public class UsersController : ControllerBase
     {
-        private readonly IAppRepository _appRepository;
+        private readonly UserManager<User> _userManager;
         private readonly IMapper _mapper;
 
-        public UsersController(IAppRepository appRepository, IMapper mapper)
+        public UsersController(UserManager<User> userManager, IMapper mapper)
         {
-            _appRepository = appRepository;
+            _userManager = userManager;
             _mapper = mapper;
         }
 
         [HttpGet]
         public ActionResult<IEnumerable<UserWithoutContentsDto>> GetUsers()
         {
-            var users = _appRepository.GetUsers();
+            var users = _userManager.Users.ToList();
 
             return Ok(_mapper.Map<IEnumerable<UserWithoutContentsDto>>(users));
         }
 
         [HttpGet("{id}")]
-        public IActionResult GetUser(int id)
+        public async Task<IActionResult> GetUser(string id)
         {
-            var user = _appRepository.GetUser(id);
+            var user = await _userManager.FindByIdAsync(id);
             if (user == null)
                 return NotFound();
 
@@ -40,33 +40,37 @@ namespace ApiBolsaTrabajoUTN.API.Controllers
         }
 
         [HttpPut("{idUser}")]
-        public ActionResult UpdateUser(int idUser, UserCreationDto user)
+        public async Task<ActionResult> UpdateUser(string idUser, UserCreationDto userForUpdate)
         {
-            if (!_appRepository.UserExists(idUser))
+            User user = await _userManager.FindByIdAsync(idUser);
+            if (user is null)
                 return NotFound();
 
-            var userInDB = _appRepository.GetUser(idUser);
-            if (userInDB is null)
-                return NotFound();
+            _mapper.Map(userForUpdate, user);
+            var result = await _userManager.UpdateAsync(user);
 
-            _mapper.Map(user, userInDB);
-            _appRepository.SaveChanges();
+            if (result.Succeeded)
+            {
+                return NoContent();
+            }
+            return BadRequest(result);
 
-            return NoContent();
+            
         }
 
         [HttpDelete("{idUser}")]
-        public ActionResult DeleteUser(int idUser)
+        public async Task<ActionResult> DeleteUser(string idUser)
         {
-            if (!_appRepository.UserExists(idUser))
+            if (_userManager.FindByIdAsync(idUser) is null)
                 return NotFound();
-            var userToDelete = _appRepository.GetUser(idUser);
-            if (userToDelete is null)
-                return NotFound();
-            _appRepository.DeleteUser(userToDelete.Id);
-            _appRepository.SaveChanges();
+            var userToDelete = await _userManager.FindByIdAsync(idUser);
 
-            return NoContent();
+            var result = _userManager.DeleteAsync(userToDelete);
+            if (result.IsCompletedSuccessfully)
+            {
+                return NoContent();
+            }
+            return BadRequest(result);
         }
     }
 }

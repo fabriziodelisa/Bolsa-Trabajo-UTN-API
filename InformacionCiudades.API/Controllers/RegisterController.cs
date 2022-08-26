@@ -4,6 +4,7 @@ using ApiBolsaTrabajoUTN.API.Models;
 using ApiBolsaTrabajoUTN.API.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Identity;
 
 namespace ApiBolsaTrabajoUTN.API.Controllers
 {
@@ -11,33 +12,29 @@ namespace ApiBolsaTrabajoUTN.API.Controllers
     [ApiController]
     public class RegisterController : ControllerBase
     {
-        private readonly IAppRepository _appRepository;
+        private readonly UserManager<User> _userManager;
         private readonly IMapper _mapper;
 
-        public RegisterController(IAppRepository appRepository, IMapper mapper)
+        public RegisterController(UserManager<User> userManager, IMapper mapper)
         {
-            _appRepository = appRepository;
+            _userManager = userManager;
             _mapper = mapper;
         }
-        //[HttpGet("{id}", Name = "GetRegister")]
-        //public IActionResult GetRegister(int id)
-        //{
-        //    return Ok(id);
-        //}
 
         [HttpPost]
-        public ActionResult<UserDto> RegisterUser(UserCreationDto user)
+        public async Task<ActionResult<UserDto>> RegisterUser(UserCreationDto user)
         {
             var newUser = _mapper.Map<User>(user);
 
-            _appRepository.CreateUser(newUser);
-            _appRepository.SaveChanges();
+            var result = await _userManager.CreateAsync(newUser, user.Password);
+            if (result.Succeeded)
+            {
 
-            var userToReturn = _mapper.Map<UserDto>(newUser);
-            string URI = $"https://localhost:7172/api/Register{userToReturn.Id}";
-            return Created(URI, userToReturn);
-
-            //return CreatedAtRoute("GetRegister", new { id = newUser.Id }, userToReturn);
+                var userToReturn = _mapper.Map<UserDto>(newUser);
+                string URI = $"https://localhost:7172/api/Register{userToReturn.Id}"; //acá no deberían alguna url a un endpoint de getUser by id
+                return Created(URI, userToReturn);
+            }
+            return BadRequest(result);
         }
     }
 }
