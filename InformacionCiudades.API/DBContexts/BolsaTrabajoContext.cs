@@ -54,6 +54,17 @@ namespace ApiBolsaTrabajoUTN.API.DBContexts
                 UserId = ADMIN_ID
             });
 
+            modelBuilder.Entity<Career>().HasData(
+                new Career
+                {
+                    Id = 1,
+                    Name = "Tecnicatura Universitaria En Programacion",
+                    Type = Enums.CareerTypes.Tecnicatura,
+                    Abbreviation = "TUP",
+                    TotalSubjets = 21
+                }
+            ); 
+
             base.OnModelCreating(modelBuilder);
         }
     }
