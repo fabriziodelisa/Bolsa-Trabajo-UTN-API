@@ -2,5 +2,6 @@
 {
     public class CareerToDeleteDTO
     {
+        public int Id { get; set; }
     }
 }
