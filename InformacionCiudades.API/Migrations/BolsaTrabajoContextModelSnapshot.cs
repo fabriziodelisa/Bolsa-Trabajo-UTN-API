@@ -17,8 +17,6 @@ namespace ApiBolsaTrabajoUTN.API.Migrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "6.0.8");
 
-<<<<<<< Updated upstream
-=======
             modelBuilder.Entity("ApiBolsaTrabajoUTN.API.Entities.Career", b =>
                 {
                     b.Property<int>("Id")
@@ -54,7 +52,6 @@ namespace ApiBolsaTrabajoUTN.API.Migrations
                         });
                 });
 
->>>>>>> Stashed changes
             modelBuilder.Entity("ApiBolsaTrabajoUTN.API.Entities.User", b =>
                 {
                     b.Property<string>("Id")
@@ -131,26 +128,16 @@ namespace ApiBolsaTrabajoUTN.API.Migrations
                         {
                             Id = "02174cf0–9412–4cfe-afbf-59f706d72cf6",
                             AccessFailedCount = 0,
-<<<<<<< Updated upstream
-                            ConcurrencyStamp = "d7aebe84-efcc-45e4-ac05-3cad949f2ac3",
-=======
-                            ConcurrencyStamp = "223bebfc-52c3-4b67-a989-30475b74d8bb",
->>>>>>> Stashed changes
+                            ConcurrencyStamp = "ced0df86-70fe-4d25-94c1-4e5394a8f3b9",
                             Email = "administracion@frro.utn.edu.ar",
                             EmailConfirmed = true,
                             FirstName = "Administracion",
                             LastName = "Utn",
                             LockoutEnabled = false,
                             NormalizedUserName = "ADMIN1",
-<<<<<<< Updated upstream
-                            PasswordHash = "AQAAAAEAACcQAAAAELiRxFhbtVW23TynWTPVfJYmYcSbwA9Huz1SEO8RgHawIwhAg6byURKILQw1+i49tg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEKDNX8CVziIULwwSLvhFqOtRCeK4u3JFTsS7fc/JwUNo2mFjSNspbGz32VCj5fOdGw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "72286c2b-c678-44c2-9167-ae54f969b9e6",
-=======
-                            PasswordHash = "AQAAAAEAACcQAAAAELnx5i+pzmNOXhxA9lvau92VyU7Ry8U/g0hRfk0yh+2/qNgAH84bLHF6ZpyidPN/yw==",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "5c8d0a88-c18a-456d-9b34-238995343c09",
->>>>>>> Stashed changes
+                            SecurityStamp = "94543077-35dd-46fa-8941-75d6a52c2f03",
                             TwoFactorEnabled = false,
                             UserName = "admin1"
                         });
