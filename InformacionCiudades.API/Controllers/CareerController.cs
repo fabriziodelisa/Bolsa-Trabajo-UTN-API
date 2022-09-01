@@ -1,19 +1,75 @@
-﻿using ApiBolsaTrabajoUTN.API.Data;
-using ApiBolsaTrabajoUTN.API.DBContexts;
-using ApiBolsaTrabajoUTN.API.Entities;
-using Microsoft.EntityFrameworkCore;
+﻿
+
+using ApiBolsaTrabajoUTN.API.Data.Interfaces;
+using ApiBolsaTrabajoUTN.API.Models.Career;
+using ApiBolsaTrabajoUTN.API.Services;
+using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 namespace ApiBolsaTrabajoUTN.API.Controllers
 {
-    public class CareerController : Repository, ICareerController
+    [ApiController]
+    [Authorize]
+    [Route("api/Careers")]
+    public class CareerController : ControllerBase
     {
-        public CareerController(BolsaTrabajoContext bolsaTrabajoContext) : base(bolsaTrabajoContext)
+        private readonly ICareerRepository _careerRepository;
+        private readonly ICareerService _careerService;
+        private readonly IMapper _mapper;
+        public CareerController(ICareerService careerService, ICareerRepository careerRepository, IMapper mapper)
         {
+            _careerRepository = careerRepository;
+            _careerService = careerService;
+            _mapper = mapper;
+        }
 
-        }
-        public Career? GetCareerById(int CareerId)
+        [HttpGet]
+        public ActionResult<IEnumerable<CareerDTO>> GetCarrers()
         {
-            return _bolsaTrabajoContext.Careers.Find(CareerId);
+            var careers = _careerService.GetAllCareers();
+            return Ok(careers);
         }
+
+        [HttpGet("{id}", Name = "GetCareer")]
+        public IActionResult GetCareer(int id)
+
+        {
+            var career = _careerRepository.GetCareer(id);
+            if (career == null)
+                return NotFound();
+
+            return Ok(_mapper.Map<CareerDTO>(career));
+        }
+
+        [HttpPost]
+        public ActionResult<CareerDTO> AddCareer(CareerToCreateDTO career)
+        {
+            var newCareer = _mapper.Map<Entities.Career>(career);
+
+            _careerRepository.AddCareer(newCareer);
+
+            _careerRepository.SaveChanges();
+
+
+            var careerToReturn = _mapper.Map<CareerDTO>(newCareer);
+
+            return CreatedAtRoute(//CreatedAtRoute es para q devuelva 201, el 200 de post.
+                "GetCareer", //El primer parámetro es el Name del endpoint que hace el Get
+                new //El segundo los parametros q necesita ese endpoint
+                {
+                    id = careerToReturn.Id
+                },
+                careerToReturn);//El tercero es el objeto creado. 
+        }
+
+        [HttpDelete("{id}")]
+        public ActionResult DeleteCareer(int id)
+        {
+            _careerRepository.DeleteCareer(id);
+
+            return NoContent();
+        }
+
     }
 }

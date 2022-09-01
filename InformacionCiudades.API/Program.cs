@@ -1,3 +1,5 @@
+using ApiBolsaTrabajoUTN.API.Data.implementations;
+using ApiBolsaTrabajoUTN.API.Data.Interfaces;
 using ApiBolsaTrabajoUTN.API.DBContexts;
 using ApiBolsaTrabajoUTN.API.Entities;
 using ApiBolsaTrabajoUTN.API.Services;
@@ -6,11 +8,14 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Text;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddControllers();
+builder.Services.AddControllers().AddJsonOptions(x =>
+                x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
 builder.Services.AddEndpointsApiExplorer();
+
 builder.Services.AddSwaggerGen(setupAction =>
 {
     setupAction.AddSecurityDefinition("appApiBearerAuth", new Microsoft.OpenApi.Models.OpenApiSecurityScheme()
@@ -28,7 +33,7 @@ builder.Services.AddSwaggerGen(setupAction =>
                 Reference = new OpenApiReference
                 {
                     Type = ReferenceType.SecurityScheme,
-                    Id = "appApiBearerAuth" }
+                    Id = "BolsaDeTrabajoApiBearerAuth" }
                 }, new List<string>() }
     });
 });
@@ -60,6 +65,10 @@ builder.Services.AddAuthentication("Bearer")
         };
     }
 );
+
+builder.Services.AddScoped<ICareerRepository, CareerRepository>();
+
+builder.Services.AddScoped<ICareerService, CareerService>();
 
 var app = builder.Build();
 

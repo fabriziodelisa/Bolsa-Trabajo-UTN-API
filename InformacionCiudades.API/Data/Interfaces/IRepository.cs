@@ -1,4 +1,4 @@
-﻿namespace ApiBolsaTrabajoUTN.API.Data
+﻿namespace ApiBolsaTrabajoUTN.API.Data.Interfaces
 {
     public interface IRepository
     {
