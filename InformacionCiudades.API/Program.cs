@@ -36,12 +36,12 @@ builder.Services.AddSwaggerGen(setupAction =>
 
 
 builder.Services.AddDbContext<BolsaTrabajoContext>(dbContextOptions => dbContextOptions.UseSqlite(
-    builder.Configuration["ConnectionStrings:ContentsDBConnectionString"]));
+    builder.Configuration["ConnectionStrings:BolsaTrabajoDBConnectionString"]));
 
 builder.Services.AddIdentity<User, IdentityRole>()
     .AddEntityFrameworkStores<BolsaTrabajoContext>();
 
-//builder.Services.AddScoped<IAppRepository, AppRepository>();
+builder.Services.AddScoped<IAuthenticationRepository, AuthenticationRepository>();
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 

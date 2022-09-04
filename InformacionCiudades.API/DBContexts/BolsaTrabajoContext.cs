@@ -7,7 +7,7 @@ namespace ApiBolsaTrabajoUTN.API.DBContexts
 {
     public class BolsaTrabajoContext : IdentityDbContext<User>
     {
-        public DbSet<User> Users { get; set; }
+        public override DbSet<User>? Users { get; set; }
 
         public BolsaTrabajoContext(DbContextOptions<BolsaTrabajoContext> options) : base(options) //Acá estamos llamando al constructor de DbContext que es el que acepta las opciones
         {
@@ -33,16 +33,15 @@ namespace ApiBolsaTrabajoUTN.API.DBContexts
             {
                 Id = ADMIN_ID,
                 Email = "administracion@frro.utn.edu.ar",
+                NormalizedEmail = "ADMINISTRACION@FRRO.UTN.EDU.AR",
                 EmailConfirmed = true,
                 FirstName = "Administracion",
                 LastName = "Utn",
-                UserName = "admin1",
-                NormalizedUserName = "ADMIN1",
             };
 
             //set user password
             PasswordHasher<User> ph = new PasswordHasher<User>();
-            appUser.PasswordHash = ph.HashPassword(appUser, "MyPassword_ ?");
+            appUser.PasswordHash = ph.HashPassword(appUser, "MyPassword_?");
 
             //seed user
             modelBuilder.Entity<User>().HasData(appUser);

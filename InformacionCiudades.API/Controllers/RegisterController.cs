@@ -1,8 +1,7 @@
 ﻿using AutoMapper;
 using ApiBolsaTrabajoUTN.API.Entities;
 using ApiBolsaTrabajoUTN.API.Models;
-using ApiBolsaTrabajoUTN.API.Services;
-using Microsoft.AspNetCore.Http;
+
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
 
@@ -22,14 +21,13 @@ namespace ApiBolsaTrabajoUTN.API.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<UserDto>> RegisterUser(UserCreationDto user)
+        public async Task<ActionResult<UserDto>> RegisterUser(RegisterStudentRequestBody user)
         {
             var newUser = _mapper.Map<User>(user);
 
             var result = await _userManager.CreateAsync(newUser, user.Password);
             if (result.Succeeded)
             {
-
                 var userToReturn = _mapper.Map<UserDto>(newUser);
                 string URI = $"https://localhost:7172/api/Register{userToReturn.Id}"; //acá no deberían alguna url a un endpoint de getUser by id
                 return Created(URI, userToReturn);
