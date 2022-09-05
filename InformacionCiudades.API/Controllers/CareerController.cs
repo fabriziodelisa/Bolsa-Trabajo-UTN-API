@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace ApiBolsaTrabajoUTN.API.Controllers
 {
     [ApiController]
-    //[Authorize]
+//    [Authorize]
     [Route("api/Careers")]
     public class CareerController : ControllerBase
     {
@@ -49,7 +49,7 @@ namespace ApiBolsaTrabajoUTN.API.Controllers
 
             _careerRepository.AddCareer(newCareer);
 
-            _careerRepository.SaveChanges();
+            _careerRepository.SaveChange();
 
 
             var careerToReturn = _mapper.Map<CareerDTO>(newCareer);
@@ -67,6 +67,7 @@ namespace ApiBolsaTrabajoUTN.API.Controllers
         public ActionResult DeleteCareer(int id)
         {
             _careerRepository.DeleteCareer(id);
+            _careerRepository.SaveChange();
 
             return NoContent();
         }

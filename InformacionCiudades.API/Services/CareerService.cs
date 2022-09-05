@@ -34,10 +34,9 @@ namespace ApiBolsaTrabajoUTN.API.Services
             return _mapper.Map<CareerDTO>(newCareer);   
         }
 
-        public void DeleteCareer(int id)
+        public void DeleteCareer(int careerId)
         {
-           _careerRepository.DeleteCareer(id);
-            _careerRepository.SaveChanges();
+           _careerRepository.DeleteCareer(careerId);
         }
     }
 }

@@ -11,7 +11,7 @@ namespace ApiBolsaTrabajoUTN.API.Data.implementations
         {
             _bolsaTrabajoContext = bolsaTrabajoContext;
         }
-        public bool SaveChanges()
+        public bool SaveChange()
         {
             return _bolsaTrabajoContext.SaveChanges() >= 0;
         }
