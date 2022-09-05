@@ -29,7 +29,7 @@ namespace ApiBolsaTrabajoUTN.API.DBContexts
             });
 
             //create user
-            var appUser = new User
+            var appUser = new Admin
             {
                 Id = ADMIN_ID,
                 Email = "administracion@frro.utn.edu.ar",
@@ -40,11 +40,11 @@ namespace ApiBolsaTrabajoUTN.API.DBContexts
             };
 
             //set user password
-            PasswordHasher<User> ph = new PasswordHasher<User>();
+            PasswordHasher<Admin> ph = new PasswordHasher<Admin>();
             appUser.PasswordHash = ph.HashPassword(appUser, "MyPassword_?");
 
             //seed user
-            modelBuilder.Entity<User>().HasData(appUser);
+            modelBuilder.Entity<Admin>().HasData(appUser);
 
             //set user role to admin
             modelBuilder.Entity<IdentityUserRole<string>>().HasData(new IdentityUserRole<string>

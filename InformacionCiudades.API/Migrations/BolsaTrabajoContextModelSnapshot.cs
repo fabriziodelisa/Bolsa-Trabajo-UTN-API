@@ -29,6 +29,10 @@ namespace ApiBolsaTrabajoUTN.API.Migrations
                         .IsConcurrencyToken()
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("Discriminator")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("Email")
                         .HasMaxLength(256)
                         .HasColumnType("TEXT");
@@ -88,23 +92,7 @@ namespace ApiBolsaTrabajoUTN.API.Migrations
 
                     b.ToTable("AspNetUsers", (string)null);
 
-                    b.HasData(
-                        new
-                        {
-                            Id = "02174cf0–9412–4cfe-afbf-59f706d72cf6",
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "948e1d6d-5d8c-4037-91d9-a47dd7da5524",
-                            Email = "administracion@frro.utn.edu.ar",
-                            EmailConfirmed = true,
-                            FirstName = "Administracion",
-                            LastName = "Utn",
-                            LockoutEnabled = false,
-                            NormalizedEmail = "ADMINISTRACION@FRRO.UTN.EDU.AR",
-                            PasswordHash = "AQAAAAEAACcQAAAAEMoJRh1OHkrKys+fJAecNxFOIV/GLd6ITP1+pf04cfDhxE+Nzb8XK8VgCOqNQuSJIA==",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "c2b30b5f-b55a-4bcc-8660-0e4451d2b3bd",
-                            TwoFactorEnabled = false
-                        });
+                    b.HasDiscriminator<string>("Discriminator").HasValue("User");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -249,6 +237,31 @@ namespace ApiBolsaTrabajoUTN.API.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens", (string)null);
+                });
+
+            modelBuilder.Entity("ApiBolsaTrabajoUTN.API.Entities.Admin", b =>
+                {
+                    b.HasBaseType("ApiBolsaTrabajoUTN.API.Entities.User");
+
+                    b.HasDiscriminator().HasValue("Admin");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "02174cf0–9412–4cfe-afbf-59f706d72cf6",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "28e97ffd-3245-4439-aa12-c5634e4ae338",
+                            Email = "administracion@frro.utn.edu.ar",
+                            EmailConfirmed = true,
+                            FirstName = "Administracion",
+                            LastName = "Utn",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "ADMINISTRACION@FRRO.UTN.EDU.AR",
+                            PasswordHash = "AQAAAAEAACcQAAAAEK/azhO1aRS/BKXxdl95GbH3qxX4yrb3l19D1ItRrvOAsNJQ9ByYbFyDWZgdqZdruw==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "6fac7c44-9c23-4d34-b592-ff68e590f3c7",
+                            TwoFactorEnabled = false
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
