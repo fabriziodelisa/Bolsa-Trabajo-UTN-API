@@ -20,17 +20,34 @@ namespace ApiBolsaTrabajoUTN.API.Controllers
             _mapper = mapper;
         }
 
-        [HttpPost]
-        public async Task<ActionResult<UserDto>> RegisterUser(RegisterStudentRequestBody user)
+        [HttpPost("RegisterStudent")]
+        public async Task<ActionResult<StudentDto>> RegisterStudent(RegisterStudentRequestBody student)
         {
-            var newUser = _mapper.Map<User>(user);
+            var newStudent = _mapper.Map<Student>(student);
+            newStudent.UserName = "testing";
 
-            var result = await _userManager.CreateAsync(newUser, user.Password);
+            var result = await _userManager.CreateAsync(newStudent, student.Password);
             if (result.Succeeded)
             {
-                var userToReturn = _mapper.Map<UserDto>(newUser);
-                string URI = $"https://localhost:7172/api/Register{userToReturn.Id}"; //acá no deberían alguna url a un endpoint de getUser by id
-                return Created(URI, userToReturn);
+                var studentToReturn = _mapper.Map<StudentDto>(newStudent);
+                studentToReturn.Password = "";
+                string URI = $"https://localhost:7172/api/Register{studentToReturn.Id}";
+                return Created(URI, studentToReturn);
+            }
+            return BadRequest(result);
+        }
+        [HttpPost("RegisterCompany")]
+        public async Task<ActionResult<CompanyDto>> RegisterCompany(RegisterCompanyRequestBody company)
+        {
+            var newCompany = _mapper.Map<Company>(company);
+            newCompany.UserName = "testing";
+
+            var result = await _userManager.CreateAsync(newCompany, company.Password);
+            if (result.Succeeded)
+            {
+                var companyToReturn = _mapper.Map<CompanyDto>(newCompany);
+                string URI = $"https://localhost:7172/api/Register{companyToReturn.Id}";
+                return Created(URI, companyToReturn);
             }
             return BadRequest(result);
         }

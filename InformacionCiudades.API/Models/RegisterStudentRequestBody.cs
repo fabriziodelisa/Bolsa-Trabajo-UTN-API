@@ -6,11 +6,15 @@ namespace ApiBolsaTrabajoUTN.API.Models
     {
         [Required(ErrorMessage = "Ingrese su legajo")]
         public int Legajo { get; set; }
+        [Required(ErrorMessage = "Ingrese su nombre")]
+        public string FirstName { get; set; }
+        [Required(ErrorMessage = "Ingrese su apellido")]
+        public string LastName { get; set; }
         [Required(ErrorMessage = "Ingrese su email")]
-        [MaxLength(50)]
         public string Email { get; set; }
         [Required(ErrorMessage = "Agregá una contraseña")]
-        [MaxLength(50)] 
         public string Password { get; set; }
+        [Required(ErrorMessage = "Confirma tu contraseña")]
+        public string ConfirmPassword { get; set; }
     }
 }
