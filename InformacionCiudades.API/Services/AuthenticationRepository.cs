@@ -44,7 +44,6 @@ namespace ApiBolsaTrabajoUTN.API.Services
             var claimsForToken = new List<Claim>();
             claimsForToken.Add(new Claim("sub", user.Id.ToString())); //"sub" es una key estándar que significa unique user identifier, es decir, si mandamos el id del usuario por convención lo hacemos con la key "sub".
             claimsForToken.Add(new Claim("email", user.Email));
-            claimsForToken.Add(new Claim("GivenName", $"{user.FirstName} {user.LastName}"));
 
             foreach (var role in roles)
             {
