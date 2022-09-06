@@ -8,5 +8,6 @@ namespace ApiBolsaTrabajoUTN.API.Data.Interfaces
         public IEnumerable<Career> GetAllCareers();
         public void AddCareer(Career career);
         public void DeleteCareer(int careerId);
+        public void UpdateCareer(Career careerToUpdate);
     }
 }

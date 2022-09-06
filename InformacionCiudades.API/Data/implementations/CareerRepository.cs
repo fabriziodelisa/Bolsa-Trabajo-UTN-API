@@ -31,5 +31,9 @@ namespace ApiBolsaTrabajoUTN.API.Data.implementations
         {
             _bolsaTrabajoContext.Careers.Add(career);
         }
+        public void UpdateCareer(Career careerToUpdate)
+        {
+            _bolsaTrabajoContext.Entry(careerToUpdate).State = EntityState.Modified;
+        }
     }
 }

@@ -8,5 +8,6 @@ namespace ApiBolsaTrabajoUTN.API.Services
         public CareerDTO? GetCareer(int id);
         public CareerDTO AddCareer(CareerToCreateDTO careerToCreateDTO);
         public void DeleteCareer(int id);
+        public void UpdateCareer(CareerToUpdateDTO careerToUpdateDto, int careerId);
     }
 }

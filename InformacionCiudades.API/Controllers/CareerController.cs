@@ -1,6 +1,4 @@
-﻿
-
-using ApiBolsaTrabajoUTN.API.Data.Interfaces;
+﻿using ApiBolsaTrabajoUTN.API.Data.Interfaces;
 using ApiBolsaTrabajoUTN.API.Models.Career;
 using ApiBolsaTrabajoUTN.API.Services;
 using AutoMapper;
@@ -10,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace ApiBolsaTrabajoUTN.API.Controllers
 {
     [ApiController]
-//    [Authorize]
+    //    [Authorize]
     [Route("api/Careers")]
     public class CareerController : ControllerBase
     {
@@ -63,11 +61,18 @@ namespace ApiBolsaTrabajoUTN.API.Controllers
                 careerToReturn);//El tercero es el objeto creado. 
         }
 
+        [HttpPut]
+        public ActionResult UpdateCareer(CareerToUpdateDTO careerToUpdate, int careerId)
+        {
+            _careerService.UpdateCareer(careerToUpdate, careerId);
+
+            return NoContent();
+        }
+
         [HttpDelete("{id}")]
         public ActionResult DeleteCareer(int id)
         {
-            _careerRepository.DeleteCareer(id);
-            _careerRepository.SaveChange();
+            _careerService.DeleteCareer(id);
 
             return NoContent();
         }
