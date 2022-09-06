@@ -5,12 +5,12 @@ namespace ApiBolsaTrabajoUTN.API.Entities
     public class Company : User
     {
         [Required]
-        public string BusinessName { get; set; }
+        public string CompanyName { get; set; }
         public int Cuit { get; set; }
         public List<JobPosition> JobPositions { get; set; }
-        public Company(string businessName)
+        public Company(string companyName)
         {
-            BusinessName = businessName;
+            CompanyName = companyName;
             JobPositions = new List<JobPosition>();
         }
     }

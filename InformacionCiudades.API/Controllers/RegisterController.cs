@@ -24,7 +24,7 @@ namespace ApiBolsaTrabajoUTN.API.Controllers
         public async Task<ActionResult<StudentDto>> RegisterStudent(RegisterStudentRequestBody student)
         {
             var newStudent = _mapper.Map<Student>(student);
-            newStudent.UserName = "testing";
+            newStudent.UserName = student.Email;
 
             var result = await _userManager.CreateAsync(newStudent, student.Password);
             if (result.Succeeded)
@@ -40,7 +40,7 @@ namespace ApiBolsaTrabajoUTN.API.Controllers
         public async Task<ActionResult<CompanyDto>> RegisterCompany(RegisterCompanyRequestBody company)
         {
             var newCompany = _mapper.Map<Company>(company);
-            newCompany.UserName = "testing";
+            newCompany.UserName = company.Email;
 
             var result = await _userManager.CreateAsync(newCompany, company.Password);
             if (result.Succeeded)

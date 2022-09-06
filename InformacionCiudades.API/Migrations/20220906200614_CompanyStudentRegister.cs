@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ApiBolsaTrabajoUTN.API.Migrations
 {
-    public partial class Register : Migration
+    public partial class CompanyStudentRegister : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -165,7 +165,7 @@ namespace ApiBolsaTrabajoUTN.API.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Discriminator", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "02174cf0–9412–4cfe-afbf-59f706d72cf6", 0, "208ccd68-e264-472c-9205-10bf21307313", "Admin", "administracion@frro.utn.edu.ar", true, "Administracion", "Utn", false, null, "ADMINISTRACION@FRRO.UTN.EDU.AR", null, "AQAAAAEAACcQAAAAEAPUWom98hmGRQE/3ucDDshIXUoiDujqYqzITPz8qkvSo9v6mQ1o+ckIvWum5uZnCw==", null, false, "8804237f-766a-40bf-b4bf-17f9cdffd5f6", false, null });
+                values: new object[] { "02174cf0–9412–4cfe-afbf-59f706d72cf6", 0, "3b9eb25a-b1e2-4180-966d-e8d047c105c6", "Admin", "administracion@frro.utn.edu.ar", true, "Administracion", "Utn", false, null, "ADMINISTRACION@FRRO.UTN.EDU.AR", null, "AQAAAAEAACcQAAAAEMUdeRafDBBaYdAbdSC/4qEEj+MwT0g6jxJ7bxcIVpkE3fG6oM0zkAmdHEA87RZY8Q==", null, false, "7e99dca7-6305-40ed-93d2-34113281d457", false, null });
 
             migrationBuilder.InsertData(
                 table: "AspNetUserRoles",
