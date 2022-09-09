@@ -11,13 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ApiBolsaTrabajoUTN.API.Migrations
 {
     [DbContext(typeof(BolsaTrabajoContext))]
-<<<<<<<< HEAD:InformacionCiudades.API/Migrations/20220906200614_CompanyStudentRegister.Designer.cs
-    [Migration("20220906200614_CompanyStudentRegister")]
-    partial class CompanyStudentRegister
-========
-    [Migration("20220901230526_carreras_prueba")]
-    partial class carreras_prueba
->>>>>>>> main:InformacionCiudades.API/Migrations/20220901230526_carreras_prueba.Designer.cs
+    [Migration("20220909222810_Register")]
+    partial class Register
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -126,28 +121,7 @@ namespace ApiBolsaTrabajoUTN.API.Migrations
 
                     b.ToTable("AspNetUsers", (string)null);
 
-<<<<<<<< HEAD:InformacionCiudades.API/Migrations/20220906200614_CompanyStudentRegister.Designer.cs
                     b.HasDiscriminator<string>("Discriminator").HasValue("User");
-========
-                    b.HasData(
-                        new
-                        {
-                            Id = "02174cf0–9412–4cfe-afbf-59f706d72cf6",
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "19d85f0a-f8e1-4af6-8438-ddd080891108",
-                            Email = "administracion@frro.utn.edu.ar",
-                            EmailConfirmed = true,
-                            FirstName = "Administracion",
-                            LastName = "Utn",
-                            LockoutEnabled = false,
-                            NormalizedUserName = "ADMIN1",
-                            PasswordHash = "AQAAAAEAACcQAAAAENaik9u88qiOw1a2FA8zh4usiPYmHvcPAGBGchiPEVBwDCD/vzvZkDxIM64UGggbig==",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "75a5db4d-18db-42af-907c-7943a0831dff",
-                            TwoFactorEnabled = false,
-                            UserName = "admin1"
-                        });
->>>>>>>> main:InformacionCiudades.API/Migrations/20220901230526_carreras_prueba.Designer.cs
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -313,14 +287,14 @@ namespace ApiBolsaTrabajoUTN.API.Migrations
                         {
                             Id = "02174cf0–9412–4cfe-afbf-59f706d72cf6",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "3b9eb25a-b1e2-4180-966d-e8d047c105c6",
+                            ConcurrencyStamp = "c28dedce-394f-4247-a5db-d70329b1fe99",
                             Email = "administracion@frro.utn.edu.ar",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMINISTRACION@FRRO.UTN.EDU.AR",
-                            PasswordHash = "AQAAAAEAACcQAAAAEMUdeRafDBBaYdAbdSC/4qEEj+MwT0g6jxJ7bxcIVpkE3fG6oM0zkAmdHEA87RZY8Q==",
+                            PasswordHash = "AQAAAAEAACcQAAAAENmwRFPQaZ/zwfiHBm+JhXJLFN4sVoZkv2vBltUXgFn0Vm874zpudiQI8Jkjc44P+w==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "7e99dca7-6305-40ed-93d2-34113281d457",
+                            SecurityStamp = "2a6282a0-8092-42e7-b92f-6361131979cd",
                             TwoFactorEnabled = false,
                             FirstName = "Administracion",
                             LastName = "Utn"

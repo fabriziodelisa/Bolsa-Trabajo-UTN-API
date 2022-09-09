@@ -17,6 +17,41 @@ namespace ApiBolsaTrabajoUTN.API.Migrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "6.0.8");
 
+            modelBuilder.Entity("ApiBolsaTrabajoUTN.API.Entities.Career", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Abbreviation")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("TotalSubjets")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("Type")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Careers");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Abbreviation = "TUP",
+                            Name = "Tecnicatura Universitaria En Programacion",
+                            TotalSubjets = 21,
+                            Type = 1
+                        });
+                });
+
             modelBuilder.Entity("ApiBolsaTrabajoUTN.API.Entities.User", b =>
                 {
                     b.Property<string>("Id")
@@ -250,14 +285,14 @@ namespace ApiBolsaTrabajoUTN.API.Migrations
                         {
                             Id = "02174cf0–9412–4cfe-afbf-59f706d72cf6",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "3b9eb25a-b1e2-4180-966d-e8d047c105c6",
+                            ConcurrencyStamp = "c28dedce-394f-4247-a5db-d70329b1fe99",
                             Email = "administracion@frro.utn.edu.ar",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMINISTRACION@FRRO.UTN.EDU.AR",
-                            PasswordHash = "AQAAAAEAACcQAAAAEMUdeRafDBBaYdAbdSC/4qEEj+MwT0g6jxJ7bxcIVpkE3fG6oM0zkAmdHEA87RZY8Q==",
+                            PasswordHash = "AQAAAAEAACcQAAAAENmwRFPQaZ/zwfiHBm+JhXJLFN4sVoZkv2vBltUXgFn0Vm874zpudiQI8Jkjc44P+w==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "7e99dca7-6305-40ed-93d2-34113281d457",
+                            SecurityStamp = "2a6282a0-8092-42e7-b92f-6361131979cd",
                             TwoFactorEnabled = false,
                             FirstName = "Administracion",
                             LastName = "Utn"

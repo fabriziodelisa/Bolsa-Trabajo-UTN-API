@@ -4,6 +4,7 @@ using ApiBolsaTrabajoUTN.API.Models;
 
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
+using ApiBolsaTrabajoUTN.API.Models.User;
 
 namespace ApiBolsaTrabajoUTN.API.Controllers
 {

@@ -5,11 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ApiBolsaTrabajoUTN.API.Migrations
 {
-<<<<<<<< HEAD:InformacionCiudades.API/Migrations/20220906200614_CompanyStudentRegister.cs
-    public partial class CompanyStudentRegister : Migration
-========
-    public partial class carreras_prueba : Migration
->>>>>>>> main:InformacionCiudades.API/Migrations/20220901230526_carreras_prueba.cs
+    public partial class Register : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -32,14 +28,9 @@ namespace ApiBolsaTrabajoUTN.API.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "TEXT", nullable: false),
-<<<<<<<< HEAD:InformacionCiudades.API/Migrations/20220906200614_CompanyStudentRegister.cs
                     Discriminator = table.Column<string>(type: "TEXT", nullable: false),
                     FirstName = table.Column<string>(type: "TEXT", nullable: true),
                     LastName = table.Column<string>(type: "TEXT", nullable: true),
-========
-                    FirstName = table.Column<string>(type: "TEXT", nullable: false),
-                    LastName = table.Column<string>(type: "TEXT", nullable: false),
->>>>>>>> main:InformacionCiudades.API/Migrations/20220901230526_carreras_prueba.cs
                     UserName = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true),
@@ -189,18 +180,13 @@ namespace ApiBolsaTrabajoUTN.API.Migrations
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
-<<<<<<<< HEAD:InformacionCiudades.API/Migrations/20220906200614_CompanyStudentRegister.cs
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Discriminator", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "02174cf0–9412–4cfe-afbf-59f706d72cf6", 0, "3b9eb25a-b1e2-4180-966d-e8d047c105c6", "Admin", "administracion@frro.utn.edu.ar", true, "Administracion", "Utn", false, null, "ADMINISTRACION@FRRO.UTN.EDU.AR", null, "AQAAAAEAACcQAAAAEMUdeRafDBBaYdAbdSC/4qEEj+MwT0g6jxJ7bxcIVpkE3fG6oM0zkAmdHEA87RZY8Q==", null, false, "7e99dca7-6305-40ed-93d2-34113281d457", false, null });
-========
-                columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "02174cf0–9412–4cfe-afbf-59f706d72cf6", 0, "19d85f0a-f8e1-4af6-8438-ddd080891108", "administracion@frro.utn.edu.ar", true, "Administracion", "Utn", false, null, null, "ADMIN1", "AQAAAAEAACcQAAAAENaik9u88qiOw1a2FA8zh4usiPYmHvcPAGBGchiPEVBwDCD/vzvZkDxIM64UGggbig==", null, false, "75a5db4d-18db-42af-907c-7943a0831dff", false, "admin1" });
+                values: new object[] { "02174cf0–9412–4cfe-afbf-59f706d72cf6", 0, "c28dedce-394f-4247-a5db-d70329b1fe99", "Admin", "administracion@frro.utn.edu.ar", true, "Administracion", "Utn", false, null, "ADMINISTRACION@FRRO.UTN.EDU.AR", null, "AQAAAAEAACcQAAAAENmwRFPQaZ/zwfiHBm+JhXJLFN4sVoZkv2vBltUXgFn0Vm874zpudiQI8Jkjc44P+w==", null, false, "2a6282a0-8092-42e7-b92f-6361131979cd", false, null });
 
             migrationBuilder.InsertData(
                 table: "Careers",
                 columns: new[] { "Id", "Abbreviation", "Name", "TotalSubjets", "Type" },
                 values: new object[] { 1, "TUP", "Tecnicatura Universitaria En Programacion", 21, 1 });
->>>>>>>> main:InformacionCiudades.API/Migrations/20220901230526_carreras_prueba.cs
 
             migrationBuilder.InsertData(
                 table: "AspNetUserRoles",
