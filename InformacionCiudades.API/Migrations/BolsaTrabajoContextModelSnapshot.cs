@@ -17,6 +17,41 @@ namespace ApiBolsaTrabajoUTN.API.Migrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "6.0.8");
 
+            modelBuilder.Entity("ApiBolsaTrabajoUTN.API.Entities.Career", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Abbreviation")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("TotalSubjets")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("Type")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Careers");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Abbreviation = "TUP",
+                            Name = "Tecnicatura Universitaria En Programacion",
+                            TotalSubjets = 21,
+                            Type = 1
+                        });
+                });
+
             modelBuilder.Entity("ApiBolsaTrabajoUTN.API.Entities.User", b =>
                 {
                     b.Property<string>("Id")
@@ -93,16 +128,16 @@ namespace ApiBolsaTrabajoUTN.API.Migrations
                         {
                             Id = "02174cf0–9412–4cfe-afbf-59f706d72cf6",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "d7aebe84-efcc-45e4-ac05-3cad949f2ac3",
+                            ConcurrencyStamp = "19d85f0a-f8e1-4af6-8438-ddd080891108",
                             Email = "administracion@frro.utn.edu.ar",
                             EmailConfirmed = true,
                             FirstName = "Administracion",
                             LastName = "Utn",
                             LockoutEnabled = false,
                             NormalizedUserName = "ADMIN1",
-                            PasswordHash = "AQAAAAEAACcQAAAAELiRxFhbtVW23TynWTPVfJYmYcSbwA9Huz1SEO8RgHawIwhAg6byURKILQw1+i49tg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAENaik9u88qiOw1a2FA8zh4usiPYmHvcPAGBGchiPEVBwDCD/vzvZkDxIM64UGggbig==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "72286c2b-c678-44c2-9167-ae54f969b9e6",
+                            SecurityStamp = "75a5db4d-18db-42af-907c-7943a0831dff",
                             TwoFactorEnabled = false,
                             UserName = "admin1"
                         });

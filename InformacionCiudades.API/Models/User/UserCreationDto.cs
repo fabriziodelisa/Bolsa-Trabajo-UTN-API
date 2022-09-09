@@ -1,7 +1,7 @@
 ﻿using ApiBolsaTrabajoUTN.API.Entities;
 using System.ComponentModel.DataAnnotations;
 
-namespace ApiBolsaTrabajoUTN.API.Models
+namespace ApiBolsaTrabajoUTN.API.Models.User
 {
     public class UserCreationDto
     {

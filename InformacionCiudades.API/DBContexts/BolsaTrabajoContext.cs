@@ -1,4 +1,4 @@
-﻿using ApiBolsaTrabajoUTN.API.Entities;
+﻿    using ApiBolsaTrabajoUTN.API.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -8,6 +8,7 @@ namespace ApiBolsaTrabajoUTN.API.DBContexts
     public class BolsaTrabajoContext : IdentityDbContext<User>
     {
         public DbSet<User> Users { get; set; }
+        public DbSet<Career> Careers { get; set; }
 
         public BolsaTrabajoContext(DbContextOptions<BolsaTrabajoContext> options) : base(options) //Acá estamos llamando al constructor de DbContext que es el que acepta las opciones
         {
@@ -53,6 +54,17 @@ namespace ApiBolsaTrabajoUTN.API.DBContexts
                 RoleId = ROLE_ID,
                 UserId = ADMIN_ID
             });
+
+            modelBuilder.Entity<Career>().HasData(
+                new Career
+                {
+                    Id = 1,
+                    Name = "Tecnicatura Universitaria En Programacion",
+                    Type = Enums.CareerTypes.Tecnicatura,
+                    Abbreviation = "TUP",
+                    TotalSubjets = 21
+                }
+            ); 
 
             base.OnModelCreating(modelBuilder);
         }

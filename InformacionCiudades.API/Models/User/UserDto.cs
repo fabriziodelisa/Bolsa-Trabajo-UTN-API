@@ -1,4 +1,4 @@
-﻿namespace ApiBolsaTrabajoUTN.API.Models
+﻿namespace ApiBolsaTrabajoUTN.API.Models.User
 {
     public class UserDto
     {
