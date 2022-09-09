@@ -11,13 +11,53 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ApiBolsaTrabajoUTN.API.Migrations
 {
     [DbContext(typeof(BolsaTrabajoContext))]
+<<<<<<<< HEAD:InformacionCiudades.API/Migrations/20220906200614_CompanyStudentRegister.Designer.cs
     [Migration("20220906200614_CompanyStudentRegister")]
     partial class CompanyStudentRegister
+========
+    [Migration("20220901230526_carreras_prueba")]
+    partial class carreras_prueba
+>>>>>>>> main:InformacionCiudades.API/Migrations/20220901230526_carreras_prueba.Designer.cs
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "6.0.8");
+
+            modelBuilder.Entity("ApiBolsaTrabajoUTN.API.Entities.Career", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Abbreviation")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("TotalSubjets")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("Type")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Careers");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Abbreviation = "TUP",
+                            Name = "Tecnicatura Universitaria En Programacion",
+                            TotalSubjets = 21,
+                            Type = 1
+                        });
+                });
 
             modelBuilder.Entity("ApiBolsaTrabajoUTN.API.Entities.User", b =>
                 {
@@ -86,7 +126,28 @@ namespace ApiBolsaTrabajoUTN.API.Migrations
 
                     b.ToTable("AspNetUsers", (string)null);
 
+<<<<<<<< HEAD:InformacionCiudades.API/Migrations/20220906200614_CompanyStudentRegister.Designer.cs
                     b.HasDiscriminator<string>("Discriminator").HasValue("User");
+========
+                    b.HasData(
+                        new
+                        {
+                            Id = "02174cf0–9412–4cfe-afbf-59f706d72cf6",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "19d85f0a-f8e1-4af6-8438-ddd080891108",
+                            Email = "administracion@frro.utn.edu.ar",
+                            EmailConfirmed = true,
+                            FirstName = "Administracion",
+                            LastName = "Utn",
+                            LockoutEnabled = false,
+                            NormalizedUserName = "ADMIN1",
+                            PasswordHash = "AQAAAAEAACcQAAAAENaik9u88qiOw1a2FA8zh4usiPYmHvcPAGBGchiPEVBwDCD/vzvZkDxIM64UGggbig==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "75a5db4d-18db-42af-907c-7943a0831dff",
+                            TwoFactorEnabled = false,
+                            UserName = "admin1"
+                        });
+>>>>>>>> main:InformacionCiudades.API/Migrations/20220901230526_carreras_prueba.Designer.cs
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
