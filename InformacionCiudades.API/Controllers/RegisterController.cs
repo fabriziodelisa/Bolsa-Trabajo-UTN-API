@@ -1,41 +1,56 @@
-﻿//using AutoMapper;
-//using ApiBolsaTrabajoUTN.API.Entities;
-//using ApiBolsaTrabajoUTN.API.Models;
-//using ApiBolsaTrabajoUTN.API.Services;
-//using Microsoft.AspNetCore.Http;
-//using Microsoft.AspNetCore.Mvc;
-//using Microsoft.AspNetCore.Identity;
-//using ApiBolsaTrabajoUTN.API.Models.User;
+﻿using AutoMapper;
+using ApiBolsaTrabajoUTN.API.Entities;
+using ApiBolsaTrabajoUTN.API.Models;
 
-//namespace ApiBolsaTrabajoUTN.API.Controllers
-//{
-//    [Route("api/[controller]")]
-//    [ApiController]
-//    public class RegisterController : ControllerBase
-//    {
-//        private readonly UserManager<User> _userManager;
-//        private readonly IMapper _mapper;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Identity;
+using ApiBolsaTrabajoUTN.API.Models.User;
 
-//        public RegisterController(UserManager<User> userManager, IMapper mapper)
-//        {
-//            _userManager = userManager;
-//            _mapper = mapper;
-//        }
+namespace ApiBolsaTrabajoUTN.API.Controllers
+{
+    [Route("api/[controller]")]
+    [ApiController]
+    public class RegisterController : ControllerBase
+    {
+        private readonly UserManager<User> _userManager;
+        private readonly IMapper _mapper;
 
-//        [HttpPost]
-//        public async Task<ActionResult<UserDto>> RegisterUser(UserCreationDto user)
-//        {
-//            var newUser = _mapper.Map<User>(user);
+        public RegisterController(UserManager<User> userManager, IMapper mapper)
+        {
+            _userManager = userManager;
+            _mapper = mapper;
+        }
 
-//            var result = await _userManager.CreateAsync(newUser, user.Password);
-//            if (result.Succeeded)
-//            {
+        [HttpPost("RegisterStudent")]
+        public async Task<ActionResult<StudentDto>> RegisterStudent(RegisterStudentRequestBody student)
+        {
+            var newStudent = _mapper.Map<Student>(student);
+            newStudent.UserName = student.Email;
 
-//                var userToReturn = _mapper.Map<UserDto>(newUser);
-//                string URI = $"https://localhost:7172/api/Register{userToReturn.Id}"; //acá no deberían alguna url a un endpoint de getUser by id
-//                return Created(URI, userToReturn);
-//            }
-//            return BadRequest(result);
-//        }
-//    }
-//}
+            var result = await _userManager.CreateAsync(newStudent, student.Password);
+            if (result.Succeeded)
+            {
+                var studentToReturn = _mapper.Map<StudentDto>(newStudent);
+                studentToReturn.Password = "";
+                string URI = $"https://localhost:7172/api/Register{studentToReturn.Id}";
+                return Created(URI, studentToReturn);
+            }
+            return BadRequest(result);
+        }
+        [HttpPost("RegisterCompany")]
+        public async Task<ActionResult<CompanyDto>> RegisterCompany(RegisterCompanyRequestBody company)
+        {
+            var newCompany = _mapper.Map<Company>(company);
+            newCompany.UserName = company.Email;
+
+            var result = await _userManager.CreateAsync(newCompany, company.Password);
+            if (result.Succeeded)
+            {
+                var companyToReturn = _mapper.Map<CompanyDto>(newCompany);
+                string URI = $"https://localhost:7172/api/Register{companyToReturn.Id}";
+                return Created(URI, companyToReturn);
+            }
+            return BadRequest(result);
+        }
+    }
+}

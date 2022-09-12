@@ -33,20 +33,31 @@ builder.Services.AddSwaggerGen(setupAction =>
                 Reference = new OpenApiReference
                 {
                     Type = ReferenceType.SecurityScheme,
-                    Id = "BolsaDeTrabajoApiBearerAuth" }
+                    Id = "appApiBearerAuth" }
                 }, new List<string>() }
     });
+});
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(
+        name: "AllowOrigin",
+        builder =>
+        {
+            builder.AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader();
+        });
 });
 
 
 
 builder.Services.AddDbContext<BolsaTrabajoContext>(dbContextOptions => dbContextOptions.UseSqlite(
-    builder.Configuration["ConnectionStrings:ContentsDBConnectionString"]));
+    builder.Configuration["ConnectionStrings:BolsaTrabajoDBConnectionString"]));
 
 builder.Services.AddIdentity<User, IdentityRole>()
     .AddEntityFrameworkStores<BolsaTrabajoContext>();
 
-//builder.Services.AddScoped<IAppRepository, AppRepository>();
+builder.Services.AddScoped<IAuthenticationRepository, AuthenticationRepository>();
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
@@ -80,9 +91,11 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-//app.UseAuthentication();
+app.UseCors("AllowOrigin");
 
-//app.UseAuthorization();
+app.UseAuthentication();
+
+app.UseAuthorization();
 
 app.MapControllers();
 
