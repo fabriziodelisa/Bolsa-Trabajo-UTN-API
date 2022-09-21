@@ -1,5 +1,4 @@
-﻿using ApiBolsaTrabajoUTN.API.DBContexts;
-using ApiBolsaTrabajoUTN.API.Entities;
+﻿using ApiBolsaTrabajoUTN.API.Entities;
 using ApiBolsaTrabajoUTN.API.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
@@ -18,19 +17,24 @@ namespace ApiBolsaTrabajoUTN.API.Services
             _userManager = userManager;
             _config = config;
         }
-        public async Task<string> Authenticate(AuthenticationRequestBody rq)
+        public async Task<AuthenticationModelResponse> Authenticate(AuthenticationModelRequest rq)
         {
+            var response = new AuthenticationModelResponse();
+
             if (rq.Email == null || rq.Password == null)
-                return "nouser";
+            {
+                response.Success = false;
+                response.Message = "Please, introduce valid data.";
+                return response;
+            }
 
             var user = await _userManager.FindByEmailAsync(rq.Email);
 
-            System.Diagnostics.Debug.WriteLine(rq.Email);
-            System.Diagnostics.Debug.WriteLine(rq.Email.ToUpper());
-
             if (user is null || !await _userManager.CheckPasswordAsync(user, rq.Password))
             {
-                return "noaccess";
+                response.Success = false;
+                response.Message = "The user was not found";
+                return response;
             }
 
             var roles = await _userManager.GetRolesAsync(user);
@@ -61,7 +65,10 @@ namespace ApiBolsaTrabajoUTN.API.Services
             var tokenToReturn = new JwtSecurityTokenHandler() //Pasamos el token a string
                 .WriteToken(jwtSecurityToken);
 
-            return tokenToReturn;
+            response.Success = true;
+            response.Message = "You have been correctly logged in";
+            response.Token = tokenToReturn;
+            return response;
         } 
     }
 }
