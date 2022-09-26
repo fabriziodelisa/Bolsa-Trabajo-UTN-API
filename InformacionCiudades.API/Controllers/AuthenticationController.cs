@@ -34,22 +34,15 @@ namespace ApiBolsaTrabajoUTN.API.Controllers
             return BadRequest(result);
         }
 
-        [HttpGet("getuser")]
-        public ActionResult<User> GetUser()
+        [HttpPost("logout")]
+        public IActionResult Logout()
         {
-            var identity = HttpContext.User.Identity as ClaimsIdentity;
+            Response.Cookies.Delete("jwt");
 
-            if (identity != null)
+            return Ok(new
             {
-                var userClaims = identity.Claims;
-
-                var userToReturn = new User
-                {
-                    Id = userClaims.FirstOrDefault(o => o.Type == "sub")?.Value,
-                };
-                return Ok(userToReturn);
-            }
-            return BadRequest("The user could not be found");
+                message = "Successfully logged out"
+            });
         }
     }
 }
