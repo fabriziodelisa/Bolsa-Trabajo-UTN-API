@@ -1,8 +1,10 @@
 ﻿using ApiBolsaTrabajoUTN.API.Entities;
+using ApiBolsaTrabajoUTN.API.Helpers;
 using ApiBolsaTrabajoUTN.API.Models;
 using ApiBolsaTrabajoUTN.API.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace ApiBolsaTrabajoUTN.API.Controllers
 {
@@ -11,21 +13,36 @@ namespace ApiBolsaTrabajoUTN.API.Controllers
     public class AuthenticationController : ControllerBase
     {
         private readonly IAuthenticationRepository _authenticationRepository;
+        private readonly IJwtService _jwtService;
 
-        public AuthenticationController(IConfiguration config, UserManager<User> userManager, IAuthenticationRepository authenticationRepository)
+        public AuthenticationController(IAuthenticationRepository authenticationRepository, IJwtService jwtService)
         {
             _authenticationRepository = authenticationRepository;
+            _jwtService = jwtService;
         }
 
         [HttpPost("authenticate")]
-        public async Task<ActionResult<string>> Authenticate(AuthenticationRequestBody authenticationRequestBody)
+        public async Task<IActionResult> Authenticate(AuthenticationModelRequest authenticationRequestBody)
         {
             var result = await _authenticationRepository.Authenticate(authenticationRequestBody);
-            if (result == "nouser")
-                return BadRequest();
-            if (result == "noaccess")
-                return Unauthorized();
-            return result;
+            if (result.Success && result.Token != null)
+            {
+                HttpContext.Response.Cookies.Append("jwt", result.Token, new CookieOptions
+                { HttpOnly = true, SameSite = SameSiteMode.Strict });
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+
+        [HttpPost("logout")]
+        public IActionResult Logout()
+        {
+            Response.Cookies.Delete("jwt");
+
+            return Ok(new
+            {
+                message = "Successfully logged out"
+            });
         }
     }
 }

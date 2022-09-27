@@ -5,6 +5,6 @@ namespace ApiBolsaTrabajoUTN.API.Services
 {
     public interface IAuthenticationRepository
     {
-        public Task<string> Authenticate(AuthenticationRequestBody authenticationRequestBody);
+        public Task<AuthenticationModelResponse> Authenticate(AuthenticationModelRequest authenticationRequestBody);
     }
 }
