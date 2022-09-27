@@ -10,6 +10,8 @@ namespace ApiBolsaTrabajoUTN.API.AutoMapperProfiles
         public CompanyProfile()
         {
             CreateMap<Company, CompanyDto>();
+            CreateMap<Company, CompanyInfoDto>();
+            CreateMap<CompanyInfoDto, Company>();
             CreateMap<Company, RegisterCompanyRequestBody>();
             CreateMap<RegisterCompanyRequestBody, Company>();
         }
