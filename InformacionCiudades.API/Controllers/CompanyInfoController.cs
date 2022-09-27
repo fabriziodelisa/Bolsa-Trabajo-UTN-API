@@ -10,34 +10,28 @@ using System.Security.Claims;
 
 namespace ApiBolsaTrabajoUTN.API.Controllers
 {
-        [Controller]
-        //[Authorize(Roles = "Company")]
-        [Route("api/Company")]
+    [Controller]
+    //[Authorize(Roles = "Company")]
+    [Route("api/Company")]
     public class CompanyInfoController : ControllerBase
     {
         private readonly UserManager<Company> _userManager;
         private readonly ICompanyRepository _companyRepository;
         private readonly IMapper _mapper;
 
-        public CompanyInfoController(UserManager<Company> userManager, ICompanyRepository companyRepository, IMapper mapper) 
+        public CompanyInfoController(UserManager<Company> userManager, ICompanyRepository companyRepository, IMapper mapper)
         {
             _userManager = userManager;
             _companyRepository = companyRepository;
             _mapper = mapper;
         }
 
-        public string? GetUserId()
-        {
-         return User.Claims.FirstOrDefault(c => c.Type == ClaimTypes./*sub*/NameIdentifier)?.Value;
-            //   User.FindFirstValue(ClaimTypes.NameIdentifier);
-            //   var userRole = User.FindFirstValue(ClaimTypes.Role);            
-        }
 
-        [HttpGet("CompanyInfo")]
+        [HttpGet]
 
         public ActionResult<CompanyInfoDto> GetInfo()
         {
-            var currentUserId = GetUserId();
+            string? currentUserId = User.Claims.FirstOrDefault(c => c.Type == "sub")?.Value;
 
             var companyInfo = _companyRepository.GetInfo(currentUserId);
             if (companyInfo is null)
@@ -49,7 +43,7 @@ namespace ApiBolsaTrabajoUTN.API.Controllers
 
         public ActionResult UpdateInfo(UpdateCompanyInfoDto updateCompanyInfo)
         {
-            var currentUserId = GetUserId();
+            string? currentUserId = User.Claims.FirstOrDefault(c => c.Type == "sub")?.Value;
 
             //var companyUpdate =
             //{
@@ -58,6 +52,5 @@ namespace ApiBolsaTrabajoUTN.API.Controllers
 
             return NoContent();
         }
-
     }
 }
