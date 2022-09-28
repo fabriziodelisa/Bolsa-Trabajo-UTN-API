@@ -91,7 +91,7 @@ builder.Services.AddScoped<ICareerService, CareerService>();
 
 builder.Services.AddScoped<IJwtService, JwtService>();
 
-builder.Services.AddScoped<ICompanyRepository, CompanyRepository>();
+builder.Services.AddScoped<IUserRepository, UsersRepository>();
 
 var app = builder.Build();
 
