@@ -35,15 +35,15 @@ namespace ApiBolsaTrabajoUTN.API.Controllers
         }
 
         [HttpPut("UpdateCompanyInfo")]
-        public ActionResult<Company> UpdateCompanyInfo(UpdateCompanyInfoDto updateCompanyInfo)
+        public ActionResult<Company> UpdateCompanyInfo(CompanyInfoDto updateCompanyInfo)
         {
             string? currentUserId = User.Claims.FirstOrDefault(c => c.Type == "sub")?.Value;
             var companyInfo = _userRepository.GetCompanyInfo(currentUserId);
-            //companyInfo.CompanyName = updateCompanyInfo.CompanyName;                estos datos no deberia poder cambiarlo el usuario
-            //companyInfo.Cuit = updateCompanyInfo.Cuit;                            porque requeriria otra validacion de administracion
-            //companyInfo.Sector = updateCompanyInfo.Sector;
-            //companyInfo.LegalAdress = updateCompanyInfo.LegalAdress;
-            //companyInfo.PostalCode = updateCompanyInfo.PostalCode;
+            companyInfo.CompanyName = updateCompanyInfo.CompanyName;
+            companyInfo.Cuit = updateCompanyInfo.Cuit;
+            companyInfo.Sector = updateCompanyInfo.Sector;
+            companyInfo.LegalAdress = updateCompanyInfo.LegalAdress;
+            companyInfo.PostalCode = updateCompanyInfo.PostalCode;
             companyInfo.TelephoneNumber = updateCompanyInfo.TelephoneNumber;
             companyInfo.Web = updateCompanyInfo.Web;
 
@@ -63,22 +63,44 @@ namespace ApiBolsaTrabajoUTN.API.Controllers
 
 
         [HttpGet("Student")]
-        public ActionResult<CompanyInfoDto> GetStudentInfo()
+        public ActionResult<StudentInfoDto> GetStudentInfo()
         {
             string? currentUserId = User.Claims.FirstOrDefault(c => c.Type == "sub")?.Value;
-            var companyInfo = _userRepository.GetCompanyInfo(currentUserId);
-            if (companyInfo is null)
+            var studentInfo = _userRepository.GetCompanyInfo(currentUserId);
+            if (studentInfo is null)
                 return NotFound();
-            return Ok(_mapper.Map<CompanyInfoDto>(companyInfo));
+            return Ok(_mapper.Map<StudentInfoDto>(studentInfo));
         }
 
         [HttpPut("UpdateStudentInfo")]
-        public ActionResult<Student> UpdateStudentInfo(UpdateCompanyInfoDto updateCompanyInfo)
+        public ActionResult<Student> UpdateStudentInfo(StudentInfoDto updateCompanyInfo)
         {
             string? currentUserId = User.Claims.FirstOrDefault(c => c.Type == "sub")?.Value;
             var studentInfo = _userRepository.GetStudentInfo(currentUserId);
 
-            //me falta armar la entidad y el dto de student
+            studentInfo.Legajo = updateCompanyInfo.Legajo;
+            studentInfo.FirstName = updateCompanyInfo.FirstName;
+            studentInfo.LastName = updateCompanyInfo.LastName;
+            studentInfo.Email = updateCompanyInfo.Email;
+            studentInfo.DocumentType = updateCompanyInfo.DocumentType;
+            studentInfo.Dni = updateCompanyInfo.Dni;
+            studentInfo.BirthDate = updateCompanyInfo.BirthDate;
+            studentInfo.Cuil = updateCompanyInfo.Cuil;
+            studentInfo.Address = updateCompanyInfo.Address;
+            studentInfo.AddressNum = updateCompanyInfo.AddressNum;
+            studentInfo.Sex = updateCompanyInfo.Sex;
+            studentInfo.Country = updateCompanyInfo.Country;
+            studentInfo.Province = updateCompanyInfo.Province;
+            studentInfo.City = updateCompanyInfo.City;
+            studentInfo.PhoneNumber = updateCompanyInfo.PhoneNumber;
+            studentInfo.CareerId = updateCompanyInfo.CareerId;
+            studentInfo.ApprovedSubjets = updateCompanyInfo.ApprovedSubjets;
+            studentInfo.PlanDeEstudio = updateCompanyInfo.PlanDeEstudio;
+            studentInfo.CurrentCareerYear = updateCompanyInfo.CurrentCareerYear;
+            studentInfo.Turn = updateCompanyInfo.Turn;
+            studentInfo.Average = updateCompanyInfo.Average;
+            studentInfo.AverageWithFails = updateCompanyInfo.AverageWithFails;
+            studentInfo.FirstChargeData = true;
 
             return NoContent();
         }

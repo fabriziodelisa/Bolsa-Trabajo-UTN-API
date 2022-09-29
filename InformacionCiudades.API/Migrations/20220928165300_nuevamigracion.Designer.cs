@@ -3,6 +3,7 @@ using System;
 using ApiBolsaTrabajoUTN.API.DBContexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ApiBolsaTrabajoUTN.API.Migrations
 {
     [DbContext(typeof(BolsaTrabajoContext))]
-    partial class BolsaTrabajoContextModelSnapshot : ModelSnapshot
+    [Migration("20220928165300_nuevamigracion")]
+    partial class nuevamigracion
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "6.0.8");
@@ -75,14 +77,9 @@ namespace ApiBolsaTrabajoUTN.API.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("StudentId")
-                        .HasColumnType("TEXT");
-
                     b.HasKey("Id");
 
                     b.HasIndex("CompanyId1");
-
-                    b.HasIndex("StudentId");
 
                     b.ToTable("JobPosition");
                 });
@@ -322,14 +319,14 @@ namespace ApiBolsaTrabajoUTN.API.Migrations
                         {
                             Id = "02174cf0–9412–4cfe-afbf-59f706d72cf6",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "d7541a5f-ec1a-4b72-9477-c50a76158c41",
+                            ConcurrencyStamp = "9037aa33-3e31-4707-ab37-7c20f68d78e3",
                             Email = "administracion@frro.utn.edu.ar",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMINISTRACION@FRRO.UTN.EDU.AR",
-                            PasswordHash = "AQAAAAEAACcQAAAAEOLn4OFYJMCYjovFUcGL+xL+cpTDzxBfn6pTOjNApJXuW2X6tVnK1JRkVgnSGJugCw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEMRBt3YWuirm0zo8SpO66ppSpDPUiG36CllJqUYxNV40A1QK/0JMhALTmbYBzR19sw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "cebfece9-66fd-4494-8cf1-0579b6088645",
+                            SecurityStamp = "689ea52a-2af6-40df-84b4-0046521162d9",
                             TwoFactorEnabled = false,
                             FirstName = "Administracion",
                             LastName = "Utn"
@@ -340,10 +337,6 @@ namespace ApiBolsaTrabajoUTN.API.Migrations
                 {
                     b.HasBaseType("ApiBolsaTrabajoUTN.API.Entities.User");
 
-                    b.Property<bool>("ActiveAccount")
-                        .HasColumnType("INTEGER")
-                        .HasColumnName("Company_ActiveAccount");
-
                     b.Property<string>("CompanyName")
                         .IsRequired()
                         .HasColumnType("TEXT");
@@ -353,8 +346,7 @@ namespace ApiBolsaTrabajoUTN.API.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<bool>("FirstChargeData")
-                        .HasColumnType("INTEGER")
-                        .HasColumnName("Company_FirstChargeData");
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("LegalAdress")
                         .IsRequired()
@@ -405,9 +397,6 @@ namespace ApiBolsaTrabajoUTN.API.Migrations
                 {
                     b.HasBaseType("ApiBolsaTrabajoUTN.API.Entities.User");
 
-                    b.Property<bool>("ActiveAccount")
-                        .HasColumnType("INTEGER");
-
                     b.Property<string>("Address")
                         .IsRequired()
                         .HasColumnType("TEXT");
@@ -453,9 +442,6 @@ namespace ApiBolsaTrabajoUTN.API.Migrations
                     b.Property<int>("DocumentType")
                         .HasColumnType("INTEGER");
 
-                    b.Property<bool>("FirstChargeData")
-                        .HasColumnType("INTEGER");
-
                     b.Property<string>("FirstName")
                         .IsRequired()
                         .HasColumnType("TEXT");
@@ -479,7 +465,7 @@ namespace ApiBolsaTrabajoUTN.API.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("Turn")
+                    b.Property<int>("turn")
                         .HasColumnType("INTEGER");
 
                     b.HasDiscriminator().HasValue("Student");
@@ -490,10 +476,6 @@ namespace ApiBolsaTrabajoUTN.API.Migrations
                     b.HasOne("ApiBolsaTrabajoUTN.API.Entities.Company", null)
                         .WithMany("JobPositions")
                         .HasForeignKey("CompanyId1");
-
-                    b.HasOne("ApiBolsaTrabajoUTN.API.Entities.Student", null)
-                        .WithMany("JobApplications")
-                        .HasForeignKey("StudentId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -550,11 +532,6 @@ namespace ApiBolsaTrabajoUTN.API.Migrations
             modelBuilder.Entity("ApiBolsaTrabajoUTN.API.Entities.Company", b =>
                 {
                     b.Navigation("JobPositions");
-                });
-
-            modelBuilder.Entity("ApiBolsaTrabajoUTN.API.Entities.Student", b =>
-                {
-                    b.Navigation("JobApplications");
                 });
 #pragma warning restore 612, 618
         }

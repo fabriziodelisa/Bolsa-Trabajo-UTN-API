@@ -4,7 +4,8 @@ using System.ComponentModel.DataAnnotations;
 namespace ApiBolsaTrabajoUTN.API.Entities
 {
     public class Company : User
-    {
+    {   
+        //company data
         public string CompanyName { get; set; }
         public string Cuit { get; set; }
         public string TelephoneNumber { get; set; }
@@ -13,18 +14,17 @@ namespace ApiBolsaTrabajoUTN.API.Entities
         public string PostalCode { get; set; }
         public string? Web { get; set; }
 
+        //recruiter data
         public string RecruiterName { get; set; }
         public string RecruiterLastName { get; set; }
         public string RecruiterPosition { get; set; }
         public string RecruiterPhoneNumber { get; set; }
         public string RecruiterEmail { get; set; }
         public RecruiterRelWithCompany RecruiterRelWithCompany { get; set; }
+
         public bool FirstChargeData { get; set; } = false;
-        public List<JobPosition> JobPositions { get; set; }
-        public Company()
-            {
-                JobPositions = new List<JobPosition>();
-            }
+        public bool ActiveAccount { get; set; } = false;
+        public ICollection<JobPosition> JobPositions { get; set; } = new List<JobPosition>();
     }
 }
 
