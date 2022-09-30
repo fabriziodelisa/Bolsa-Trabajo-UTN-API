@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace ApiBolsaTrabajoUTN.API.Models
+namespace ApiBolsaTrabajoUTN.API.Models.Register
 {
     public class RegisterCompanyRequestBody
     {

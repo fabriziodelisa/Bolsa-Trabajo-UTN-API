@@ -1,4 +1,4 @@
-﻿using ApiBolsaTrabajoUTN.API.Models;
+﻿using ApiBolsaTrabajoUTN.API.Models.Authentication;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ApiBolsaTrabajoUTN.API.Services.Authentication
