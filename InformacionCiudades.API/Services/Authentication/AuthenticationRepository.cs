@@ -1,13 +1,13 @@
 ﻿using ApiBolsaTrabajoUTN.API.Entities;
 using ApiBolsaTrabajoUTN.API.Helpers;
-using ApiBolsaTrabajoUTN.API.Models;
+using ApiBolsaTrabajoUTN.API.Models.Authentication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 
-namespace ApiBolsaTrabajoUTN.API.Services
+namespace ApiBolsaTrabajoUTN.API.Services.Authentication
 {
     public class AuthenticationRepository : IAuthenticationRepository
     {

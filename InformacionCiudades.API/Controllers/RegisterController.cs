@@ -5,6 +5,7 @@ using ApiBolsaTrabajoUTN.API.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
 using ApiBolsaTrabajoUTN.API.Models.User;
+using ApiBolsaTrabajoUTN.API.Models.Register;
 
 namespace ApiBolsaTrabajoUTN.API.Controllers
 {

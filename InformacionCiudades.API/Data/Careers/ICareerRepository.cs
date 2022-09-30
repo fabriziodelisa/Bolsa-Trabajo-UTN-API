@@ -1,6 +1,6 @@
 ﻿using ApiBolsaTrabajoUTN.API.Entities;
 
-namespace ApiBolsaTrabajoUTN.API.Data.Interfaces
+namespace ApiBolsaTrabajoUTN.API.Data.Careers
 {
     public interface ICareerRepository : IRepository
     {

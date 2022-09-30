@@ -1,9 +1,8 @@
-﻿using ApiBolsaTrabajoUTN.API.Data.Interfaces;
-using ApiBolsaTrabajoUTN.API.DBContexts;
+﻿using ApiBolsaTrabajoUTN.API.DBContexts;
 using ApiBolsaTrabajoUTN.API.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace ApiBolsaTrabajoUTN.API.Data.implementations
+namespace ApiBolsaTrabajoUTN.API.Data.Careers
 {
     public class CareerRepository : Repository, ICareerRepository
     {

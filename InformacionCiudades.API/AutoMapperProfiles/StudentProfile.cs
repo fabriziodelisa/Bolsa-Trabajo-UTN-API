@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using ApiBolsaTrabajoUTN.API.Entities;
 using ApiBolsaTrabajoUTN.API.Models;
+using ApiBolsaTrabajoUTN.API.Models.Register;
 
 namespace ApiBolsaTrabajoUTN.API.AutoMapperProfiles
 {

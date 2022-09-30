@@ -1,8 +1,8 @@
-﻿using ApiBolsaTrabajoUTN.API.Data.Interfaces;
+﻿using ApiBolsaTrabajoUTN.API.Data;
 using ApiBolsaTrabajoUTN.API.DBContexts;
 using Microsoft.EntityFrameworkCore;
 
-namespace ApiBolsaTrabajoUTN.API.Data.implementations
+namespace ApiBolsaTrabajoUTN.API.Data
 {
     public class Repository : IRepository
     {
