@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace ApiBolsaTrabajoUTN.API.Models
+namespace ApiBolsaTrabajoUTN.API.Models.Authentication
 {
     public class AuthenticationModelRequest
     {

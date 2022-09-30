@@ -7,8 +7,9 @@ namespace ApiBolsaTrabajoUTN.API.DBContexts
 {
     public class BolsaTrabajoContext : IdentityDbContext<User>
     {
-        public DbSet<User> Users { get; set; }
+        public DbSet<User> BolsaTrabajoUsers { get; set; }
         public DbSet<Career> Careers { get; set; }
+        public DbSet<JobPosition> JobPositions { get; set; }
 
         public BolsaTrabajoContext(DbContextOptions<BolsaTrabajoContext> options) : base(options) //Acá estamos llamando al constructor de DbContext que es el que acepta las opciones
         {
