@@ -21,9 +21,6 @@ namespace ApiBolsaTrabajoUTN.API.Helpers
 
         public async Task<string> Generate(User user)
         {
-            var symmetricSecurityKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(_config["Jwt:Key"]));
-            var credentials = new SigningCredentials(symmetricSecurityKey, SecurityAlgorithms.HmacSha256);
-
             var claimsForToken = new List<Claim>();
             claimsForToken.Add(new Claim("sub", user.Id.ToString()));
 
@@ -33,16 +30,18 @@ namespace ApiBolsaTrabajoUTN.API.Helpers
             {
                 claimsForToken.Add(new Claim("role", role));
             }
+            var key = _config["Jwt:Key"];
+            var securityKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(key));
+            var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
+            var tokenDescriptor = new JwtSecurityToken(
+                _config["Jwt:Issuer"],
+                _config["Jwt:Audience"],
+                claimsForToken,
+                DateTime.UtcNow,
+                DateTime.Now.AddMinutes(720),
+                credentials);
 
-            var jwtSecurityToken = new JwtSecurityToken(
-              _config["Jwt:Issuer"],
-              _config["Jwt:Audience"],
-              claimsForToken,
-              DateTime.UtcNow,
-              DateTime.UtcNow.AddHours(1),
-              credentials);
-
-            return new JwtSecurityTokenHandler().WriteToken(jwtSecurityToken);
+            return new JwtSecurityTokenHandler().WriteToken(tokenDescriptor);
         }
 
         public JwtSecurityToken Verify(string jwt)

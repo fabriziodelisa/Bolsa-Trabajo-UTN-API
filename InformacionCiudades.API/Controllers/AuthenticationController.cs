@@ -27,8 +27,6 @@ namespace ApiBolsaTrabajoUTN.API.Controllers
             var result = await _authenticationRepository.Authenticate(authenticationRequestBody);
             if (result.Success && result.Token != null)
             {
-                HttpContext.Response.Cookies.Append("jwt", result.Token, new CookieOptions
-                { HttpOnly = true, SameSite = SameSiteMode.Strict });
                 return Ok(result);
             }
             return BadRequest(result);
