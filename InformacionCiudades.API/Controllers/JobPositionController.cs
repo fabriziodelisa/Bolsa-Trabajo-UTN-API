@@ -10,11 +10,13 @@ namespace ApiBolsaTrabajoUTN.API.Controllers
     [Route("api/JobPosition")]
     public class JobPositionController : ControllerBase
     {
-        [HttpGet]
+        [HttpGet("AddJobPosition")]
         public ActionResult AddJobPosition()
         {
             var userId = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
-            return Ok(userId);
+            return Ok(new {
+                id = userId,
+            });
         }
     }
 }
