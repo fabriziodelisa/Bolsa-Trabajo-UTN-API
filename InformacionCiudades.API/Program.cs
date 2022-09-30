@@ -58,7 +58,6 @@ builder.Services.AddIdentityCore<User>()
     .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<BolsaTrabajoContext>();
 
-builder.Services.AddScoped<IAuthenticationRepository, AuthenticationRepository>();
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
@@ -80,11 +79,15 @@ builder.Services
     }
 );
 
+builder.Services.AddScoped<IAuthenticationRepository, AuthenticationRepository>();
+
 builder.Services.AddScoped<ICareerRepository, CareerRepository>();
 
 builder.Services.AddScoped<ICareerService, CareerService>();
 
 builder.Services.AddScoped<IJwtService, JwtService>();
+
+builder.Services.AddScoped<IJobPositionService, JobPositionService>();
 
 var app = builder.Build();
 
