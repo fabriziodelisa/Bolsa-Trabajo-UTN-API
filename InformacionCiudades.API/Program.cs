@@ -89,6 +89,8 @@ builder.Services.AddScoped<IJwtService, JwtService>();
 
 builder.Services.AddScoped<IJobPositionService, JobPositionService>();
 
+builder.Services.AddScoped<IJobPositionRepository, JobPositionRepository>();
+
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
