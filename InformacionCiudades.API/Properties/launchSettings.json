@@ -9,7 +9,7 @@
     }
   },
   "profiles": {
-    "Contents.API": {
+    "BolsaTrabajo.API": {
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,
