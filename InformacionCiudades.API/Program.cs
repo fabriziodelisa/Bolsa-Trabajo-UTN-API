@@ -1,4 +1,6 @@
 using ApiBolsaTrabajoUTN.API.Data.Careers;
+using ApiBolsaTrabajoUTN.API.Data.implementations;
+using ApiBolsaTrabajoUTN.API.Data.Interfaces;
 using ApiBolsaTrabajoUTN.API.Data.JobPositions;
 using ApiBolsaTrabajoUTN.API.DBContexts;
 using ApiBolsaTrabajoUTN.API.Entities;
