@@ -27,7 +27,7 @@ namespace ApiBolsaTrabajoUTN.API.Controllers
         [HttpGet("Company")]
         public ActionResult<CompanyInfoDto> GetCompanyInfo()
         {
-            string? currentUserId = User.Claims.FirstOrDefault(c => c.Type == "sub")?.Value;
+            string? currentUserId = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
             var companyInfo = _userRepository.GetCompanyInfo(currentUserId);
             if (companyInfo is null)
                 return NotFound();
@@ -37,7 +37,7 @@ namespace ApiBolsaTrabajoUTN.API.Controllers
         [HttpPut("UpdateCompanyInfo")]
         public ActionResult<Company> UpdateCompanyInfo(CompanyInfoDto updateCompanyInfo)
         {
-            string? currentUserId = User.Claims.FirstOrDefault(c => c.Type == "sub")?.Value;
+            string? currentUserId = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
             var companyInfo = _userRepository.GetCompanyInfo(currentUserId);
             companyInfo.CompanyName = updateCompanyInfo.CompanyName;
             companyInfo.Cuit = updateCompanyInfo.Cuit;
@@ -65,7 +65,7 @@ namespace ApiBolsaTrabajoUTN.API.Controllers
         [HttpGet("Student")]
         public ActionResult<StudentInfoDto> GetStudentInfo()
         {
-            string? currentUserId = User.Claims.FirstOrDefault(c => c.Type == "sub")?.Value;
+            string? currentUserId = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
             var studentInfo = _userRepository.GetCompanyInfo(currentUserId);
             if (studentInfo is null)
                 return NotFound();
@@ -75,7 +75,7 @@ namespace ApiBolsaTrabajoUTN.API.Controllers
         [HttpPut("UpdateStudentInfo")]
         public ActionResult<Student> UpdateStudentInfo(StudentInfoDto updateCompanyInfo)
         {
-            string? currentUserId = User.Claims.FirstOrDefault(c => c.Type == "sub")?.Value;
+            string? currentUserId = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
             var studentInfo = _userRepository.GetStudentInfo(currentUserId);
 
             studentInfo.Legajo = updateCompanyInfo.Legajo;
