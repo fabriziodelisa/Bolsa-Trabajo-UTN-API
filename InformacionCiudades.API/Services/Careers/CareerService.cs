@@ -1,9 +1,9 @@
-﻿using ApiBolsaTrabajoUTN.API.Data.Interfaces;
+﻿using ApiBolsaTrabajoUTN.API.Data.Careers;
 using ApiBolsaTrabajoUTN.API.Entities;
 using ApiBolsaTrabajoUTN.API.Models.Career;
 using AutoMapper;
 
-namespace ApiBolsaTrabajoUTN.API.Services
+namespace ApiBolsaTrabajoUTN.API.Services.Careers
 {
     public class CareerService : ICareerService
     {

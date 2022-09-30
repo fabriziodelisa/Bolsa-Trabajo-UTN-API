@@ -7,7 +7,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 
-namespace ApiBolsaTrabajoUTN.API.Services
+namespace ApiBolsaTrabajoUTN.API.Services.Authentication
 {
     public class AuthenticationRepository : IAuthenticationRepository
     {

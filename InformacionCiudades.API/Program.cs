@@ -1,9 +1,11 @@
-using ApiBolsaTrabajoUTN.API.Data.implementations;
-using ApiBolsaTrabajoUTN.API.Data.Interfaces;
+using ApiBolsaTrabajoUTN.API.Data.Careers;
+using ApiBolsaTrabajoUTN.API.Data.JobPositions;
 using ApiBolsaTrabajoUTN.API.DBContexts;
 using ApiBolsaTrabajoUTN.API.Entities;
 using ApiBolsaTrabajoUTN.API.Helpers;
-using ApiBolsaTrabajoUTN.API.Services;
+using ApiBolsaTrabajoUTN.API.Services.Authentication;
+using ApiBolsaTrabajoUTN.API.Services.Careers;
+using ApiBolsaTrabajoUTN.API.Services.JobPositions;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;

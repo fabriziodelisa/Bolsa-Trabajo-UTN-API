@@ -1,6 +1,6 @@
 ﻿using ApiBolsaTrabajoUTN.API.Models.Career;
 
-namespace ApiBolsaTrabajoUTN.API.Services
+namespace ApiBolsaTrabajoUTN.API.Services.Careers
 {
     public interface ICareerService
     {

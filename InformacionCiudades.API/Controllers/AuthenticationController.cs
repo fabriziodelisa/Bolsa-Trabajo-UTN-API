@@ -1,7 +1,7 @@
 ﻿using ApiBolsaTrabajoUTN.API.Entities;
 using ApiBolsaTrabajoUTN.API.Helpers;
 using ApiBolsaTrabajoUTN.API.Models;
-using ApiBolsaTrabajoUTN.API.Services;
+using ApiBolsaTrabajoUTN.API.Services.Authentication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;

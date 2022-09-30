@@ -1,4 +1,4 @@
-﻿namespace ApiBolsaTrabajoUTN.API.Data.Interfaces
+﻿namespace ApiBolsaTrabajoUTN.API.Data.JobPositions
 {
     public interface IJobPositionRepository
     {
