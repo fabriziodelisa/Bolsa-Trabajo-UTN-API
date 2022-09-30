@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ApiBolsaTrabajoUTN.API.Migrations
 {
-    public partial class Register : Migration
+    public partial class JobPosition : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -31,6 +31,8 @@ namespace ApiBolsaTrabajoUTN.API.Migrations
                     Discriminator = table.Column<string>(type: "TEXT", nullable: false),
                     FirstName = table.Column<string>(type: "TEXT", nullable: true),
                     LastName = table.Column<string>(type: "TEXT", nullable: true),
+                    CompanyName = table.Column<string>(type: "TEXT", nullable: true),
+                    Cuit = table.Column<int>(type: "INTEGER", nullable: true),
                     UserName = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true),
@@ -173,6 +175,30 @@ namespace ApiBolsaTrabajoUTN.API.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "JobPositions",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    CompanyId = table.Column<string>(type: "TEXT", nullable: false),
+                    JobTitle = table.Column<string>(type: "TEXT", nullable: false),
+                    JobDescription = table.Column<string>(type: "TEXT", nullable: false),
+                    Location = table.Column<string>(type: "TEXT", nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    EndDate = table.Column<DateTime>(type: "TEXT", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_JobPositions", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_JobPositions_AspNetUsers_CompanyId",
+                        column: x => x.CompanyId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
@@ -181,7 +207,7 @@ namespace ApiBolsaTrabajoUTN.API.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Discriminator", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "02174cf0–9412–4cfe-afbf-59f706d72cf6", 0, "c28dedce-394f-4247-a5db-d70329b1fe99", "Admin", "administracion@frro.utn.edu.ar", true, "Administracion", "Utn", false, null, "ADMINISTRACION@FRRO.UTN.EDU.AR", null, "AQAAAAEAACcQAAAAENmwRFPQaZ/zwfiHBm+JhXJLFN4sVoZkv2vBltUXgFn0Vm874zpudiQI8Jkjc44P+w==", null, false, "2a6282a0-8092-42e7-b92f-6361131979cd", false, null });
+                values: new object[] { "02174cf0–9412–4cfe-afbf-59f706d72cf6", 0, "a519e32c-0fd5-4837-a0a4-931b7ec2d1aa", "Admin", "administracion@frro.utn.edu.ar", true, "Administracion", "Utn", false, null, "ADMINISTRACION@FRRO.UTN.EDU.AR", null, "AQAAAAEAACcQAAAAEFLeHMLp1dyuwQ8qNcR5mi03FbtMBBSxj5rXxz71hIaN66e3YTUgpejy7Plf5QPkaw==", null, false, "8fb566b9-a283-4309-b6f6-2f8de843269a", false, null });
 
             migrationBuilder.InsertData(
                 table: "Careers",
@@ -229,6 +255,11 @@ namespace ApiBolsaTrabajoUTN.API.Migrations
                 table: "AspNetUsers",
                 column: "NormalizedUserName",
                 unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_JobPositions_CompanyId",
+                table: "JobPositions",
+                column: "CompanyId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -250,6 +281,9 @@ namespace ApiBolsaTrabajoUTN.API.Migrations
 
             migrationBuilder.DropTable(
                 name: "Careers");
+
+            migrationBuilder.DropTable(
+                name: "JobPositions");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");

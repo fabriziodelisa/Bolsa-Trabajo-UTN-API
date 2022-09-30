@@ -1,4 +1,5 @@
 ﻿using ApiBolsaTrabajoUTN.API.Models.JobPosition;
+using ApiBolsaTrabajoUTN.API.Services.JobPositions;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -11,13 +12,18 @@ namespace ApiBolsaTrabajoUTN.API.Controllers
     [Route("api/JobPosition")]
     public class JobPositionController : ControllerBase
     {
-        [HttpGet("AddJobPosition")]
-        public ActionResult AddJobPosition(CreateJobPositionRequest rq)
+        private readonly IJobPositionService _jobPositionService;
+        public JobPositionController(IJobPositionService jobPositionService)
+        {
+            _jobPositionService = jobPositionService;
+        }
+
+        [HttpPost("AddJobPosition")]
+        public async Task<ActionResult> AddJobPosition(CreateJobPositionRequest rq)
         {
             var userId = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
-            return Ok(new {
-                id = userId,
-            });
+            var rs = await _jobPositionService.AddJobPosition(userId, rq);
+            return Ok(rs);
         }
     }
 }

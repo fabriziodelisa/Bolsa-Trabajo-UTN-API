@@ -89,9 +89,9 @@ builder.Services.AddScoped<ICareerService, CareerService>();
 
 builder.Services.AddScoped<IJwtService, JwtService>();
 
-builder.Services.AddScoped<IJobPositionService, JobPositionService>();
+builder.Services.AddTransient<IJobPositionService, JobPositionService>();
 
-builder.Services.AddScoped<IJobPositionRepository, JobPositionRepository>();
+builder.Services.AddTransient<IJobPositionRepository, JobPositionRepository>();
 
 var app = builder.Build();
 
