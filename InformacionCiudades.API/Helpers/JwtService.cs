@@ -21,11 +21,11 @@ namespace ApiBolsaTrabajoUTN.API.Helpers
 
         public async Task<string> Generate(User user)
         {
-            var symmetricSecurityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:Key"]));
+            var symmetricSecurityKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(_config["Jwt:Key"]));
             var credentials = new SigningCredentials(symmetricSecurityKey, SecurityAlgorithms.HmacSha256);
 
             var claimsForToken = new List<Claim>();
-            claimsForToken.Add(new Claim("sub", user.Id));
+            claimsForToken.Add(new Claim("sub", user.Id.ToString()));
 
             var roles = await _userManager.GetRolesAsync(user);
 
