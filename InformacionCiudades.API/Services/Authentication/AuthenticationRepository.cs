@@ -28,6 +28,7 @@ namespace ApiBolsaTrabajoUTN.API.Services.Authentication
         {
             var response = new AuthenticationModelResponse();
 
+            // Not empty request validation
             if (rq.Email == null || rq.Password == null)
             {
                 response.Success = false;
@@ -35,8 +36,10 @@ namespace ApiBolsaTrabajoUTN.API.Services.Authentication
                 return response;
             }
 
+            // Finds user through email
             var user = await _userManager.FindByEmailAsync(rq.Email);
 
+            // Validation that the user exists and passwords are the same
             if (user is null || !await _userManager.CheckPasswordAsync(user, rq.Password))
             {
                 response.Success = false;
@@ -44,7 +47,7 @@ namespace ApiBolsaTrabajoUTN.API.Services.Authentication
                 return response;
             }
 
-            // Generamos el token
+            // Token generation
             var tokenToReturn = await _jwtService.Generate(user);
 
             response.Success = true;
