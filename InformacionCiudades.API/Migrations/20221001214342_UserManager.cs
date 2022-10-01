@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ApiBolsaTrabajoUTN.API.Migrations
 {
-    public partial class JobPosition : Migration
+    public partial class UserManager : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -205,9 +205,19 @@ namespace ApiBolsaTrabajoUTN.API.Migrations
                 values: new object[] { "341743f0-asd2–42de-afbf-59kmkkmk72cf6", "341743f0-asd2–42de-afbf-59kmkkmk72cf6", "SuperAdmin", "SUPERADMIN" });
 
             migrationBuilder.InsertData(
+                table: "AspNetRoles",
+                columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
+                values: new object[] { "551753f0-bsd2–42de-ffbc-58kmgkmk71cd6", "551753f0-bsd2–42de-ffbc-58kmgkmk71cd6", "Company", "COMPANY" });
+
+            migrationBuilder.InsertData(
+                table: "AspNetRoles",
+                columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
+                values: new object[] { "599253f0-asd2–43de-cfbc-58kmgkmk71cd0", "599253f0-asd2–43de-cfbc-58kmgkmk71cd0", "Student", "STUDENT" });
+
+            migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Discriminator", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "02174cf0–9412–4cfe-afbf-59f706d72cf6", 0, "a519e32c-0fd5-4837-a0a4-931b7ec2d1aa", "Admin", "administracion@frro.utn.edu.ar", true, "Administracion", "Utn", false, null, "ADMINISTRACION@FRRO.UTN.EDU.AR", null, "AQAAAAEAACcQAAAAEFLeHMLp1dyuwQ8qNcR5mi03FbtMBBSxj5rXxz71hIaN66e3YTUgpejy7Plf5QPkaw==", null, false, "8fb566b9-a283-4309-b6f6-2f8de843269a", false, null });
+                values: new object[] { "02174cf0–9412–4cfe-afbf-59f706d72cf6", 0, "d37ac2bf-56db-41d8-81a8-9bebbb9aef77", "Admin", "administracion@frro.utn.edu.ar", true, "Administracion", "Utn", false, null, "ADMINISTRACION@FRRO.UTN.EDU.AR", null, "AQAAAAEAACcQAAAAEK2jCxE9NWTxfLgCdhu1qy8uXCVs+GNPYS+NuIVZfsMmSZRROAfV/t5a4f84o6casw==", null, false, "1080b75c-87f6-4203-856d-df27aebb61ba", false, null });
 
             migrationBuilder.InsertData(
                 table: "Careers",

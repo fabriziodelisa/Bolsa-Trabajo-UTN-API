@@ -189,6 +189,20 @@ namespace ApiBolsaTrabajoUTN.API.Migrations
                             ConcurrencyStamp = "341743f0-asd2–42de-afbf-59kmkkmk72cf6",
                             Name = "SuperAdmin",
                             NormalizedName = "SUPERADMIN"
+                        },
+                        new
+                        {
+                            Id = "551753f0-bsd2–42de-ffbc-58kmgkmk71cd6",
+                            ConcurrencyStamp = "551753f0-bsd2–42de-ffbc-58kmgkmk71cd6",
+                            Name = "Company",
+                            NormalizedName = "COMPANY"
+                        },
+                        new
+                        {
+                            Id = "599253f0-asd2–43de-cfbc-58kmgkmk71cd0",
+                            ConcurrencyStamp = "599253f0-asd2–43de-cfbc-58kmgkmk71cd0",
+                            Name = "Student",
+                            NormalizedName = "STUDENT"
                         });
                 });
 
@@ -320,14 +334,14 @@ namespace ApiBolsaTrabajoUTN.API.Migrations
                         {
                             Id = "02174cf0–9412–4cfe-afbf-59f706d72cf6",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "a519e32c-0fd5-4837-a0a4-931b7ec2d1aa",
+                            ConcurrencyStamp = "d37ac2bf-56db-41d8-81a8-9bebbb9aef77",
                             Email = "administracion@frro.utn.edu.ar",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMINISTRACION@FRRO.UTN.EDU.AR",
-                            PasswordHash = "AQAAAAEAACcQAAAAEFLeHMLp1dyuwQ8qNcR5mi03FbtMBBSxj5rXxz71hIaN66e3YTUgpejy7Plf5QPkaw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEK2jCxE9NWTxfLgCdhu1qy8uXCVs+GNPYS+NuIVZfsMmSZRROAfV/t5a4f84o6casw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "8fb566b9-a283-4309-b6f6-2f8de843269a",
+                            SecurityStamp = "1080b75c-87f6-4203-856d-df27aebb61ba",
                             TwoFactorEnabled = false,
                             FirstName = "Administracion",
                             LastName = "Utn"

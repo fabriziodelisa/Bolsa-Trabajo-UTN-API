@@ -19,15 +19,29 @@ namespace ApiBolsaTrabajoUTN.API.DBContexts
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             string ADMIN_ID = "02174cf0–9412–4cfe-afbf-59f706d72cf6";
-            string ROLE_ID = "341743f0-asd2–42de-afbf-59kmkkmk72cf6";
+            string ADMIN_ROLE_ID = "341743f0-asd2–42de-afbf-59kmkkmk72cf6";
+            string COMPANY_ROLE_ID = "551753f0-bsd2–42de-ffbc-58kmgkmk71cd6";
+            string STUDENT_ROLE_ID = "599253f0-asd2–43de-cfbc-58kmgkmk71cd0";
 
             //seed admin role
             modelBuilder.Entity<IdentityRole>().HasData(new IdentityRole
             {
                 Name = "SuperAdmin",
                 NormalizedName = "SUPERADMIN",
-                Id = ROLE_ID,
-                ConcurrencyStamp = ROLE_ID
+                Id = ADMIN_ROLE_ID,
+                ConcurrencyStamp = ADMIN_ROLE_ID
+            }, new IdentityRole
+            {
+                Name = "Company",
+                NormalizedName = "COMPANY",
+                Id = COMPANY_ROLE_ID,
+                ConcurrencyStamp = COMPANY_ROLE_ID,
+            }, new IdentityRole
+            {
+                Name = "Student",
+                NormalizedName = "STUDENT",
+                Id = STUDENT_ROLE_ID,
+                ConcurrencyStamp = STUDENT_ROLE_ID,
             });
 
             //create user
@@ -51,7 +65,7 @@ namespace ApiBolsaTrabajoUTN.API.DBContexts
             //set user role to admin
             modelBuilder.Entity<IdentityUserRole<string>>().HasData(new IdentityUserRole<string>
             {
-                RoleId = ROLE_ID,
+                RoleId = ADMIN_ROLE_ID,
                 UserId = ADMIN_ID
             });
 

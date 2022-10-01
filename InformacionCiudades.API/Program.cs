@@ -59,6 +59,9 @@ builder.Services.AddDbContext<BolsaTrabajoContext>(dbContextOptions => dbContext
 builder.Services.AddIdentityCore<User>()
     .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<BolsaTrabajoContext>();
+builder.Services.AddIdentityCore<Admin>().AddEntityFrameworkStores<BolsaTrabajoContext>();
+builder.Services.AddIdentityCore<Company>().AddEntityFrameworkStores<BolsaTrabajoContext>();
+builder.Services.AddIdentityCore<Student>().AddEntityFrameworkStores<BolsaTrabajoContext>();
 
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
