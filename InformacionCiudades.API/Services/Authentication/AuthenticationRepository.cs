@@ -12,12 +12,10 @@ namespace ApiBolsaTrabajoUTN.API.Services.Authentication
     public class AuthenticationRepository : IAuthenticationRepository
     {
         private readonly UserManager<User> _userManager;
-        private readonly IConfiguration _config;
         private readonly IJwtService _jwtService;
-        public AuthenticationRepository(UserManager<User> userManager, IConfiguration config, IJwtService jwtService)
+        public AuthenticationRepository(UserManager<User> userManager, IJwtService jwtService)
         {
             _userManager = userManager;
-            _config = config;
             _jwtService = jwtService;
         }
         public async Task<AuthenticationModelResponse> Authenticate(AuthenticationModelRequest rq)
