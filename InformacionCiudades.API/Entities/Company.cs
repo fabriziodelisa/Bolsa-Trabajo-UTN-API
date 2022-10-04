@@ -4,9 +4,10 @@ using System.ComponentModel.DataAnnotations;
 namespace ApiBolsaTrabajoUTN.API.Entities
 {
     public class Company : User
-    {   
+    {
         //company data
-        public string CompanyName { get; set; }
+        [Required]
+        public string CompName { get; set; }
         public string Cuit { get; set; }
         public string TelephoneNumber { get; set; }
         public string Sector { get; set; }
@@ -24,7 +25,13 @@ namespace ApiBolsaTrabajoUTN.API.Entities
 
         public bool FirstChargeData { get; set; } = false;
         public bool ActiveAccount { get; set; } = false;
-        public ICollection<JobPosition> JobPositions { get; set; } = new List<JobPosition>();
+        public ICollection<JobPosition> JobPositions { get; set; } //= new List<JobPosition>();
+
+        public Company(string compName)
+        {
+            CompName = compName;
+            JobPositions = new List<JobPosition>();
+        }
     }
 }
 

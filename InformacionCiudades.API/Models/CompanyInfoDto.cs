@@ -6,7 +6,7 @@ namespace ApiBolsaTrabajoUTN.API.Models
 {
     public class CompanyInfoDto
     {
-        public string? CompanyName { get; set; }
+        public string? CompName { get; set; }
         public string? Cuit { get; set; }
         public string? TelephoneNumber { get; set; }
         public string? Sector { get; set; }

@@ -10,7 +10,6 @@ using System.Security.Claims;
 namespace ApiBolsaTrabajoUTN.API.Controllers
 {
     [Controller]
-    //[Authorize(Roles = "Company")]
     [Route("api/UsersInfo")]
     public class CompanyInfoController : ControllerBase
     {
@@ -39,7 +38,7 @@ namespace ApiBolsaTrabajoUTN.API.Controllers
         {
             string? currentUserId = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
             var companyInfo = _userRepository.GetCompanyInfo(currentUserId);
-            companyInfo.CompanyName = updateCompanyInfo.CompanyName;
+            companyInfo.CompName = updateCompanyInfo.CompName;
             companyInfo.Cuit = updateCompanyInfo.Cuit;
             companyInfo.Sector = updateCompanyInfo.Sector;
             companyInfo.LegalAdress = updateCompanyInfo.LegalAdress;
