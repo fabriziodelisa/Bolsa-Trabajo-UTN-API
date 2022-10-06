@@ -1,11 +1,10 @@
 ﻿using AutoMapper;
 using ApiBolsaTrabajoUTN.API.Entities;
-using ApiBolsaTrabajoUTN.API.Models;
-
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
-using ApiBolsaTrabajoUTN.API.Models.User;
 using ApiBolsaTrabajoUTN.API.Models.Register;
+using ApiBolsaTrabajoUTN.API.Models.users.Student;
+using ApiBolsaTrabajoUTN.API.Models.users.Company;
 
 namespace ApiBolsaTrabajoUTN.API.Controllers
 {
