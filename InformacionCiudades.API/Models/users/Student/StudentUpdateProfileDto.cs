@@ -1,20 +1,10 @@
 ﻿using ApiBolsaTrabajoUTN.API.Enums;
-using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 
 namespace ApiBolsaTrabajoUTN.API.Models.users.Student
 {
-    public class StudentInfoDto
+    public class StudentUpdateProfileDto
     {
-        public int Legajo { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public string Email { get; set; }
-        [JsonConverter(typeof(JsonStringEnumConverter))]
-        public DocumentType DocumentType { get; set; }
-        public string Dni { get; set; }
-        public DateTime BirthDate { get; set; }
-        public string Cuil { get; set; }
         public string Address { get; set; }
         public string AddressNum { get; set; }
         public string Sex { get; set; }
@@ -32,7 +22,7 @@ namespace ApiBolsaTrabajoUTN.API.Models.users.Student
         public int Average { get; set; }
         public int AverageWithFails { get; set; }
         //public List<string> Skils { get; set; }   //*** sin implementar aun
-        public bool FirstChargeData { get; set; } = false;
-        public bool ActiveAccount { get; set; } = false;
+        public bool FirstChargeData { get; set; }
+        public bool ActiveAccount { get; set; } = true;
     }
 }
