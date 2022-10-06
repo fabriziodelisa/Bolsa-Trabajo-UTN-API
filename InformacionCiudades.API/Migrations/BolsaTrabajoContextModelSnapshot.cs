@@ -327,14 +327,14 @@ namespace ApiBolsaTrabajoUTN.API.Migrations
                         {
                             Id = "02174cf0–9412–4cfe-afbf-59f706d72cf6",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "a5756601-c441-4789-b77a-18eea890c506",
+                            ConcurrencyStamp = "7b313c47-497c-4412-aebd-c61fdb520998",
                             Email = "administracion@frro.utn.edu.ar",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMINISTRACION@FRRO.UTN.EDU.AR",
-                            PasswordHash = "AQAAAAEAACcQAAAAEAiDM4QO7F0TL6A+9dAMvAfpaw+TcNiMqqLZoJpqmBSLHW7b6xCSQ0lqN13REg8cug==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEHJ4kAIJm4QY3G0YnylUj+fA6Ty3JoBVlMcouo72qnzsZfEKlbughHH7TdM1ZmWdFw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "f8877395-23f3-4368-8c8e-39fb9fe414c2",
+                            SecurityStamp = "b1e41045-bcde-44a0-b0a1-bea4abc6d395",
                             TwoFactorEnabled = false,
                             FirstName = "Administracion",
                             LastName = "Utn"

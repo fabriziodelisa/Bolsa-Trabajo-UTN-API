@@ -23,6 +23,7 @@
 
   <ItemGroup>
     <Folder Include="Migrations\" />
+    <Folder Include="Models\users\Admin\" />
   </ItemGroup>
 
 </Project>

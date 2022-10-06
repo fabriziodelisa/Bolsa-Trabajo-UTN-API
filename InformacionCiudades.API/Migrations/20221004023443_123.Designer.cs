@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ApiBolsaTrabajoUTN.API.Migrations
 {
     [DbContext(typeof(BolsaTrabajoContext))]
-    [Migration("20220930223044_migration-after-fix-id-problems")]
-    partial class migrationafterfixidproblems
+    [Migration("20221004023443_123")]
+    partial class _123
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -329,14 +329,14 @@ namespace ApiBolsaTrabajoUTN.API.Migrations
                         {
                             Id = "02174cf0–9412–4cfe-afbf-59f706d72cf6",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "a5756601-c441-4789-b77a-18eea890c506",
+                            ConcurrencyStamp = "eb4371b2-70aa-47ab-a6a4-6599c7038c84",
                             Email = "administracion@frro.utn.edu.ar",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMINISTRACION@FRRO.UTN.EDU.AR",
-                            PasswordHash = "AQAAAAEAACcQAAAAEAiDM4QO7F0TL6A+9dAMvAfpaw+TcNiMqqLZoJpqmBSLHW7b6xCSQ0lqN13REg8cug==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEAaecRN1AijFsh9unJJ0KWqeWhX+Z9sKopu/n1Q0cxpqu27o9EYWireTOOxByHeeeQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "f8877395-23f3-4368-8c8e-39fb9fe414c2",
+                            SecurityStamp = "10244c54-5ec4-4150-a8d6-91177f684393",
                             TwoFactorEnabled = false,
                             FirstName = "Administracion",
                             LastName = "Utn"
@@ -351,7 +351,7 @@ namespace ApiBolsaTrabajoUTN.API.Migrations
                         .HasColumnType("INTEGER")
                         .HasColumnName("Company_ActiveAccount");
 
-                    b.Property<string>("CompanyName")
+                    b.Property<string>("CompName")
                         .IsRequired()
                         .HasColumnType("TEXT");
 

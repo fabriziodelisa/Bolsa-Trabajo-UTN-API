@@ -1,6 +1,4 @@
 using ApiBolsaTrabajoUTN.API.Data.Careers;
-using ApiBolsaTrabajoUTN.API.Data.implementations;
-using ApiBolsaTrabajoUTN.API.Data.Interfaces;
 using ApiBolsaTrabajoUTN.API.Data.JobPositions;
 using ApiBolsaTrabajoUTN.API.DBContexts;
 using ApiBolsaTrabajoUTN.API.Entities;
@@ -90,8 +88,6 @@ builder.Services.AddScoped<ICareerRepository, CareerRepository>();
 builder.Services.AddScoped<ICareerService, CareerService>();
 
 builder.Services.AddScoped<IJwtService, JwtService>();
-
-builder.Services.AddScoped<IUserRepository, UsersRepository>();
 
 builder.Services.AddTransient<IJobPositionService, JobPositionService>();
 

@@ -1,9 +1,9 @@
-﻿namespace ApiBolsaTrabajoUTN.API.Models.User
+﻿namespace ApiBolsaTrabajoUTN.API.Models.users.Company
 {
     public class CompanyDto
     {
         public Guid Id { get; set; }
-        public string CompName { get; set; }
+        public string CompanyName { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
     }

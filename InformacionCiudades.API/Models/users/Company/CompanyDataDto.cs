@@ -1,12 +1,11 @@
 ﻿using ApiBolsaTrabajoUTN.API.Enums;
-using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 
-namespace ApiBolsaTrabajoUTN.API.Models
+namespace ApiBolsaTrabajoUTN.API.Models.users.Company
 {
-    public class CompanyInfoDto
+    public class CompanyDataDto
     {
-        public string? CompName { get; set; }
+        public string? CompanyName { get; set; }
         public string? Cuit { get; set; }
         public string? TelephoneNumber { get; set; }
         public string? Sector { get; set; }
@@ -22,6 +21,7 @@ namespace ApiBolsaTrabajoUTN.API.Models
         [JsonConverter(typeof(JsonStringEnumConverter))]
         public RecruiterRelWithCompany RecruiterRelWithCompany { get; set; } = RecruiterRelWithCompany.inCompany;
         public bool FirstChargeData { get; set; }
-        public bool ActiveAccount { get; set; } = false;
+        public bool ActiveAccount { get; set; }
     }
 }
+

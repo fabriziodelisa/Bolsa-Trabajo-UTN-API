@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ApiBolsaTrabajoUTN.API.Migrations
 {
     [DbContext(typeof(BolsaTrabajoContext))]
-    [Migration("20220929025548_newmigration")]
-    partial class newmigration
+    [Migration("20221004024020_migracion124")]
+    partial class migracion124
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -60,13 +60,14 @@ namespace ApiBolsaTrabajoUTN.API.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("CompanyId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("CompanyId1")
+                    b.Property<string>("CompanyId")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("EndDate")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("JobDescription")
@@ -77,16 +78,20 @@ namespace ApiBolsaTrabajoUTN.API.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("Location")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("StudentId")
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CompanyId1");
+                    b.HasIndex("CompanyId");
 
                     b.HasIndex("StudentId");
 
-                    b.ToTable("JobPosition");
+                    b.ToTable("JobPositions");
                 });
 
             modelBuilder.Entity("ApiBolsaTrabajoUTN.API.Entities.User", b =>
@@ -324,14 +329,14 @@ namespace ApiBolsaTrabajoUTN.API.Migrations
                         {
                             Id = "02174cf0–9412–4cfe-afbf-59f706d72cf6",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "d7541a5f-ec1a-4b72-9477-c50a76158c41",
+                            ConcurrencyStamp = "7b313c47-497c-4412-aebd-c61fdb520998",
                             Email = "administracion@frro.utn.edu.ar",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMINISTRACION@FRRO.UTN.EDU.AR",
-                            PasswordHash = "AQAAAAEAACcQAAAAEOLn4OFYJMCYjovFUcGL+xL+cpTDzxBfn6pTOjNApJXuW2X6tVnK1JRkVgnSGJugCw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEHJ4kAIJm4QY3G0YnylUj+fA6Ty3JoBVlMcouo72qnzsZfEKlbughHH7TdM1ZmWdFw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "cebfece9-66fd-4494-8cf1-0579b6088645",
+                            SecurityStamp = "b1e41045-bcde-44a0-b0a1-bea4abc6d395",
                             TwoFactorEnabled = false,
                             FirstName = "Administracion",
                             LastName = "Utn"
@@ -489,13 +494,17 @@ namespace ApiBolsaTrabajoUTN.API.Migrations
 
             modelBuilder.Entity("ApiBolsaTrabajoUTN.API.Entities.JobPosition", b =>
                 {
-                    b.HasOne("ApiBolsaTrabajoUTN.API.Entities.Company", null)
+                    b.HasOne("ApiBolsaTrabajoUTN.API.Entities.Company", "Company")
                         .WithMany("JobPositions")
-                        .HasForeignKey("CompanyId1");
+                        .HasForeignKey("CompanyId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("ApiBolsaTrabajoUTN.API.Entities.Student", null)
                         .WithMany("JobApplications")
                         .HasForeignKey("StudentId");
+
+                    b.Navigation("Company");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

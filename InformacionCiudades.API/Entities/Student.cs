@@ -38,14 +38,7 @@ namespace ApiBolsaTrabajoUTN.API.Entities
 
         public bool FirstChargeData { get; set; } = false;
         public bool ActiveAccount { get; set; } = false;
-        public ICollection<JobPosition> JobApplications { get; set; } // = new List<JobPosition>();
+        public ICollection<JobPosition> JobApplications { get; set; }  = new List<JobPosition>();
 
-        public Student(int legajo, string firstName, string lastName)
-        {
-            Legajo = legajo;
-            FirstName = firstName;
-            LastName = lastName;
-            JobApplications = new List<JobPosition>();
-        }
     }
 }

@@ -7,7 +7,7 @@ namespace ApiBolsaTrabajoUTN.API.Entities
     {
         //company data
         [Required]
-        public string CompName { get; set; }
+        public string CompanyName { get; set; }
         public string Cuit { get; set; }
         public string TelephoneNumber { get; set; }
         public string Sector { get; set; }
@@ -23,15 +23,10 @@ namespace ApiBolsaTrabajoUTN.API.Entities
         public string RecruiterEmail { get; set; }
         public RecruiterRelWithCompany RecruiterRelWithCompany { get; set; }
 
-        public bool FirstChargeData { get; set; } = false;
-        public bool ActiveAccount { get; set; } = false;
-        public ICollection<JobPosition> JobPositions { get; set; } //= new List<JobPosition>();
+        public bool FirstChargeData { get; set; }
+        public bool ActiveAccount { get; set; } = true; //cambiar a false cuando tengamos hecho la parte de admin
+        public ICollection<JobPosition> JobPositions { get; set; } = new List<JobPosition>();
 
-        public Company(string compName)
-        {
-            CompName = compName;
-            JobPositions = new List<JobPosition>();
-        }
     }
 }
 

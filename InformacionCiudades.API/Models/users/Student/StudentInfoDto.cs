@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 
-namespace ApiBolsaTrabajoUTN.API.Models
+namespace ApiBolsaTrabajoUTN.API.Models.users.Student
 {
     public class StudentInfoDto
     {
