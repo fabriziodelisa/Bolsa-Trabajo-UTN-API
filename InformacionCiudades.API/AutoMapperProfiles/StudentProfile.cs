@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using ApiBolsaTrabajoUTN.API.Entities;
-using ApiBolsaTrabajoUTN.API.Models;
 using ApiBolsaTrabajoUTN.API.Models.Register;
+using ApiBolsaTrabajoUTN.API.Models.users.Student;
 
 namespace ApiBolsaTrabajoUTN.API.AutoMapperProfiles
 {
@@ -10,6 +10,8 @@ namespace ApiBolsaTrabajoUTN.API.AutoMapperProfiles
         public StudentProfile()
         {
             CreateMap<Student, StudentDto>();
+            CreateMap<Student, StudentInfoDto>();
+            CreateMap<StudentInfoDto, Student> ();
             CreateMap<Student, RegisterStudentRequestBody>();
             CreateMap<RegisterStudentRequestBody, Student>();
         }

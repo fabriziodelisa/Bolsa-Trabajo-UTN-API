@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ApiBolsaTrabajoUTN.API.Migrations
 {
     [DbContext(typeof(BolsaTrabajoContext))]
-    [Migration("20220930212729_JobPosition")]
-    partial class JobPosition
+    [Migration("20221004023443_123")]
+    partial class _123
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -82,9 +82,14 @@ namespace ApiBolsaTrabajoUTN.API.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("StudentId")
+                        .HasColumnType("TEXT");
+
                     b.HasKey("Id");
 
                     b.HasIndex("CompanyId");
+
+                    b.HasIndex("StudentId");
 
                     b.ToTable("JobPositions");
                 });
@@ -309,11 +314,13 @@ namespace ApiBolsaTrabajoUTN.API.Migrations
 
                     b.Property<string>("FirstName")
                         .IsRequired()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("TEXT")
+                        .HasColumnName("Admin_FirstName");
 
                     b.Property<string>("LastName")
                         .IsRequired()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("TEXT")
+                        .HasColumnName("Admin_LastName");
 
                     b.HasDiscriminator().HasValue("Admin");
 
@@ -322,14 +329,14 @@ namespace ApiBolsaTrabajoUTN.API.Migrations
                         {
                             Id = "02174cf0–9412–4cfe-afbf-59f706d72cf6",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "a519e32c-0fd5-4837-a0a4-931b7ec2d1aa",
+                            ConcurrencyStamp = "eb4371b2-70aa-47ab-a6a4-6599c7038c84",
                             Email = "administracion@frro.utn.edu.ar",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMINISTRACION@FRRO.UTN.EDU.AR",
-                            PasswordHash = "AQAAAAEAACcQAAAAEFLeHMLp1dyuwQ8qNcR5mi03FbtMBBSxj5rXxz71hIaN66e3YTUgpejy7Plf5QPkaw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEAaecRN1AijFsh9unJJ0KWqeWhX+Z9sKopu/n1Q0cxpqu27o9EYWireTOOxByHeeeQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "8fb566b9-a283-4309-b6f6-2f8de843269a",
+                            SecurityStamp = "10244c54-5ec4-4150-a8d6-91177f684393",
                             TwoFactorEnabled = false,
                             FirstName = "Administracion",
                             LastName = "Utn"
@@ -340,14 +347,149 @@ namespace ApiBolsaTrabajoUTN.API.Migrations
                 {
                     b.HasBaseType("ApiBolsaTrabajoUTN.API.Entities.User");
 
-                    b.Property<string>("CompanyName")
+                    b.Property<bool>("ActiveAccount")
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("Company_ActiveAccount");
+
+                    b.Property<string>("CompName")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("Cuit")
+                    b.Property<string>("Cuit")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<bool>("FirstChargeData")
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("Company_FirstChargeData");
+
+                    b.Property<string>("LegalAdress")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("PostalCode")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("RecruiterEmail")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("RecruiterLastName")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("RecruiterName")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("RecruiterPhoneNumber")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("RecruiterPosition")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("RecruiterRelWithCompany")
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("Sector")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("TelephoneNumber")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Web")
+                        .HasColumnType("TEXT");
+
                     b.HasDiscriminator().HasValue("Company");
+                });
+
+            modelBuilder.Entity("ApiBolsaTrabajoUTN.API.Entities.Student", b =>
+                {
+                    b.HasBaseType("ApiBolsaTrabajoUTN.API.Entities.User");
+
+                    b.Property<bool>("ActiveAccount")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("AddressNum")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("ApprovedSubjets")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("Average")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("AverageWithFails")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("BirthDate")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("CareerId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("City")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Country")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Cuil")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("CurrentCareerYear")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Dni")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("DocumentType")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("FirstChargeData")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("Legajo")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("PlanDeEstudio")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Province")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Sex")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("Turn")
+                        .HasColumnType("INTEGER");
+
+                    b.HasDiscriminator().HasValue("Student");
                 });
 
             modelBuilder.Entity("ApiBolsaTrabajoUTN.API.Entities.JobPosition", b =>
@@ -357,6 +499,10 @@ namespace ApiBolsaTrabajoUTN.API.Migrations
                         .HasForeignKey("CompanyId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("ApiBolsaTrabajoUTN.API.Entities.Student", null)
+                        .WithMany("JobApplications")
+                        .HasForeignKey("StudentId");
 
                     b.Navigation("Company");
                 });
@@ -415,6 +561,11 @@ namespace ApiBolsaTrabajoUTN.API.Migrations
             modelBuilder.Entity("ApiBolsaTrabajoUTN.API.Entities.Company", b =>
                 {
                     b.Navigation("JobPositions");
+                });
+
+            modelBuilder.Entity("ApiBolsaTrabajoUTN.API.Entities.Student", b =>
+                {
+                    b.Navigation("JobApplications");
                 });
 #pragma warning restore 612, 618
         }
