@@ -23,7 +23,7 @@ namespace ApiBolsaTrabajoUTN.API.Services.JobPositions
             // Validation
             if (company == null)
             {
-                rs.Message = "The job position couldn't be created, there is no associated company";
+                rs.Message = "La oferta laboral no pudo ser creada, no existe una empresa asociada";
                 rs.Success = false;
                 return rs;
             }
@@ -43,7 +43,31 @@ namespace ApiBolsaTrabajoUTN.API.Services.JobPositions
 
             // Return
             rs.Success = _jobPositionRepository.SaveChange();
-            rs.Message = "The job position has been created correctly";
+            rs.Message = "La oferta laboral fue creada exitosamente";
+            return rs;
+        }
+
+        public GetAllJobPositionsResponse GetAllJobPositions()
+        {
+            // Create response object
+            var rs = new GetAllJobPositionsResponse { };
+
+            // Get the company
+            var jobPositions =  _jobPositionRepository.GetAllJobPositions().ToList();
+
+            // Validation
+            if (jobPositions.Count == 0)
+            {
+                rs.Message = "No se encontro ninguna oferta laboral";
+                rs.Success = true;
+                return rs;
+            }
+
+            rs.Data = jobPositions;
+
+            // Return
+            rs.Success = _jobPositionRepository.SaveChange();
+            rs.Message = "Ofertas laborales retornadas correctamente";
             return rs;
         }
     }

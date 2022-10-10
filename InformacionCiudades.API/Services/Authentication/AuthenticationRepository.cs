@@ -32,7 +32,7 @@ namespace ApiBolsaTrabajoUTN.API.Services.Authentication
             if (rq.Email == null || rq.Password == null)
             {
                 response.Success = false;
-                response.Message = "Please, introduce valid data.";
+                response.Message = "Por favor, introducir información válida";
                 return response;
             }
 
@@ -43,7 +43,7 @@ namespace ApiBolsaTrabajoUTN.API.Services.Authentication
             if (user is null || !await _userManager.CheckPasswordAsync(user, rq.Password))
             {
                 response.Success = false;
-                response.Message = "The user was not found";
+                response.Message = "El usuario no fue encontrado";
                 return response;
             }
 
@@ -54,7 +54,7 @@ namespace ApiBolsaTrabajoUTN.API.Services.Authentication
             var tokenToReturn = await _jwtService.Generate(user);
 
             response.Success = true;
-            response.Message = "You have been correctly logged in";
+            response.Message = "Has iniciado sesión correctamente";
             response.Token = tokenToReturn;
             return response;
         }

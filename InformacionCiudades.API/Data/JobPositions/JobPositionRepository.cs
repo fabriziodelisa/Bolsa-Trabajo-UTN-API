@@ -22,5 +22,10 @@ namespace ApiBolsaTrabajoUTN.API.Data.JobPositions
         {
             company.JobPositions.Add(newJobPosition);
         }
+
+        public IQueryable<JobPosition> GetAllJobPositions()
+        {
+            return _bolsaTrabajoContext.JobPositions.AsQueryable();
+        }
     }
 }
