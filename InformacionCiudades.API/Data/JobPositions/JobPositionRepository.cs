@@ -6,21 +6,21 @@ namespace ApiBolsaTrabajoUTN.API.Data.JobPositions
 {
     public class JobPositionRepository : Repository, IJobPositionRepository
     {
-        private readonly UserManager<User> _companyManager;
-        public JobPositionRepository(BolsaTrabajoContext bolsaTrabajoContext, UserManager<User> companyManager) : base(bolsaTrabajoContext)
+        private readonly UserManager<User> _userManager;
+        public JobPositionRepository(BolsaTrabajoContext bolsaTrabajoContext, UserManager<User> userManager) : base(bolsaTrabajoContext)
         {
-            _companyManager = companyManager;
+            _userManager = userManager;
         }
 
-        public async Task<User> GetCompany(string companyId)
+        public async Task<Company> GetCompany(string companyId)
         {
-            var company = await _companyManager.FindByIdAsync(companyId);
+            var company = (Company)await _userManager.FindByIdAsync(companyId);
             return company;
         }
 
-        public void AddJobPosition(User company, JobPosition newJobPosition)
+        public void AddJobPosition(Company company, JobPosition newJobPosition)
         {
-            //company.JobPositions.Add(newJobPosition);
+            company.JobPositions.Add(newJobPosition);
         }
     }
 }
