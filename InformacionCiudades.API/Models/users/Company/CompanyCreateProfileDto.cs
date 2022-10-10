@@ -5,6 +5,7 @@ namespace ApiBolsaTrabajoUTN.API.Models.users.Company
 {
     public class CompanyCreateProfileDto
     {
+        public string CompanyName { get; set; }
         public string? Cuit { get; set; }
         public string? TelephoneNumber { get; set; }
         public string? Sector { get; set; }

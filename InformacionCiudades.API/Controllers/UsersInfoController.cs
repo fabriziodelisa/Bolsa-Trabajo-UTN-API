@@ -1,5 +1,4 @@
-﻿using ApiBolsaTrabajoUTN.API.Data.Interfaces;
-using ApiBolsaTrabajoUTN.API.Entities;
+﻿using ApiBolsaTrabajoUTN.API.Entities;
 using ApiBolsaTrabajoUTN.API.Models.users.Company;
 using AutoMapper;
 using Microsoft.AspNetCore.Identity;

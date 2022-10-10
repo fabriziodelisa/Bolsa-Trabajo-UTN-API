@@ -11,7 +11,7 @@ namespace ApiBolsaTrabajoUTN.API.AutoMapperProfiles
         {
             CreateMap<Student, StudentDto>();
             CreateMap<Student, StudentInfoDto>();
-            CreateMap<StudentInfoDto, Student > ();
+            CreateMap<StudentInfoDto, Student> ();
             CreateMap<Student, RegisterStudentRequestBody>();
             CreateMap<RegisterStudentRequestBody, Student>();
         }
