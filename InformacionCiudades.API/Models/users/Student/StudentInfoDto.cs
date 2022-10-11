@@ -1,5 +1,4 @@
 ﻿using ApiBolsaTrabajoUTN.API.Enums;
-using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 
 namespace ApiBolsaTrabajoUTN.API.Models.users.Student
@@ -21,7 +20,7 @@ namespace ApiBolsaTrabajoUTN.API.Models.users.Student
         public string Country { get; set; }
         public string Province { get; set; }
         public string City { get; set; }
-        public int PhoneNumber { get; set; }
+        public string Telephone { get; set; }
         //cv
         public int CareerId { get; set; }
         public int ApprovedSubjets { get; set; }

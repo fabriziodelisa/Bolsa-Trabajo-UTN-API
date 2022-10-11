@@ -23,7 +23,7 @@ namespace ApiBolsaTrabajoUTN.API.Entities
         public string Country { get; set; }
         public string Province { get; set; }
         public string City { get; set; }
-        public int PhoneNumber { get; set; }
+        public string Telephone { get; set; }
         // como adjuntar cv?
 
         // University data
