@@ -1,4 +1,5 @@
 ﻿using ApiBolsaTrabajoUTN.API.Entities;
+using ApiBolsaTrabajoUTN.API.Models.users;
 using ApiBolsaTrabajoUTN.API.Models.users.Company;
 using ApiBolsaTrabajoUTN.API.Models.users.Student;
 using AutoMapper;
@@ -20,7 +21,15 @@ namespace ApiBolsaTrabajoUTN.API.Controllers
             _mapper = mapper;
             _userManager = userManager;
         }
+        
+        [HttpGet("GetAllUsers")]                   //por el momento sin implementación
+        public ActionResult<IEnumerable<UserWithoutContentsDto>> GetUsers()
+        {
+            var users = _userManager.Users.ToList();
 
+            return Ok(_mapper.Map<IEnumerable<UserWithoutContentsDto>>(users));
+        }
+        /***************************************************************************************************** ***/
 
         [HttpGet("Company")]
         public async Task<ActionResult> GetCompanyInfo()
@@ -30,11 +39,10 @@ namespace ApiBolsaTrabajoUTN.API.Controllers
             if (companyInfo is null)
                 return NotFound();
             return Ok(_mapper.Map<CompanyDataDto>(companyInfo));
-
         }
 
-        [HttpPut("ChargeDataCompany")]
-        public async Task<ActionResult> ChargeDataCompany(CompanyCreateProfileDto companyData)
+        [HttpPut("CreateDataCompany")]
+        public async Task<ActionResult> CreateDataCompany(CompanyCreateProfileDto companyData)
         {
             var userId = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
             Company companyInfo = (Company)await _userManager.FindByIdAsync(userId);
@@ -78,11 +86,10 @@ namespace ApiBolsaTrabajoUTN.API.Controllers
             if (studentInfo is null)
                 return NotFound();
             return Ok(_mapper.Map<StudentDataDto>(studentInfo));
-
         }
 
-        [HttpPut("ChargeDataStudent")]
-        public async Task<ActionResult> ChargeDataStudent(StudentCreateProfileDto studentData)
+        [HttpPut("CreateDataStudent")]
+        public async Task<ActionResult> CreateDataStudent(StudentCreateProfileDto studentData)
         {
             var userId = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
             Student studentInfo = (Student)await _userManager.FindByIdAsync(userId);
