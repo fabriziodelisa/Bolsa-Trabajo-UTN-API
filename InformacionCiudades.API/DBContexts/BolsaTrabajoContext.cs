@@ -7,6 +7,7 @@ namespace ApiBolsaTrabajoUTN.API.DBContexts
 {
     public class BolsaTrabajoContext : IdentityDbContext<User>
     {
+        public DbSet<User> bolsaTrabajoUsers { get; set; }
         public DbSet<Career> Careers { get; set; }
         public DbSet<JobPosition> JobPositions { get; set; }
 
