@@ -1,5 +1,6 @@
 ﻿using ApiBolsaTrabajoUTN.API.Entities;
 using ApiBolsaTrabajoUTN.API.Models.Register;
+using ApiBolsaTrabajoUTN.API.Models.users;
 using ApiBolsaTrabajoUTN.API.Models.users.Company;
 using AutoMapper;
 
