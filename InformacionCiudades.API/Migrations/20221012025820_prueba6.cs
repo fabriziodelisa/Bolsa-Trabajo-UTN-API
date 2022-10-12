@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ApiBolsaTrabajoUTN.API.Migrations
 {
-    public partial class _123 : Migration
+    public partial class prueba6 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -31,7 +31,7 @@ namespace ApiBolsaTrabajoUTN.API.Migrations
                     Discriminator = table.Column<string>(type: "TEXT", nullable: false),
                     Admin_FirstName = table.Column<string>(type: "TEXT", nullable: true),
                     Admin_LastName = table.Column<string>(type: "TEXT", nullable: true),
-                    CompName = table.Column<string>(type: "TEXT", nullable: true),
+                    CompanyName = table.Column<string>(type: "TEXT", nullable: true),
                     Cuit = table.Column<string>(type: "TEXT", nullable: true),
                     TelephoneNumber = table.Column<string>(type: "TEXT", nullable: true),
                     Sector = table.Column<string>(type: "TEXT", nullable: true),
@@ -55,6 +55,7 @@ namespace ApiBolsaTrabajoUTN.API.Migrations
                     Cuil = table.Column<string>(type: "TEXT", nullable: true),
                     Address = table.Column<string>(type: "TEXT", nullable: true),
                     AddressNum = table.Column<string>(type: "TEXT", nullable: true),
+                    PhoneNumb = table.Column<string>(type: "TEXT", nullable: true),
                     Sex = table.Column<string>(type: "TEXT", nullable: true),
                     Country = table.Column<string>(type: "TEXT", nullable: true),
                     Province = table.Column<string>(type: "TEXT", nullable: true),
@@ -221,8 +222,7 @@ namespace ApiBolsaTrabajoUTN.API.Migrations
                     JobDescription = table.Column<string>(type: "TEXT", nullable: false),
                     Location = table.Column<string>(type: "TEXT", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    EndDate = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    StudentId = table.Column<string>(type: "TEXT", nullable: true)
+                    EndDate = table.Column<DateTime>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -233,11 +233,6 @@ namespace ApiBolsaTrabajoUTN.API.Migrations
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_JobPositions_AspNetUsers_StudentId",
-                        column: x => x.StudentId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id");
                 });
 
             migrationBuilder.InsertData(
@@ -248,7 +243,7 @@ namespace ApiBolsaTrabajoUTN.API.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Discriminator", "Email", "EmailConfirmed", "Admin_FirstName", "Admin_LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "02174cf0–9412–4cfe-afbf-59f706d72cf6", 0, "eb4371b2-70aa-47ab-a6a4-6599c7038c84", "Admin", "administracion@frro.utn.edu.ar", true, "Administracion", "Utn", false, null, "ADMINISTRACION@FRRO.UTN.EDU.AR", null, "AQAAAAEAACcQAAAAEAaecRN1AijFsh9unJJ0KWqeWhX+Z9sKopu/n1Q0cxpqu27o9EYWireTOOxByHeeeQ==", null, false, "10244c54-5ec4-4150-a8d6-91177f684393", false, null });
+                values: new object[] { "02174cf0–9412–4cfe-afbf-59f706d72cf6", 0, "40997ff9-a166-42e3-9995-5edc0e8ba046", "Admin", "administracion@frro.utn.edu.ar", true, "Administracion", "Utn", false, null, "ADMINISTRACION@FRRO.UTN.EDU.AR", null, "AQAAAAEAACcQAAAAEPoVyLAo3ybqCt32G1ZXGEMwmk/pBn2cjOJ7aFS6ekKdLIYjPVGxCIbQJcH3cy90qw==", null, false, "68cfc1b0-f26a-4d13-94be-af349644fd1c", false, null });
 
             migrationBuilder.InsertData(
                 table: "Careers",
@@ -301,11 +296,6 @@ namespace ApiBolsaTrabajoUTN.API.Migrations
                 name: "IX_JobPositions_CompanyId",
                 table: "JobPositions",
                 column: "CompanyId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_JobPositions_StudentId",
-                table: "JobPositions",
-                column: "StudentId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

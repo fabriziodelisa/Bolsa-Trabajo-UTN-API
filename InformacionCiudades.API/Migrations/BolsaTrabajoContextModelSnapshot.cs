@@ -80,14 +80,9 @@ namespace ApiBolsaTrabajoUTN.API.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("StudentId")
-                        .HasColumnType("TEXT");
-
                     b.HasKey("Id");
 
                     b.HasIndex("CompanyId");
-
-                    b.HasIndex("StudentId");
 
                     b.ToTable("JobPositions");
                 });
@@ -327,14 +322,14 @@ namespace ApiBolsaTrabajoUTN.API.Migrations
                         {
                             Id = "02174cf0–9412–4cfe-afbf-59f706d72cf6",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "907a22ea-6f48-4227-98e7-9fb33bff2243",
+                            ConcurrencyStamp = "40997ff9-a166-42e3-9995-5edc0e8ba046",
                             Email = "administracion@frro.utn.edu.ar",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMINISTRACION@FRRO.UTN.EDU.AR",
-                            PasswordHash = "AQAAAAEAACcQAAAAEOgcLhT52glnPt7Cv/CTqP26dcvjdODE8RDLCCsb5ySV7MSemnb9LCl42XMlrMtpXQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEPoVyLAo3ybqCt32G1ZXGEMwmk/pBn2cjOJ7aFS6ekKdLIYjPVGxCIbQJcH3cy90qw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "2eac5a5d-cd0e-4054-8c08-7a3b57954a93",
+                            SecurityStamp = "68cfc1b0-f26a-4d13-94be-af349644fd1c",
                             TwoFactorEnabled = false,
                             FirstName = "Administracion",
                             LastName = "Utn"
@@ -414,11 +409,9 @@ namespace ApiBolsaTrabajoUTN.API.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Address")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("AddressNum")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<int>("ApprovedSubjets")
@@ -437,22 +430,18 @@ namespace ApiBolsaTrabajoUTN.API.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("City")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Country")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Cuil")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<int>("CurrentCareerYear")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Dni")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<int>("DocumentType")
@@ -472,16 +461,16 @@ namespace ApiBolsaTrabajoUTN.API.Migrations
                     b.Property<int>("Legajo")
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("PhoneNumb")
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("PlanDeEstudio")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Province")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Sex")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<int>("Turn")
@@ -497,10 +486,6 @@ namespace ApiBolsaTrabajoUTN.API.Migrations
                         .HasForeignKey("CompanyId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.HasOne("ApiBolsaTrabajoUTN.API.Entities.Student", null)
-                        .WithMany("JobApplications")
-                        .HasForeignKey("StudentId");
 
                     b.Navigation("Company");
                 });
@@ -559,11 +544,6 @@ namespace ApiBolsaTrabajoUTN.API.Migrations
             modelBuilder.Entity("ApiBolsaTrabajoUTN.API.Entities.Company", b =>
                 {
                     b.Navigation("JobPositions");
-                });
-
-            modelBuilder.Entity("ApiBolsaTrabajoUTN.API.Entities.Student", b =>
-                {
-                    b.Navigation("JobApplications");
                 });
 #pragma warning restore 612, 618
         }
