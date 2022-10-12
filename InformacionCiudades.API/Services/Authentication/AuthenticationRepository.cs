@@ -48,7 +48,7 @@ namespace ApiBolsaTrabajoUTN.API.Services.Authentication
             }
 
             // Finding associated roles for that user
-            var roles = await _userManager.GetRolesAsync(user);
+            response.Roles = (List<string>?)await _userManager.GetRolesAsync(user);
 
             // Token generation
             var tokenToReturn = await _jwtService.Generate(user);

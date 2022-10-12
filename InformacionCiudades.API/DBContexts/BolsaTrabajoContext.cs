@@ -25,6 +25,7 @@ namespace ApiBolsaTrabajoUTN.API.DBContexts
             string COMPANY_ROLE_ID = "551753f0-bsd2–42de-ffbc-58kmgkmk71cd6";
             string STUDENT_ROLE_ID = "599253f0-asd2–43de-cfbc-58kmgkmk71cd0";
 
+
             //seed admin role
             modelBuilder.Entity<IdentityRole>().HasData(new IdentityRole
             {
