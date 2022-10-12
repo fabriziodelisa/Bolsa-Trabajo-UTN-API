@@ -1,5 +1,6 @@
 ﻿using ApiBolsaTrabajoUTN.API.DBContexts;
 using ApiBolsaTrabajoUTN.API.Entities;
+using ApiBolsaTrabajoUTN.API.Models.JobPosition;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -37,6 +38,15 @@ namespace ApiBolsaTrabajoUTN.API.Data.JobPositions
         public JobPosition GetJobPosition(int jobPositionId)
         {
             return _bolsaTrabajoContext.JobPositions.FirstOrDefault(x => x.Id == jobPositionId);
+        }
+
+        public bool UpdateJobPosition(UpdateJobPositionRequest rq)
+        {
+            var jobPosition = _bolsaTrabajoContext.JobPositions.FirstOrDefault(x => x.Id == rq.JobPositionId);
+            jobPosition.JobTitle = rq.JobTitle;
+            jobPosition.JobDescription = rq.JobDescription;
+            jobPosition.Location = rq.Location;
+            return SaveChange();
         }
     }
 }

@@ -8,5 +8,6 @@ namespace ApiBolsaTrabajoUTN.API.Services.JobPositions
         public GetJobPositionsResponse GetAllJobPositions();
         public GetJobPositionsResponse GetCompanyJobPositions(string companyId);
         public GetJobPositionsResponse GetJobPosition(int jobPositionId);
+        public UpdateJobPositionResponse UpdateJobPosition(UpdateJobPositionRequest rq);
     }
 }

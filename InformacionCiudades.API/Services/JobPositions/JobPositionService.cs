@@ -118,5 +118,25 @@ namespace ApiBolsaTrabajoUTN.API.Services.JobPositions
             rs.Message = "Oferta laboral retornada correctamente";
             return rs;
         }
+
+        public UpdateJobPositionResponse UpdateJobPosition(UpdateJobPositionRequest rq)
+        {
+            // Create response object
+            var rs = new UpdateJobPositionResponse { };
+
+            // Updates and retrieve true if succeed
+            rs.Success = _jobPositionRepository.UpdateJobPosition(rq);
+
+            // Validation 
+            if (!rs.Success)
+            {
+                rs.Message = "No se pudo actualizar la información de la oferta laboral";
+                return rs;
+            }
+
+            // Success return
+            rs.Message = "Oferta laboral actualizada correctamente";
+            return rs;
+        }
     }
 }
