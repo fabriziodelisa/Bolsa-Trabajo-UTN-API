@@ -3,14 +3,16 @@ using ApiBolsaTrabajoUTN.API.Models.users;
 using ApiBolsaTrabajoUTN.API.Models.users.Company;
 using ApiBolsaTrabajoUTN.API.Models.users.Student;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 
 namespace ApiBolsaTrabajoUTN.API.Controllers
 {
-    [Controller]
-    [Route("api/UsersInfo")]
+    [Route("api/[Controller]")]
+    [ApiController]
+   // [Authorize]
     public class UsersInfoController : ControllerBase
     {
         private readonly IMapper _mapper;
@@ -123,5 +125,47 @@ namespace ApiBolsaTrabajoUTN.API.Controllers
             }
             return BadRequest(result);
         }
+
+        [HttpPost("UploadCV")]
+        public async Task<IActionResult> UploadCV([FromForm] UploadCVDto request)
+        {
+            var userId = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
+            Student student = (Student)await _userManager.FindByIdAsync(userId);
+            if (student is null)
+                return NotFound();
+
+            IFormFile file = request.File;
+
+            long length = file.Length;
+            if (length < 0)
+                return BadRequest("You should attach a valid pdf file");
+
+            using var fileStream = file.OpenReadStream();
+            byte[] bytes = new byte[length];
+            fileStream.Read(bytes, 0, (int)file.Length);
+
+            student.Curriculum = bytes;
+
+            await _userManager.UpdateAsync(student);
+
+            return Ok();
+        }
+
+        [HttpGet("DownloadCV")]
+        public async Task<IActionResult> GetCurriculum()
+        {
+            var userId = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
+            Student studentInfo = (Student)await _userManager.FindByIdAsync(userId);
+            if (studentInfo is null)
+                return NotFound();
+
+            if (studentInfo.Curriculum is null)
+            {
+                return BadRequest();
+            }
+
+            return File(studentInfo.Curriculum, "application/pdf", $"{studentInfo.FirstName}_{studentInfo.LastName}_CV.pdf");
+        }
+
     }
 }
