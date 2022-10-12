@@ -66,7 +66,7 @@ namespace ApiBolsaTrabajoUTN.API.Services.JobPositions
             rs.Data = jobPositions;
 
             // Return
-            rs.Success = _jobPositionRepository.SaveChange();
+            rs.Success = true;
             rs.Message = "Ofertas laborales retornadas correctamente";
             return rs;
         }
@@ -90,8 +90,32 @@ namespace ApiBolsaTrabajoUTN.API.Services.JobPositions
             rs.Data = jobPositions;
 
             // Return
-            rs.Success = _jobPositionRepository.SaveChange();
+            rs.Success = true;
             rs.Message = "Ofertas laborales retornadas correctamente";
+            return rs;
+        }
+
+        public GetJobPositionsResponse GetJobPosition(int jobPositionId)
+        {
+            // Create response object
+            var rs = new GetJobPositionsResponse { };
+
+            // Get the job position
+            var jobPosition = _jobPositionRepository.GetJobPosition(jobPositionId);
+
+            if (jobPosition == null)
+            {
+                rs.Message = "No se encontro la oferta laboral solicit ada";
+                rs.Success = false;
+                return rs;
+            }
+
+            // Assignment
+            rs.Data = jobPosition;
+
+            // Return
+            rs.Success = true;
+            rs.Message = "Oferta laboral retornada correctamente";
             return rs;
         }
     }

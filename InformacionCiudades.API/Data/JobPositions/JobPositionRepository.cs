@@ -33,5 +33,10 @@ namespace ApiBolsaTrabajoUTN.API.Data.JobPositions
         {
             return _bolsaTrabajoContext.JobPositions.Where(x => x.CompanyId == companyId).AsQueryable();
         }
+
+        public JobPosition GetJobPosition(int jobPositionId)
+        {
+            return _bolsaTrabajoContext.JobPositions.FirstOrDefault(x => x.Id == jobPositionId);
+        }
     }
 }

@@ -40,5 +40,12 @@ namespace ApiBolsaTrabajoUTN.API.Controllers
             var rs = _jobPositionService.GetCompanyJobPositions(companyId);
             return Ok(rs);
         }
+
+        [HttpGet("GetJobPosition")]
+        public ActionResult GetJobPosition([FromQuery] GetJobPositionRequest rq)
+        {
+            var rs = _jobPositionService.GetJobPosition(rq.JobPositionId);
+            return Ok(rs);
+        }
     }
 }
