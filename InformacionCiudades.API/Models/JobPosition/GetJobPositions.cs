@@ -1,6 +1,6 @@
 ﻿namespace ApiBolsaTrabajoUTN.API.Models.JobPosition
 {
-    public class GetAllJobPositionsResponse
+    public class GetJobPositionsResponse
     {
         public string Message { get; set; }
         public bool Success { get; set; }

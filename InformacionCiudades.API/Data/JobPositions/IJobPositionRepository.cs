@@ -8,5 +8,6 @@ namespace ApiBolsaTrabajoUTN.API.Data.JobPositions
         public Task<Company> GetCompany(string companyId);
         public void AddJobPosition(Company company, JobPosition newJobPosition);
         public IQueryable<JobPosition> GetAllJobPositions();
+        public IQueryable<JobPosition> GetCompanyJobPositions(string companyId);
     }
 }

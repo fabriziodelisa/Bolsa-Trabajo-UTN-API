@@ -1,6 +1,7 @@
 ﻿using ApiBolsaTrabajoUTN.API.DBContexts;
 using ApiBolsaTrabajoUTN.API.Entities;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 
 namespace ApiBolsaTrabajoUTN.API.Data.JobPositions
 {
@@ -25,7 +26,12 @@ namespace ApiBolsaTrabajoUTN.API.Data.JobPositions
 
         public IQueryable<JobPosition> GetAllJobPositions()
         {
-            return _bolsaTrabajoContext.JobPositions.AsQueryable();
+            return _bolsaTrabajoContext.JobPositions.Include(x => x.Company).AsQueryable();
+        }
+
+        public IQueryable<JobPosition> GetCompanyJobPositions(string companyId)
+        {
+            return _bolsaTrabajoContext.JobPositions.Where(x => x.CompanyId == companyId).AsQueryable();
         }
     }
 }

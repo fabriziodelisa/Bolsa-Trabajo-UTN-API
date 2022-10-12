@@ -5,6 +5,7 @@ namespace ApiBolsaTrabajoUTN.API.Services.JobPositions
     public interface IJobPositionService
     {
         public Task<CreateJobPositionResponse> AddJobPosition(string companyId, CreateJobPositionRequest rq);
-        public GetAllJobPositionsResponse GetAllJobPositions();
+        public GetJobPositionsResponse GetAllJobPositions();
+        public GetJobPositionsResponse GetCompanyJobPositions(string companyId);
     }
 }

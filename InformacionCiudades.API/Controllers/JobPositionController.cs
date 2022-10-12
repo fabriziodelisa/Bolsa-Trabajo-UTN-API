@@ -25,10 +25,19 @@ namespace ApiBolsaTrabajoUTN.API.Controllers
             var rs = await _jobPositionService.AddJobPosition(userId, rq);
             return Ok(rs);
         }
+
         [HttpGet("GetAllJobPositions")]
         public ActionResult GetAllJobPositions()
         {
             var rs = _jobPositionService.GetAllJobPositions();
+            return Ok(rs);
+        }
+
+        [HttpGet("GetCompanyJobPositions")]
+        public ActionResult GetCompanyJobPositions()
+        {
+            var companyId = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
+            var rs = _jobPositionService.GetCompanyJobPositions(companyId);
             return Ok(rs);
         }
     }

@@ -47,10 +47,10 @@ namespace ApiBolsaTrabajoUTN.API.Services.JobPositions
             return rs;
         }
 
-        public GetAllJobPositionsResponse GetAllJobPositions()
+        public GetJobPositionsResponse GetAllJobPositions()
         {
             // Create response object
-            var rs = new GetAllJobPositionsResponse { };
+            var rs = new GetJobPositionsResponse { };
 
             // Get the company
             var jobPositions =  _jobPositionRepository.GetAllJobPositions().ToList();
@@ -59,7 +59,31 @@ namespace ApiBolsaTrabajoUTN.API.Services.JobPositions
             if (jobPositions.Count == 0)
             {
                 rs.Message = "No se encontro ninguna oferta laboral";
-                rs.Success = true;
+                rs.Success = false;
+                return rs;
+            }
+
+            rs.Data = jobPositions;
+
+            // Return
+            rs.Success = _jobPositionRepository.SaveChange();
+            rs.Message = "Ofertas laborales retornadas correctamente";
+            return rs;
+        }
+
+        public GetJobPositionsResponse GetCompanyJobPositions(string companyId)
+        {
+            // Create response object
+            var rs = new GetJobPositionsResponse { };
+
+            // Get the company
+            var jobPositions = _jobPositionRepository.GetCompanyJobPositions(companyId).ToList();
+
+            // Validation
+            if (jobPositions.Count == 0)
+            {
+                rs.Message = "No se encontro ninguna oferta laboral";
+                rs.Success = false;
                 return rs;
             }
 
