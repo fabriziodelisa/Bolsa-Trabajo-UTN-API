@@ -44,7 +44,7 @@ namespace ApiBolsaTrabajoUTN.API.Controllers
         }
 
         [HttpPut("CreateDataCompany")]
-        public async Task<ActionResult> CreateDataCompany(CompanyCreateProfileDto companyData)
+        public async Task<ActionResult> CreateDataCompany([FromBody]CompanyCreateProfileDto companyData)
         {
             var userId = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
             Company companyInfo = (Company)await _userManager.FindByIdAsync(userId);
