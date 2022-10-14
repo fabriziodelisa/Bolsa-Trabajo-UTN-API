@@ -23,7 +23,7 @@ namespace ApiBolsaTrabajoUTN.API.Services.JobPositions
             // Validation
             if (company == null)
             {
-                rs.Message = "The job position couldn't be created, there is no associated company";
+                rs.Message = "La oferta laboral no pudo ser creada, no existe una empresa asociada";
                 rs.Success = false;
                 return rs;
             }
@@ -43,7 +43,99 @@ namespace ApiBolsaTrabajoUTN.API.Services.JobPositions
 
             // Return
             rs.Success = _jobPositionRepository.SaveChange();
-            rs.Message = "The job position has been created correctly";
+            rs.Message = "La oferta laboral fue creada exitosamente";
+            return rs;
+        }
+
+        public GetJobPositionsResponse GetAllJobPositions()
+        {
+            // Create response object
+            var rs = new GetJobPositionsResponse { };
+
+            // Get the company
+            var jobPositions =  _jobPositionRepository.GetAllJobPositions().ToList();
+
+            // Validation
+            if (jobPositions.Count == 0)
+            {
+                rs.Message = "No se encontro ninguna oferta laboral";
+                rs.Success = false;
+                return rs;
+            }
+
+            rs.Data = jobPositions;
+
+            // Return
+            rs.Success = true;
+            rs.Message = "Ofertas laborales retornadas correctamente";
+            return rs;
+        }
+
+        public GetJobPositionsResponse GetCompanyJobPositions(string companyId)
+        {
+            // Create response object
+            var rs = new GetJobPositionsResponse { };
+
+            // Get the company
+            var jobPositions = _jobPositionRepository.GetCompanyJobPositions(companyId).ToList();
+
+            // Validation
+            if (jobPositions.Count == 0)
+            {
+                rs.Message = "No se encontro ninguna oferta laboral";
+                rs.Success = false;
+                return rs;
+            }
+
+            rs.Data = jobPositions;
+
+            // Return
+            rs.Success = true;
+            rs.Message = "Ofertas laborales retornadas correctamente";
+            return rs;
+        }
+
+        public GetJobPositionsResponse GetJobPosition(int jobPositionId)
+        {
+            // Create response object
+            var rs = new GetJobPositionsResponse { };
+
+            // Get the job position
+            var jobPosition = _jobPositionRepository.GetJobPosition(jobPositionId);
+
+            if (jobPosition == null)
+            {
+                rs.Message = "No se encontro la oferta laboral solicit ada";
+                rs.Success = false;
+                return rs;
+            }
+
+            // Assignment
+            rs.Data = jobPosition;
+
+            // Return
+            rs.Success = true;
+            rs.Message = "Oferta laboral retornada correctamente";
+            return rs;
+        }
+
+        public UpdateJobPositionResponse UpdateJobPosition(UpdateJobPositionRequest rq)
+        {
+            // Create response object
+            var rs = new UpdateJobPositionResponse { };
+
+            // Updates and retrieve true if succeed
+            rs.Success = _jobPositionRepository.UpdateJobPosition(rq);
+
+            // Validation 
+            if (!rs.Success)
+            {
+                rs.Message = "No se pudo actualizar la información de la oferta laboral";
+                return rs;
+            }
+
+            // Success return
+            rs.Message = "Oferta laboral actualizada correctamente";
             return rs;
         }
     }

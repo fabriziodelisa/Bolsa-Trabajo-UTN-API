@@ -5,7 +5,11 @@ namespace ApiBolsaTrabajoUTN.API.Data.JobPositions
 {
     public interface IJobPositionRepository : IRepository
     {
-        public Task<User> GetCompany(string companyId);
-        public void AddJobPosition(User company, JobPosition newJobPosition);
+        public Task<Company> GetCompany(string companyId);
+        public void AddJobPosition(Company company, JobPosition newJobPosition);
+        public IQueryable<JobPosition> GetAllJobPositions();
+        public IQueryable<JobPosition> GetCompanyJobPositions(string companyId);
+        public JobPosition GetJobPosition(int jobPositionId);
+        public bool UpdateJobPosition(UpdateJobPositionRequest rq);
     }
 }
