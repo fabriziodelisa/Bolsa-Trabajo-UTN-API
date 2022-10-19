@@ -48,5 +48,17 @@ namespace ApiBolsaTrabajoUTN.API.Data.JobPositions
             jobPosition.Location = rq.Location;
             return SaveChange();
         }
+
+        public List<Student> GetStudentsThatAppliedToJobPosition(int jobPositionId)
+        {
+            var jobPositions = _bolsaTrabajoContext.JobPositions.Include(x => x.StudentsWhoApplied).FirstOrDefault(x => x.Id == jobPositionId);
+            return jobPositions.StudentsWhoApplied;
+        }
+
+        public List<JobPosition> GetJobAppliesOfStudent(string studentId)
+        {
+            var student = _bolsaTrabajoContext.students.Include(x => x.JobApplies).FirstOrDefault(x => x.Id == studentId);
+            return student.JobApplies;
+        }
     }
 }

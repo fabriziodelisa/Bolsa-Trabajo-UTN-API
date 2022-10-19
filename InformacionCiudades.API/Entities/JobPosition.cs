@@ -15,5 +15,6 @@ namespace ApiBolsaTrabajoUTN.API.Entities
         public DateTime EndDate { get; set; }
         [ForeignKey("CompanyId")]
         public Company Company { get; set; }
+        public List<Student> StudentsWhoApplied { get; set; } = new List<Student>();
     }
 }

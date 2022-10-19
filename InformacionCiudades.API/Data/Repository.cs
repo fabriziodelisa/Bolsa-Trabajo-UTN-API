@@ -1,5 +1,6 @@
 ﻿using ApiBolsaTrabajoUTN.API.Data;
 using ApiBolsaTrabajoUTN.API.DBContexts;
+using ApiBolsaTrabajoUTN.API.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace ApiBolsaTrabajoUTN.API.Data
@@ -11,6 +12,7 @@ namespace ApiBolsaTrabajoUTN.API.Data
         {
             _bolsaTrabajoContext = bolsaTrabajoContext;
         }
+
         public bool SaveChange()
         {
             return _bolsaTrabajoContext.SaveChanges() >= 0;
