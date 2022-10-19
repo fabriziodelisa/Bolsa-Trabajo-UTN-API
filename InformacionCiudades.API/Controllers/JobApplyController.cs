@@ -39,10 +39,78 @@ namespace ApiBolsaTrabajoUTN.API.Controllers
             rs.Success = _jobPositionRepository.SaveChange();
             if (!rs.Success)
             {
-                rs.Message = "La postulación no se ha pidodo concretar";
+                rs.Message = "La postulación no se ha podido concretar";
                 return Ok(rs);
             }
             rs.Message = "Postulaste correctamente a la Oferta laboral: " + jobPositionToApply.JobTitle;
+            return Ok(rs);
+        }
+        
+        [HttpGet("GetJobAppliesOfStudent")]
+        public ActionResult GetJobAppliesOfStudent()
+        {
+            var rs = new GetJobAppliesOfStudentResponse
+            {
+                Success = false,
+            };
+            var studentId = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
+            if (studentId == null)
+            {
+                return BadRequest("Debes ser un Estudiante para solicitar tus postulaciones laborales");
+            }
+            rs.Data = _jobPositionRepository.GetJobAppliesOfStudent(studentId);
+            if (rs.Data == null)
+            {
+                rs.Message = "No se han encontrado las postulaciones del estudiante";
+                return Ok(rs);
+            }
+            rs.Success = true;
+            rs.Message = "Postulaciones devueltas correctamente!";
+            return Ok(rs);
+        }
+
+        [HttpGet("GetStudentsThatAppliedToJobPosition")]
+        public ActionResult GetStudentsThatAppliedToJobPosition([FromQuery]GetJobAppliesOfStudentRequest rq)
+        {
+            var rs = new GetJobAppliesOfStudentResponse
+            {
+                Success = false,
+            };
+            var jobPositionId = rq.JobPositionId;
+            rs.Data = _jobPositionRepository.GetStudentsThatAppliedToJobPosition(jobPositionId);
+            if (rs.Data == null)
+            {
+                rs.Message = "Estudiantes no encontrados!";
+                return Ok(rs);
+            }
+            rs.Success = true;
+            rs.Message = "Estudiantes devueltos correctamente!";
+            return Ok(rs);
+        }
+
+        [HttpDelete("DeleteJobApply")]
+        public async Task<ActionResult> DeleteJobApply(DeleteJobApplyRequest rq)
+        {
+            var rs = new DeleteJobApplyResponse
+            {
+                Success = false,
+            };
+            var studentId = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
+            var jobPositionId = rq.JobPositionId;
+            var jobPositionToDelete = _jobPositionRepository.GetJobPosition(jobPositionId);
+            if (jobPositionToDelete == null)
+            {
+                return Ok("La postulación no se ha podido eliminar. No se ha encontrado una Oferta laboral asociada");
+            }
+            var student = (Student)await _userManager.FindByIdAsync(studentId);
+            student.JobApplies.Remove(jobPositionToDelete);
+            rs.Success = _jobPositionRepository.SaveChange();
+            if (!rs.Success)
+            {
+                rs.Message = "La postulación no se ha podido eliminar";
+                return Ok(rs);
+            }
+            rs.Message = "Eliminaste correctamente tu postulación a la Oferta laboral: " + jobPositionToDelete.JobTitle;
             return Ok(rs);
         }
     }
