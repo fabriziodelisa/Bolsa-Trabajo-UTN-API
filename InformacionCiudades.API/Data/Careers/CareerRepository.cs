@@ -17,7 +17,7 @@ namespace ApiBolsaTrabajoUTN.API.Data.Careers
 
         public IEnumerable<Career> GetAllCareers()
         {
-            return _bolsaTrabajoContext.Careers.OrderBy(x => x.Name).ToList();
+            return _bolsaTrabajoContext.Careers.OrderBy(x => x.Id).ToList();
         }
 
         public void DeleteCareer(int careerId)
