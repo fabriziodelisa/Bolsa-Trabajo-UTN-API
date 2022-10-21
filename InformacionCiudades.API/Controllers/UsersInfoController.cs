@@ -1,4 +1,5 @@
-﻿using ApiBolsaTrabajoUTN.API.Entities;
+﻿using ApiBolsaTrabajoUTN.API.Data.UsersInfo;
+using ApiBolsaTrabajoUTN.API.Entities;
 using ApiBolsaTrabajoUTN.API.Models.users;
 using ApiBolsaTrabajoUTN.API.Models.users.Company;
 using ApiBolsaTrabajoUTN.API.Models.users.Student;
@@ -15,11 +16,13 @@ namespace ApiBolsaTrabajoUTN.API.Controllers
     {
         private readonly IMapper _mapper;
         private readonly UserManager<User> _userManager;
+        private readonly IUsersInfoRepository _usersInfoRepository;
 
-        public UsersInfoController(IMapper mapper, UserManager<User> userManager)
+        public UsersInfoController(IMapper mapper, UserManager<User> userManager, IUsersInfoRepository usersInfoRepository)
         {
             _mapper = mapper;
             _userManager = userManager;
+            _usersInfoRepository = usersInfoRepository;
         }
         
         [HttpGet("GetAllUsers")]                   //por el momento sin implementación
@@ -39,6 +42,22 @@ namespace ApiBolsaTrabajoUTN.API.Controllers
             if (companyInfo is null)
                 return NotFound();
             return Ok(_mapper.Map<CompanyDataDto>(companyInfo));
+        }
+
+        [HttpGet("GetAllCompanies")]
+        public async Task<ActionResult> GetAllCompanies()
+        {
+            var rs = new GetAllCompaniesResponse {
+                Success = false,
+            };
+            var companyInfo = _usersInfoRepository.GetAllCompanies().ToList();
+            if (companyInfo.Count == 0)
+                rs.Message = "No se han encontrado empresas";
+                return Ok(rs);
+            rs.Data = companyInfo;
+            rs.Success = true;
+            rs.Message = "Empresas retornadas correctamente";
+            return Ok(rs);
         }
 
         [HttpPut("CreateDataCompany")]
