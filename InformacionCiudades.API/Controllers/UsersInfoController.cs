@@ -12,19 +12,23 @@ namespace ApiBolsaTrabajoUTN.API.Controllers
 {
     [Route("api/[Controller]")]
     [ApiController]
-   // [Authorize]
+    [Authorize]
     public class UsersInfoController : ControllerBase
     {
         private readonly IMapper _mapper;
         private readonly UserManager<User> _userManager;
+        private readonly UserManager<Student> _studentManager;
+        private readonly UserManager<Company> _companyManager;
 
-        public UsersInfoController(IMapper mapper, UserManager<User> userManager)
+        public UsersInfoController(IMapper mapper, UserManager<User> userManager, UserManager<Student> studentManager, UserManager<Company> companyManager)
         {
             _mapper = mapper;
             _userManager = userManager;
+            _studentManager = studentManager;
+            _companyManager = companyManager;
         }
-        
-        [HttpGet("GetAllUsers")]                   //por el momento sin implementación
+
+        [HttpGet("GetAllUsers")]
         public ActionResult<IEnumerable<UserWithoutContentsDto>> GetUsers()
         {
             var users = _userManager.Users.ToList();
@@ -37,7 +41,7 @@ namespace ApiBolsaTrabajoUTN.API.Controllers
         public async Task<ActionResult> GetCompanyInfo()
         {
             var userId = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
-            Company companyInfo = (Company)await _userManager.FindByIdAsync(userId);
+            var companyInfo = await _companyManager.FindByIdAsync(userId);
             if (companyInfo is null)
                 return NotFound();
             return Ok(_mapper.Map<CompanyDataDto>(companyInfo));
@@ -47,7 +51,7 @@ namespace ApiBolsaTrabajoUTN.API.Controllers
         public async Task<ActionResult> CreateDataCompany([FromBody]CompanyCreateProfileDto companyData)
         {
             var userId = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
-            Company companyInfo = (Company)await _userManager.FindByIdAsync(userId);
+            var companyInfo = await _companyManager.FindByIdAsync(userId);
             if (companyInfo is null)
                 return NotFound();
 
@@ -65,7 +69,7 @@ namespace ApiBolsaTrabajoUTN.API.Controllers
         public async Task<ActionResult> UpdateDataCompany(CompanyUpdateProfileDto updateCompanyData)
         {
             var userId = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
-            Company companyInfo = (Company)await _userManager.FindByIdAsync(userId);
+            var companyInfo = await _companyManager.FindByIdAsync(userId);
             if (companyInfo is null)
                 return NotFound();
 
@@ -84,7 +88,7 @@ namespace ApiBolsaTrabajoUTN.API.Controllers
         public async Task<ActionResult> GetStudentInfo()
         {
             var userId = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
-            Student studentInfo = (Student)await _userManager.FindByIdAsync(userId);
+            var studentInfo = await _studentManager.FindByIdAsync(userId);
             if (studentInfo is null)
                 return NotFound();
             return Ok(_mapper.Map<StudentDataDto>(studentInfo));
@@ -94,7 +98,7 @@ namespace ApiBolsaTrabajoUTN.API.Controllers
         public async Task<ActionResult> CreateDataStudent(StudentCreateProfileDto studentData)
         {
             var userId = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
-            Student studentInfo = (Student)await _userManager.FindByIdAsync(userId);
+            var studentInfo = await _studentManager.FindByIdAsync(userId);
             if (studentInfo is null)
                 return NotFound();
 
@@ -112,7 +116,7 @@ namespace ApiBolsaTrabajoUTN.API.Controllers
         public async Task<ActionResult> UpdateDataStudent(StudentUpdateProfileDto studentData)
         {
             var userId = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
-            Student studentInfo = (Student)await _userManager.FindByIdAsync(userId);
+            var studentInfo = await _studentManager.FindByIdAsync(userId);
             if (studentInfo is null)
                 return NotFound();
 
@@ -130,7 +134,7 @@ namespace ApiBolsaTrabajoUTN.API.Controllers
         public async Task<IActionResult> UploadCV([FromForm] UploadCVDto request)
         {
             var userId = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
-            Student student = (Student)await _userManager.FindByIdAsync(userId);
+            var student = await _studentManager.FindByIdAsync(userId);
             if (student is null)
                 return NotFound();
 
@@ -155,16 +159,16 @@ namespace ApiBolsaTrabajoUTN.API.Controllers
         public async Task<IActionResult> GetCurriculum()
         {
             var userId = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
-            Student studentInfo = (Student)await _userManager.FindByIdAsync(userId);
-            if (studentInfo is null)
+            var student = await _studentManager.FindByIdAsync(userId);
+            if (student is null)
                 return NotFound();
 
-            if (studentInfo.Curriculum is null)
+            if (student.Curriculum is null)
             {
                 return BadRequest();
             }
 
-            return File(studentInfo.Curriculum, "application/pdf", $"{studentInfo.FirstName}_{studentInfo.LastName}_CV.pdf");
+            return File(student.Curriculum, "application/pdf", $"{student.FirstName}_{student.LastName}_CV.pdf");
         }
 
     }
