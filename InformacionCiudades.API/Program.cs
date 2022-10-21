@@ -1,5 +1,6 @@
 using ApiBolsaTrabajoUTN.API.Data.Careers;
 using ApiBolsaTrabajoUTN.API.Data.JobPositions;
+using ApiBolsaTrabajoUTN.API.Data.UsersInfo;
 using ApiBolsaTrabajoUTN.API.DBContexts;
 using ApiBolsaTrabajoUTN.API.Entities;
 using ApiBolsaTrabajoUTN.API.Helpers;
@@ -95,6 +96,8 @@ builder.Services.AddScoped<IJwtService, JwtService>();
 builder.Services.AddTransient<IJobPositionService, JobPositionService>();
 
 builder.Services.AddTransient<IJobPositionRepository, JobPositionRepository>();
+
+builder.Services.AddTransient<IUsersInfoRepository, UsersInfoRepository>();
 
 var app = builder.Build();
 
