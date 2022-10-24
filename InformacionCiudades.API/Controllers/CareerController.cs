@@ -1,6 +1,6 @@
-﻿using ApiBolsaTrabajoUTN.API.Data.Interfaces;
+﻿using ApiBolsaTrabajoUTN.API.Data.Careers;
 using ApiBolsaTrabajoUTN.API.Models.Career;
-using ApiBolsaTrabajoUTN.API.Services;
+using ApiBolsaTrabajoUTN.API.Services.Careers;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;

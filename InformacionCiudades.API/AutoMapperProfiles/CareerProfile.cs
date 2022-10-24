@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using ApiBolsaTrabajoUTN.API.Models.Career;
+using ApiBolsaTrabajoUTN.API.Entities;
 
 namespace ApiBolsaTrabajoUTN.API.AutoMapperProfiles
 {
@@ -6,9 +8,9 @@ namespace ApiBolsaTrabajoUTN.API.AutoMapperProfiles
     {
         public CareerProfile()
         {
-            CreateMap<Entities.Career, Models.Career.CareerDTO>();
-            CreateMap<Models.Career.CareerToCreateDTO, Entities.Career>();
-            CreateMap<Models.Career.CareerToUpdateDTO, Entities.Career>();
+            CreateMap<Career,CareerDTO>();
+            CreateMap<CareerToCreateDTO, Career>();
+            CreateMap<CareerToUpdateDTO, Career>();
         }
     }
 }

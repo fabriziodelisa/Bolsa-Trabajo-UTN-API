@@ -1,6 +1,6 @@
-﻿using AutoMapper;
-using ApiBolsaTrabajoUTN.API.Entities;
-using ApiBolsaTrabajoUTN.API.Models.User;
+﻿using ApiBolsaTrabajoUTN.API.Entities;
+using ApiBolsaTrabajoUTN.API.Models.users;
+using AutoMapper;
 
 namespace ApiBolsaTrabajoUTN.API.AutoMapperProfiles
 {
@@ -8,10 +8,8 @@ namespace ApiBolsaTrabajoUTN.API.AutoMapperProfiles
     {
         public UserProfile()
         {
-            CreateMap<User, UserDto>();
-            CreateMap<User, UserCreationDto>();
-            CreateMap<User, UserWithoutContentsDto>();
-            CreateMap<UserCreationDto, User>();
+             CreateMap<User, UserWithoutContentsDto>();
         }
+
     }
 }
