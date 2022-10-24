@@ -3,6 +3,7 @@ using System;
 using ApiBolsaTrabajoUTN.API.DBContexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ApiBolsaTrabajoUTN.API.Migrations
 {
     [DbContext(typeof(BolsaTrabajoContext))]
-    partial class BolsaTrabajoContextModelSnapshot : ModelSnapshot
+    [Migration("20221012202856_addCV")]
+    partial class addCV
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "6.0.8");
@@ -157,21 +159,6 @@ namespace ApiBolsaTrabajoUTN.API.Migrations
                     b.HasDiscriminator<string>("Discriminator").HasValue("User");
                 });
 
-            modelBuilder.Entity("JobPositionStudent", b =>
-                {
-                    b.Property<int>("JobAppliesId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("StudentsWhoAppliedId")
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("JobAppliesId", "StudentsWhoAppliedId");
-
-                    b.HasIndex("StudentsWhoAppliedId");
-
-                    b.ToTable("JobPositionStudent");
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
                     b.Property<string>("Id")
@@ -204,20 +191,6 @@ namespace ApiBolsaTrabajoUTN.API.Migrations
                             ConcurrencyStamp = "341743f0-asd2–42de-afbf-59kmkkmk72cf6",
                             Name = "SuperAdmin",
                             NormalizedName = "SUPERADMIN"
-                        },
-                        new
-                        {
-                            Id = "551753f0-bsd2–42de-ffbc-58kmgkmk71cd6",
-                            ConcurrencyStamp = "551753f0-bsd2–42de-ffbc-58kmgkmk71cd6",
-                            Name = "Company",
-                            NormalizedName = "COMPANY"
-                        },
-                        new
-                        {
-                            Id = "599253f0-asd2–43de-cfbc-58kmgkmk71cd0",
-                            ConcurrencyStamp = "599253f0-asd2–43de-cfbc-58kmgkmk71cd0",
-                            Name = "Student",
-                            NormalizedName = "STUDENT"
                         });
                 });
 
@@ -355,7 +328,7 @@ namespace ApiBolsaTrabajoUTN.API.Migrations
                             Email = "administracion@frro.utn.edu.ar",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
-                            NormalizedEmail = "ADMINISTRACION@FRRO.UTN.EDU.AR",                            
+                            NormalizedEmail = "ADMINISTRACION@FRRO.UTN.EDU.AR",
                             PasswordHash = "AQAAAAEAACcQAAAAEKCxUPRhiBeFdP629dCUqO/OZEh3i9dvIW/J29Ew7sEQhKe1I6NyrLJc7KsKg0qtwA==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "83ffab03-3326-46af-913b-f8fc87279a59",
@@ -520,21 +493,6 @@ namespace ApiBolsaTrabajoUTN.API.Migrations
                         .IsRequired();
 
                     b.Navigation("Company");
-                });
-
-            modelBuilder.Entity("JobPositionStudent", b =>
-                {
-                    b.HasOne("ApiBolsaTrabajoUTN.API.Entities.JobPosition", null)
-                        .WithMany()
-                        .HasForeignKey("JobAppliesId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("ApiBolsaTrabajoUTN.API.Entities.Student", null)
-                        .WithMany()
-                        .HasForeignKey("StudentsWhoAppliedId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

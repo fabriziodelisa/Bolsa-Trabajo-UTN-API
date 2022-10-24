@@ -13,6 +13,7 @@ namespace ApiBolsaTrabajoUTN.API.AutoMapperProfiles
             CreateMap<Student, StudentDataDto>();
             CreateMap<StudentCreateProfileDto, Student>();
             CreateMap<StudentUpdateProfileDto, Student>();
+            CreateMap<UploadCVDto, Student>();
             CreateMap<Student, RegisterStudentRequestBody>();
             CreateMap<RegisterStudentRequestBody, Student>();
         }

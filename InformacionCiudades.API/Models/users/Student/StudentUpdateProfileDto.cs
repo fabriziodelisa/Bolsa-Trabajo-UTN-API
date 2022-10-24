@@ -7,6 +7,7 @@ namespace ApiBolsaTrabajoUTN.API.Models.users.Student
     {
         public string? Address { get; set; }
         public string? AddressNum { get; set; }
+        public string? Email { get; set; }
         public string? Sex { get; set; }
         public string? Country { get; set; }
         public string? Province { get; set; }
