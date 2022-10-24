@@ -52,8 +52,10 @@ namespace ApiBolsaTrabajoUTN.API.Controllers
             };
             var companyInfo = _usersInfoRepository.GetAllCompanies().ToList();
             if (companyInfo.Count == 0)
+            {
                 rs.Message = "No se han encontrado empresas";
                 return Ok(rs);
+            }
             rs.Data = companyInfo;
             rs.Success = true;
             rs.Message = "Empresas retornadas correctamente";
