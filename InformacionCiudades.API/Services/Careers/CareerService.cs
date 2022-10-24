@@ -23,7 +23,7 @@ namespace ApiBolsaTrabajoUTN.API.Services.Careers
             return _mapper.Map<IEnumerable<CareerDTO>>(careers);
         }
 
-        public CareerDTO? GetCareer(int id)
+        public CareerDTO GetCareer(int id)
         {
             var career = _careerRepository.GetCareer(id);
             return _mapper.Map<CareerDTO>(career);
