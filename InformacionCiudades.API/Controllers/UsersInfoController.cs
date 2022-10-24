@@ -45,7 +45,7 @@ namespace ApiBolsaTrabajoUTN.API.Controllers
         }
 
         [HttpGet("GetAllCompanies")]
-        public async Task<ActionResult> GetAllCompanies()
+        public ActionResult GetAllCompanies()
         {
             var rs = new GetAllCompaniesResponse {
                 Success = false,
