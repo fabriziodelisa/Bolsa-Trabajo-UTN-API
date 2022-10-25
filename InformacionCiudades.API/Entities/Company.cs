@@ -24,7 +24,7 @@ namespace ApiBolsaTrabajoUTN.API.Entities
         public RecruiterRelWithCompany RecruiterRelWithCompany { get; set; }
 
         public bool FirstChargeData { get; set; }
-        public bool ActiveAccount { get; set; } = true; //cambiar a false cuando tengamos hecho la parte de admin
+        public bool ActiveAccount { get; set; } = false;
         public ICollection<JobPosition> JobPositions { get; set; } = new List<JobPosition>();
 
     }
