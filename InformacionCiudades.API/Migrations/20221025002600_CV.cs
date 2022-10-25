@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ApiBolsaTrabajoUTN.API.Migrations
 {
-    public partial class StudentJobPositionRelation : Migration
+    public partial class CV : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -32,7 +32,7 @@ namespace ApiBolsaTrabajoUTN.API.Migrations
                     Admin_FirstName = table.Column<string>(type: "TEXT", nullable: true),
                     Admin_LastName = table.Column<string>(type: "TEXT", nullable: true),
                     CompanyName = table.Column<string>(type: "TEXT", nullable: true),
-                    Cuit = table.Column<string>(type: "TEXT", nullable: true),
+                    Cuit = table.Column<int>(type: "INTEGER", nullable: true),
                     TelephoneNumber = table.Column<string>(type: "TEXT", nullable: true),
                     Sector = table.Column<string>(type: "TEXT", nullable: true),
                     LegalAdress = table.Column<string>(type: "TEXT", nullable: true),
@@ -60,6 +60,7 @@ namespace ApiBolsaTrabajoUTN.API.Migrations
                     Country = table.Column<string>(type: "TEXT", nullable: true),
                     Province = table.Column<string>(type: "TEXT", nullable: true),
                     City = table.Column<string>(type: "TEXT", nullable: true),
+                    Curriculum = table.Column<byte[]>(type: "BLOB", nullable: true),
                     CareerId = table.Column<int>(type: "INTEGER", nullable: true),
                     ApprovedSubjets = table.Column<int>(type: "INTEGER", nullable: true),
                     PlanDeEstudio = table.Column<string>(type: "TEXT", nullable: true),
@@ -277,7 +278,7 @@ namespace ApiBolsaTrabajoUTN.API.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Discriminator", "Email", "EmailConfirmed", "Admin_FirstName", "Admin_LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "02174cf0–9412–4cfe-afbf-59f706d72cf6", 0, "4f906d5c-4aba-4b00-a019-c71d8e5e2e5f", "Admin", "administracion@frro.utn.edu.ar", true, "Administracion", "Utn", false, null, "ADMINISTRACION@FRRO.UTN.EDU.AR", null, "AQAAAAEAACcQAAAAECu9eqXQYN481siwgvc0Atsc6fkDILxj69HK0/uX9/G1z97HBTj6+14+DFb4QQy1mQ==", null, false, "1a616e60-d7d9-4dd9-aeef-f0573b16890e", false, null });
+                values: new object[] { "02174cf0–9412–4cfe-afbf-59f706d72cf6", 0, "e0ae8b44-3d14-4294-833f-9d228b9ce145", "Admin", "administracion@frro.utn.edu.ar", true, "Administracion", "Utn", false, null, "ADMINISTRACION@FRRO.UTN.EDU.AR", null, "AQAAAAEAACcQAAAAEGg4rGqdg/yj0t/+lJqXqFdSBJE1hVGs0wSY+3pCLFRhN1gmz3b8gA5tkoEM922vJA==", null, false, "2d698db5-fe40-4521-b322-23e4a1541f54", false, null });
 
             migrationBuilder.InsertData(
                 table: "Careers",

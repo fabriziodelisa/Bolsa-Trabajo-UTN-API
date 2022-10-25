@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ApiBolsaTrabajoUTN.API.Migrations
 {
     [DbContext(typeof(BolsaTrabajoContext))]
-    [Migration("20221012202856_addCV")]
-    partial class addCV
+    [Migration("20221025002600_CV")]
+    partial class CV
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -159,6 +159,21 @@ namespace ApiBolsaTrabajoUTN.API.Migrations
                     b.HasDiscriminator<string>("Discriminator").HasValue("User");
                 });
 
+            modelBuilder.Entity("JobPositionStudent", b =>
+                {
+                    b.Property<int>("JobAppliesId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("StudentsWhoAppliedId")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("JobAppliesId", "StudentsWhoAppliedId");
+
+                    b.HasIndex("StudentsWhoAppliedId");
+
+                    b.ToTable("JobPositionStudent");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
                     b.Property<string>("Id")
@@ -191,6 +206,20 @@ namespace ApiBolsaTrabajoUTN.API.Migrations
                             ConcurrencyStamp = "341743f0-asd2–42de-afbf-59kmkkmk72cf6",
                             Name = "SuperAdmin",
                             NormalizedName = "SUPERADMIN"
+                        },
+                        new
+                        {
+                            Id = "551753f0-bsd2–42de-ffbc-58kmgkmk71cd6",
+                            ConcurrencyStamp = "551753f0-bsd2–42de-ffbc-58kmgkmk71cd6",
+                            Name = "Company",
+                            NormalizedName = "COMPANY"
+                        },
+                        new
+                        {
+                            Id = "599253f0-asd2–43de-cfbc-58kmgkmk71cd0",
+                            ConcurrencyStamp = "599253f0-asd2–43de-cfbc-58kmgkmk71cd0",
+                            Name = "Student",
+                            NormalizedName = "STUDENT"
                         });
                 });
 
@@ -324,14 +353,14 @@ namespace ApiBolsaTrabajoUTN.API.Migrations
                         {
                             Id = "02174cf0–9412–4cfe-afbf-59f706d72cf6",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "a5055747-1be0-48dd-8039-3d462fa60267",
+                            ConcurrencyStamp = "e0ae8b44-3d14-4294-833f-9d228b9ce145",
                             Email = "administracion@frro.utn.edu.ar",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMINISTRACION@FRRO.UTN.EDU.AR",
-                            PasswordHash = "AQAAAAEAACcQAAAAEKCxUPRhiBeFdP629dCUqO/OZEh3i9dvIW/J29Ew7sEQhKe1I6NyrLJc7KsKg0qtwA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEGg4rGqdg/yj0t/+lJqXqFdSBJE1hVGs0wSY+3pCLFRhN1gmz3b8gA5tkoEM922vJA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "83ffab03-3326-46af-913b-f8fc87279a59",
+                            SecurityStamp = "2d698db5-fe40-4521-b322-23e4a1541f54",
                             TwoFactorEnabled = false,
                             FirstName = "Administracion",
                             LastName = "Utn"
@@ -350,9 +379,8 @@ namespace ApiBolsaTrabajoUTN.API.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Cuit")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
+                    b.Property<int>("Cuit")
+                        .HasColumnType("INTEGER");
 
                     b.Property<bool>("FirstChargeData")
                         .HasColumnType("INTEGER")
@@ -493,6 +521,21 @@ namespace ApiBolsaTrabajoUTN.API.Migrations
                         .IsRequired();
 
                     b.Navigation("Company");
+                });
+
+            modelBuilder.Entity("JobPositionStudent", b =>
+                {
+                    b.HasOne("ApiBolsaTrabajoUTN.API.Entities.JobPosition", null)
+                        .WithMany()
+                        .HasForeignKey("JobAppliesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ApiBolsaTrabajoUTN.API.Entities.Student", null)
+                        .WithMany()
+                        .HasForeignKey("StudentsWhoAppliedId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
