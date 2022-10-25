@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace ApiBolsaTrabajoUTN.API.Controllers
 {
     [ApiController]
-    //    [Authorize]
+    [Authorize(Roles = "SuperAdmin")]
     [Route("api/Careers")]
     public class CareerController : ControllerBase
     {
