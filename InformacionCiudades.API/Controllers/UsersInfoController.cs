@@ -1,4 +1,5 @@
-﻿using ApiBolsaTrabajoUTN.API.Entities;
+﻿using ApiBolsaTrabajoUTN.API.Data.UsersInfo;
+using ApiBolsaTrabajoUTN.API.Entities;
 using ApiBolsaTrabajoUTN.API.Models.users;
 using ApiBolsaTrabajoUTN.API.Models.users.Company;
 using ApiBolsaTrabajoUTN.API.Models.users.Student;
@@ -19,13 +20,15 @@ namespace ApiBolsaTrabajoUTN.API.Controllers
         private readonly UserManager<User> _userManager;
         private readonly UserManager<Student> _studentManager;
         private readonly UserManager<Company> _companyManager;
+        private readonly IUsersInfoRepository _usersInfoRepository;
 
-        public UsersInfoController(IMapper mapper, UserManager<User> userManager, UserManager<Student> studentManager, UserManager<Company> companyManager)
+        public UsersInfoController(IMapper mapper, UserManager<User> userManager, UserManager<Student> studentManager, UserManager<Company> companyManager, IUsersInfoRepository usersInfoRepository)
         {
             _mapper = mapper;
             _userManager = userManager;
             _studentManager = studentManager;
             _companyManager = companyManager;
+            _usersInfoRepository = usersInfoRepository;
         }
 
         [HttpGet("GetAllUsers")]
@@ -45,6 +48,24 @@ namespace ApiBolsaTrabajoUTN.API.Controllers
             if (companyInfo is null)
                 return NotFound();
             return Ok(_mapper.Map<CompanyDataDto>(companyInfo));
+        }
+
+        [HttpGet("GetAllCompanies")]
+        public ActionResult GetAllCompanies()
+        {
+            var rs = new GetAllCompaniesResponse {
+                Success = false,
+            };
+            var companies = _usersInfoRepository.GetAllCompanies().ToList();
+            if (companies.Count == 0)
+            {
+                rs.Message = "No se han encontrado empresas";
+                return Ok(rs);
+            }
+            rs.Data = companies;
+            rs.Success = true;
+            rs.Message = "Empresas retornadas correctamente";
+            return Ok(rs);
         }
 
         [HttpPut("CreateDataCompany")]
@@ -92,6 +113,25 @@ namespace ApiBolsaTrabajoUTN.API.Controllers
             if (studentInfo is null)
                 return NotFound();
             return Ok(_mapper.Map<StudentDataDto>(studentInfo));
+        }
+
+        [HttpGet("GetAllStudents")]
+        public ActionResult GetAllStudents()
+        {
+            var rs = new GetAllStudentsResponse
+            {
+                Success = false,
+            };
+            var students = _usersInfoRepository.GetAllStudents().ToList();
+            if (students.Count == 0)
+            {
+                rs.Message = "No se han encontrado alumnos";
+                return Ok(rs);
+            }
+            rs.Data = students;
+            rs.Success = true;
+            rs.Message = "Alumnos retornadas correctamente";
+            return Ok(rs);
         }
 
         [HttpPut("CreateDataStudent")]

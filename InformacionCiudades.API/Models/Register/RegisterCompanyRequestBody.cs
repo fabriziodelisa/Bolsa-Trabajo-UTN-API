@@ -6,6 +6,8 @@ namespace ApiBolsaTrabajoUTN.API.Models.Register
     {
         [Required(ErrorMessage = "Ingrese la razon social")]
         public string CompanyName { get; set; }
+        [Required(ErrorMessage = "Ingrese su CUIT")]
+        public int Cuit { get; set; }
         [Required(ErrorMessage = "Ingrese su email")]
         public string Email { get; set; }
         [Required(ErrorMessage = "Ingrese su contraseña")]

@@ -351,14 +351,14 @@ namespace ApiBolsaTrabajoUTN.API.Migrations
                         {
                             Id = "02174cf0–9412–4cfe-afbf-59f706d72cf6",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "a5055747-1be0-48dd-8039-3d462fa60267",
+                            ConcurrencyStamp = "e0ae8b44-3d14-4294-833f-9d228b9ce145",
                             Email = "administracion@frro.utn.edu.ar",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
-                            NormalizedEmail = "ADMINISTRACION@FRRO.UTN.EDU.AR",                            
-                            PasswordHash = "AQAAAAEAACcQAAAAEKCxUPRhiBeFdP629dCUqO/OZEh3i9dvIW/J29Ew7sEQhKe1I6NyrLJc7KsKg0qtwA==",
+                            NormalizedEmail = "ADMINISTRACION@FRRO.UTN.EDU.AR",
+                            PasswordHash = "AQAAAAEAACcQAAAAEGg4rGqdg/yj0t/+lJqXqFdSBJE1hVGs0wSY+3pCLFRhN1gmz3b8gA5tkoEM922vJA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "83ffab03-3326-46af-913b-f8fc87279a59",
+                            SecurityStamp = "2d698db5-fe40-4521-b322-23e4a1541f54",
                             TwoFactorEnabled = false,
                             FirstName = "Administracion",
                             LastName = "Utn"
@@ -377,9 +377,8 @@ namespace ApiBolsaTrabajoUTN.API.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Cuit")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
+                    b.Property<int>("Cuit")
+                        .HasColumnType("INTEGER");
 
                     b.Property<bool>("FirstChargeData")
                         .HasColumnType("INTEGER")

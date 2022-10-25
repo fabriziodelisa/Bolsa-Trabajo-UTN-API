@@ -31,16 +31,5 @@ namespace ApiBolsaTrabajoUTN.API.Controllers
             }
             return BadRequest(result);
         }
-
-        [HttpPost("logout")]
-        public IActionResult Logout()
-        {
-            Response.Cookies.Delete("jwt");
-
-            return Ok(new
-            {
-                message = "Successfully logged out"
-            });
-        }
     }
 }
