@@ -6,6 +6,7 @@ using ApiBolsaTrabajoUTN.API.Helpers;
 using ApiBolsaTrabajoUTN.API.Services.Authentication;
 using ApiBolsaTrabajoUTN.API.Services.Careers;
 using ApiBolsaTrabajoUTN.API.Services.JobPositions;
+using ApiBolsaTrabajoUTN.API.Services.Mails;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -95,6 +96,8 @@ builder.Services.AddScoped<IJwtService, JwtService>();
 builder.Services.AddTransient<IJobPositionService, JobPositionService>();
 
 builder.Services.AddTransient<IJobPositionRepository, JobPositionRepository>();
+
+builder.Services.AddScoped<IMailService, MailService>();
 
 var app = builder.Build();
 
