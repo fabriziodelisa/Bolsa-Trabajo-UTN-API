@@ -38,6 +38,6 @@ namespace ApiBolsaTrabajoUTN.API.Entities
         public List<JobPosition> JobApplies { get; set; } = new List<JobPosition>();
 
         public bool FirstChargeData { get; set; }
-        public bool ActiveAccount { get; set; } = true;
+        public bool ActiveAccount { get; set; } = false;
     }
 }

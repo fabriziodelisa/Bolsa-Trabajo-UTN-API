@@ -211,5 +211,43 @@ namespace ApiBolsaTrabajoUTN.API.Controllers
             return File(student.Curriculum, "application/pdf", $"{student.FirstName}_{student.LastName}_CV.pdf");
         }
 
+        [HttpPut("ActivateDeactivateAccount")]
+        public async Task<ActionResult> ActivateDeactivateAccount([FromBody] ActivateDeactivateAccountRequest rq)
+        {
+            if (rq.UserId == null)
+            {
+                return BadRequest("El id del usuario es nulo");
+            }
+
+            if (rq.IsStudent)
+            {
+                var user = await _studentManager.FindByIdAsync(rq.UserId);
+                user.ActiveAccount = rq.Activate;
+                var result = await _studentManager.UpdateAsync(user);
+                if (result.Succeeded)
+                {
+                    return Ok();
+                }
+                else
+                {
+                    return BadRequest();
+                }
+            }
+            else
+            {
+                var user = await _companyManager.FindByIdAsync(rq.UserId);
+                user.ActiveAccount = rq.Activate;
+                var result = await _companyManager.UpdateAsync(user);
+                if (result.Succeeded)
+                {
+                    return Ok();
+                }
+                else
+                {
+                    return BadRequest();
+                }
+            }
+        }
+
     }
 }
