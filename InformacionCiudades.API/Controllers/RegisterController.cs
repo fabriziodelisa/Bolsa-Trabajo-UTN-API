@@ -5,6 +5,10 @@ using Microsoft.AspNetCore.Identity;
 using ApiBolsaTrabajoUTN.API.Models.Register;
 using ApiBolsaTrabajoUTN.API.Models.users.Company;
 using ApiBolsaTrabajoUTN.API.Models.users.Student;
+using System.Text;
+using System.Net.Mail;
+using System.Net.Mime;
+using ApiBolsaTrabajoUTN.API.Services.Mails;
 
 namespace ApiBolsaTrabajoUTN.API.Controllers
 {
@@ -15,12 +19,14 @@ namespace ApiBolsaTrabajoUTN.API.Controllers
         private readonly UserManager<User> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly IMapper _mapper;
+        private readonly IMailService _mailService;
 
-        public RegisterController(UserManager<User> userManager,  IMapper mapper, RoleManager<IdentityRole> roleManager)
+        public RegisterController(UserManager<User> userManager,  IMapper mapper, RoleManager<IdentityRole> roleManager, IMailService mailservice)
         {
             _userManager = userManager;
             _mapper = mapper;
             _roleManager = roleManager;
+            _mailService = mailservice;
         }
 
         [HttpPost("RegisterStudent")]
@@ -49,10 +55,12 @@ namespace ApiBolsaTrabajoUTN.API.Controllers
                 var studentToReturn = _mapper.Map<StudentDto>(newStudent);
                 studentToReturn.Password = "";
                 string URI = $"https://localhost:7172/api/Register{studentToReturn.Id}";
+                _mailService.enviaMail("lucapecorelli1@gmail.com");    
                 return Created(URI, studentToReturn);
-            }
+            }     
             return BadRequest(result);
         }
+
         [HttpPost("RegisterCompany")]
         public async Task<ActionResult<CompanyDto>> RegisterCompany(RegisterCompanyRequestBody company)
         {
@@ -78,7 +86,8 @@ namespace ApiBolsaTrabajoUTN.API.Controllers
             {
                 var companyToReturn = _mapper.Map<CompanyDto>(newCompany);
                 string URI = $"https://localhost:7172/api/Register{companyToReturn.Id}";
-                return Created(URI, companyToReturn);
+                _mailService.enviaMail("lucapecorelli1@gmail.com");
+                return Created(URI, companyToReturn);  
             }
             return BadRequest(result);
         }
