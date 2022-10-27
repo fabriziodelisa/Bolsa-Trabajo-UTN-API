@@ -38,7 +38,6 @@ namespace ApiBolsaTrabajoUTN.API.Controllers
 
             return Ok(_mapper.Map<IEnumerable<UserWithoutContentsDto>>(users));
         }
-        /***************************************************************************************************** ***/
 
         [HttpGet("Company")]
         public async Task<ActionResult> GetCompanyInfo()
@@ -103,7 +102,6 @@ namespace ApiBolsaTrabajoUTN.API.Controllers
             }
             return BadRequest(result);
         }
-        /*******************************************************************************************************/
 
         [HttpGet("Student")]
         public async Task<ActionResult> GetStudentInfo()
