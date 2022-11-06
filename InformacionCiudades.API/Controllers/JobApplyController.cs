@@ -32,7 +32,13 @@ namespace ApiBolsaTrabajoUTN.API.Controllers
             var jobPositionToApply = _jobPositionRepository.GetJobPosition(jobPositionId);
             if (jobPositionToApply == null)
             {
-                return Ok("La postulación no se ha podido concretar. No se ha encontrado una Oferta laboral");
+                rs.Message = "La postulación no se ha podido concretar. No se ha encontrado una Oferta laboral";
+                return Ok(rs);
+            }
+            if (jobPositionToApply.StudentsWhoApplied.Any(x => x.Id == studentId))
+            {
+                rs.Message = "Ya has postulado a esta oferta laboral";
+                return Ok(rs);
             }
             var student = (Student) await _userManager.FindByIdAsync(studentId);
             student.JobApplies.Add(jobPositionToApply);
@@ -42,7 +48,7 @@ namespace ApiBolsaTrabajoUTN.API.Controllers
                 rs.Message = "La postulación no se ha podido concretar";
                 return Ok(rs);
             }
-            rs.Message = "Postulaste correctamente a la Oferta laboral: " + jobPositionToApply.JobTitle;
+            rs.Message = "Postulaste correctamente a: " + jobPositionToApply.JobTitle;
             return Ok(rs);
         }
         
