@@ -219,33 +219,24 @@ namespace ApiBolsaTrabajoUTN.API.Controllers
                 return BadRequest("El id del usuario es nulo");
             }
 
-            if (rq.IsStudent)
+            var user = await _userManager.FindByIdAsync(rq.UserId);
+
+            if (user == null)
             {
-                var user = await _studentManager.FindByIdAsync(rq.UserId);
-                user.ActiveAccount = rq.Activate;
-                var result = await _studentManager.UpdateAsync(user);
-                if (result.Succeeded)
-                {
-                    return Ok();
-                }
-                else
-                {
-                    return BadRequest();
-                }
+                return NotFound("User");
+            }
+
+            user.ActiveAccount = rq.Activate;
+
+            var result = await _userManager.UpdateAsync(user);
+
+            if (result.Succeeded)
+            {
+                return Ok();
             }
             else
             {
-                var user = await _companyManager.FindByIdAsync(rq.UserId);
-                user.ActiveAccount = rq.Activate;
-                var result = await _companyManager.UpdateAsync(user);
-                if (result.Succeeded)
-                {
-                    return Ok();
-                }
-                else
-                {
-                    return BadRequest();
-                }
+                return BadRequest();
             }
         }
 

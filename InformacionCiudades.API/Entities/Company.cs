@@ -23,8 +23,6 @@ namespace ApiBolsaTrabajoUTN.API.Entities
         public string RecruiterEmail { get; set; }
         public RecruiterRelWithCompany RecruiterRelWithCompany { get; set; }
 
-        public bool FirstChargeData { get; set; }
-        public bool ActiveAccount { get; set; } = false;
         public ICollection<JobPosition> JobPositions { get; set; } = new List<JobPosition>();
 
     }

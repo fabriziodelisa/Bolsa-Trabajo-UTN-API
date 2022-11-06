@@ -15,5 +15,7 @@ namespace ApiBolsaTrabajoUTN.API.Models.Authentication
         public string? Message { get; set; }
         public string? Token { get; set; }
         public List<string>? Roles { get; set; }
+        public bool ActiveAccount { get; set; }
+        public bool FirstChargeData { get; set; }
     }
 }
