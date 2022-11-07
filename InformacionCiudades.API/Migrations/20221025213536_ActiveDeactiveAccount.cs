@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ApiBolsaTrabajoUTN.API.Migrations
 {
-    public partial class JobPositionAndUsers : Migration
+    public partial class ActiveDeactiveAccount : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -28,8 +28,6 @@ namespace ApiBolsaTrabajoUTN.API.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "TEXT", nullable: false),
-                    FirstChargeData = table.Column<bool>(type: "INTEGER", nullable: false),
-                    ActiveAccount = table.Column<bool>(type: "INTEGER", nullable: false),
                     Discriminator = table.Column<string>(type: "TEXT", nullable: false),
                     Admin_FirstName = table.Column<string>(type: "TEXT", nullable: true),
                     Admin_LastName = table.Column<string>(type: "TEXT", nullable: true),
@@ -46,6 +44,8 @@ namespace ApiBolsaTrabajoUTN.API.Migrations
                     RecruiterPhoneNumber = table.Column<string>(type: "TEXT", nullable: true),
                     RecruiterEmail = table.Column<string>(type: "TEXT", nullable: true),
                     RecruiterRelWithCompany = table.Column<int>(type: "INTEGER", nullable: true),
+                    Company_FirstChargeData = table.Column<bool>(type: "INTEGER", nullable: true),
+                    Company_ActiveAccount = table.Column<bool>(type: "INTEGER", nullable: true),
                     Legajo = table.Column<int>(type: "INTEGER", nullable: true),
                     FirstName = table.Column<string>(type: "TEXT", nullable: true),
                     LastName = table.Column<string>(type: "TEXT", nullable: true),
@@ -68,6 +68,8 @@ namespace ApiBolsaTrabajoUTN.API.Migrations
                     Turn = table.Column<int>(type: "INTEGER", nullable: true),
                     Average = table.Column<int>(type: "INTEGER", nullable: true),
                     AverageWithFails = table.Column<int>(type: "INTEGER", nullable: true),
+                    FirstChargeData = table.Column<bool>(type: "INTEGER", nullable: true),
+                    ActiveAccount = table.Column<bool>(type: "INTEGER", nullable: true),
                     UserName = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true),
@@ -217,16 +219,11 @@ namespace ApiBolsaTrabajoUTN.API.Migrations
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     CompanyId = table.Column<string>(type: "TEXT", nullable: false),
-                    CareerId = table.Column<int>(type: "INTEGER", nullable: false),
                     JobTitle = table.Column<string>(type: "TEXT", nullable: false),
                     JobDescription = table.Column<string>(type: "TEXT", nullable: false),
                     Location = table.Column<string>(type: "TEXT", nullable: false),
-                    PositionsAvailable = table.Column<int>(type: "INTEGER", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    JobStartDate = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    EndDate = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    JobType = table.Column<int>(type: "INTEGER", nullable: false),
-                    WorkDay = table.Column<int>(type: "INTEGER", nullable: false)
+                    EndDate = table.Column<DateTime>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -235,12 +232,6 @@ namespace ApiBolsaTrabajoUTN.API.Migrations
                         name: "FK_JobPositions_AspNetUsers_CompanyId",
                         column: x => x.CompanyId,
                         principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_JobPositions_Careers_CareerId",
-                        column: x => x.CareerId,
-                        principalTable: "Careers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -286,8 +277,8 @@ namespace ApiBolsaTrabajoUTN.API.Migrations
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
-                columns: new[] { "Id", "AccessFailedCount", "ActiveAccount", "ConcurrencyStamp", "Discriminator", "Email", "EmailConfirmed", "FirstChargeData", "Admin_FirstName", "Admin_LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "02174cf0–9412–4cfe-afbf-59f706d72cf6", 0, false, "3ffdad97-a459-451a-856e-5366187c97c5", "Admin", "administracion@frro.utn.edu.ar", true, false, "Administracion", "Utn", false, null, "ADMINISTRACION@FRRO.UTN.EDU.AR", null, "AQAAAAEAACcQAAAAEAOauAGiTTMueTXM2Sm4ZfBTbLlUJIh6l3ObfVy9Ss0rD9ukb5Hb+Mv8+OI/q6Yo6w==", null, false, "0160fd9f-02b7-4edc-9c83-d7f418fbc14e", false, null });
+                columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Discriminator", "Email", "EmailConfirmed", "Admin_FirstName", "Admin_LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
+                values: new object[] { "02174cf0–9412–4cfe-afbf-59f706d72cf6", 0, "d36c3171-e274-4b65-be29-4cc9b2b05351", "Admin", "administracion@frro.utn.edu.ar", true, "Administracion", "Utn", false, null, "ADMINISTRACION@FRRO.UTN.EDU.AR", null, "AQAAAAEAACcQAAAAEKptHu6cg9ygv6yyz5eja6DwDFZGRJQjaMbBxnKx9szPkpcnNXyfG7v0klLJ5cJRmg==", null, false, "0f643e74-2152-4998-ab67-9afad1cb2e3b", false, null });
 
             migrationBuilder.InsertData(
                 table: "Careers",
@@ -337,11 +328,6 @@ namespace ApiBolsaTrabajoUTN.API.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_JobPositions_CareerId",
-                table: "JobPositions",
-                column: "CareerId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_JobPositions_CompanyId",
                 table: "JobPositions",
                 column: "CompanyId");
@@ -370,6 +356,9 @@ namespace ApiBolsaTrabajoUTN.API.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
+                name: "Careers");
+
+            migrationBuilder.DropTable(
                 name: "JobPositionStudent");
 
             migrationBuilder.DropTable(
@@ -380,9 +369,6 @@ namespace ApiBolsaTrabajoUTN.API.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
-
-            migrationBuilder.DropTable(
-                name: "Careers");
         }
     }
 }

@@ -32,5 +32,7 @@ namespace ApiBolsaTrabajoUTN.API.Models.users.Student
         public int Average { get; set; }
         public int AverageWithFails { get; set; }
         //public List<string> Skils { get; set; }   //*** sin implementar aun
+        public bool FirstChargeData { get; set; }
+        public bool ActiveAccount { get; set; } = true;
     }
 }

@@ -58,9 +58,6 @@ namespace ApiBolsaTrabajoUTN.API.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("CareerId")
-                        .HasColumnType("INTEGER");
-
                     b.Property<string>("CompanyId")
                         .IsRequired()
                         .HasColumnType("TEXT");
@@ -75,29 +72,15 @@ namespace ApiBolsaTrabajoUTN.API.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<DateTime>("JobStartDate")
-                        .HasColumnType("TEXT");
-
                     b.Property<string>("JobTitle")
                         .IsRequired()
                         .HasColumnType("TEXT");
-
-                    b.Property<int>("JobType")
-                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Location")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("PositionsAvailable")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("WorkDay")
-                        .HasColumnType("INTEGER");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("CareerId");
 
                     b.HasIndex("CompanyId");
 
@@ -110,9 +93,6 @@ namespace ApiBolsaTrabajoUTN.API.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<int>("AccessFailedCount")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<bool>("ActiveAccount")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("ConcurrencyStamp")
@@ -128,9 +108,6 @@ namespace ApiBolsaTrabajoUTN.API.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<bool>("EmailConfirmed")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<bool>("FirstChargeData")
                         .HasColumnType("INTEGER");
 
                     b.Property<bool>("LockoutEnabled")
@@ -374,16 +351,14 @@ namespace ApiBolsaTrabajoUTN.API.Migrations
                         {
                             Id = "02174cf0–9412–4cfe-afbf-59f706d72cf6",
                             AccessFailedCount = 0,
-                            ActiveAccount = false,
-                            ConcurrencyStamp = "3ffdad97-a459-451a-856e-5366187c97c5",
+                            ConcurrencyStamp = "d36c3171-e274-4b65-be29-4cc9b2b05351",
                             Email = "administracion@frro.utn.edu.ar",
                             EmailConfirmed = true,
-                            FirstChargeData = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMINISTRACION@FRRO.UTN.EDU.AR",
-                            PasswordHash = "AQAAAAEAACcQAAAAEAOauAGiTTMueTXM2Sm4ZfBTbLlUJIh6l3ObfVy9Ss0rD9ukb5Hb+Mv8+OI/q6Yo6w==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEKptHu6cg9ygv6yyz5eja6DwDFZGRJQjaMbBxnKx9szPkpcnNXyfG7v0klLJ5cJRmg==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "0160fd9f-02b7-4edc-9c83-d7f418fbc14e",
+                            SecurityStamp = "0f643e74-2152-4998-ab67-9afad1cb2e3b",
                             TwoFactorEnabled = false,
                             FirstName = "Administracion",
                             LastName = "Utn"
@@ -394,12 +369,20 @@ namespace ApiBolsaTrabajoUTN.API.Migrations
                 {
                     b.HasBaseType("ApiBolsaTrabajoUTN.API.Entities.User");
 
+                    b.Property<bool>("ActiveAccount")
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("Company_ActiveAccount");
+
                     b.Property<string>("CompanyName")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<int>("Cuit")
                         .HasColumnType("INTEGER");
+
+                    b.Property<bool>("FirstChargeData")
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("Company_FirstChargeData");
 
                     b.Property<string>("LegalAdress")
                         .IsRequired()
@@ -450,6 +433,9 @@ namespace ApiBolsaTrabajoUTN.API.Migrations
                 {
                     b.HasBaseType("ApiBolsaTrabajoUTN.API.Entities.User");
 
+                    b.Property<bool>("ActiveAccount")
+                        .HasColumnType("INTEGER");
+
                     b.Property<string>("Address")
                         .HasColumnType("TEXT");
 
@@ -492,6 +478,9 @@ namespace ApiBolsaTrabajoUTN.API.Migrations
                     b.Property<int>("DocumentType")
                         .HasColumnType("INTEGER");
 
+                    b.Property<bool>("FirstChargeData")
+                        .HasColumnType("INTEGER");
+
                     b.Property<string>("FirstName")
                         .IsRequired()
                         .HasColumnType("TEXT");
@@ -523,19 +512,11 @@ namespace ApiBolsaTrabajoUTN.API.Migrations
 
             modelBuilder.Entity("ApiBolsaTrabajoUTN.API.Entities.JobPosition", b =>
                 {
-                    b.HasOne("ApiBolsaTrabajoUTN.API.Entities.Career", "Career")
-                        .WithMany()
-                        .HasForeignKey("CareerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("ApiBolsaTrabajoUTN.API.Entities.Company", "Company")
                         .WithMany("JobPositions")
                         .HasForeignKey("CompanyId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Career");
 
                     b.Navigation("Company");
                 });

@@ -53,8 +53,6 @@ namespace ApiBolsaTrabajoUTN.API.Services.Authentication
             // Token generation
             var tokenToReturn = await _jwtService.Generate(user);
 
-            response.ActiveAccount = user.ActiveAccount;
-            response.FirstChargeData = user.FirstChargeData;
             response.Success = true;
             response.Message = "Has iniciado sesión correctamente";
             response.Token = tokenToReturn;

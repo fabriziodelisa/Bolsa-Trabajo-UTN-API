@@ -20,6 +20,8 @@ namespace ApiBolsaTrabajoUTN.API.Models.users.Company
         public string? RecruiterEmail { get; set; }
         [JsonConverter(typeof(JsonStringEnumConverter))]
         public RecruiterRelWithCompany RecruiterRelWithCompany { get; set; } = RecruiterRelWithCompany.inCompany;
+        public bool FirstChargeData { get; set; }
+        public bool ActiveAccount { get; set; }
     }
 }
 
