@@ -37,5 +37,7 @@ namespace ApiBolsaTrabajoUTN.API.Entities
         // public List<string> Skils { get; set; } = new List<string>();   //*** sin implementar aun
         public List<JobPosition> JobApplies { get; set; } = new List<JobPosition>();
 
+        public bool FirstChargeData { get; set; }
+        public bool ActiveAccount { get; set; } = false;
     }
 }
