@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ApiBolsaTrabajoUTN.API.Migrations
 {
     [DbContext(typeof(BolsaTrabajoContext))]
-    [Migration("20221108010639_User")]
-    partial class User
+    [Migration("20221108194940_JobPosition")]
+    partial class JobPosition
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -60,6 +60,9 @@ namespace ApiBolsaTrabajoUTN.API.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
+                    b.Property<int>("CareerId")
+                        .HasColumnType("INTEGER");
+
                     b.Property<string>("CompanyId")
                         .IsRequired()
                         .HasColumnType("TEXT");
@@ -78,11 +81,25 @@ namespace ApiBolsaTrabajoUTN.API.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
+                    b.Property<int>("JobType")
+                        .HasColumnType("INTEGER");
+
                     b.Property<string>("Location")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
+                    b.Property<int>("PositionsToCover")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("WorkDay")
+                        .HasColumnType("INTEGER");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("CareerId");
 
                     b.HasIndex("CompanyId");
 
@@ -360,16 +377,16 @@ namespace ApiBolsaTrabajoUTN.API.Migrations
                             Id = "02174cf0–9412–4cfe-afbf-59f706d72cf6",
                             AccessFailedCount = 0,
                             ActiveAccount = false,
-                            ConcurrencyStamp = "1e6cb198-4408-430e-a92d-4c512d68d25b",
+                            ConcurrencyStamp = "e68afb1a-1b31-415c-9ec6-198ac7973609",
                             Email = "administracion@frro.utn.edu.ar",
                             EmailConfirmed = true,
                             FirstChargeData = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMINISTRACION@FRRO.UTN.EDU.AR",
                             NormalizedUserName = "ADMINISTRACION@FRRO.UTN.EDU.AR",
-                            PasswordHash = "AQAAAAEAACcQAAAAECqkjefkmZyNXlX9FwRexDYwX5Giwxvrq/gr2desKxML665gEsTS7IP+EKngfKhcsA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEJg+Ml63lFVcDCporycBsT08PVBd9Ju0agruAl7g+w8ALYJGu1weVjdCd074eZtUzw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "ef82a135-fb41-4f9f-8d0d-4a6ec35f891c",
+                            SecurityStamp = "7c656fca-b85d-44af-a67d-225f62b87c91",
                             TwoFactorEnabled = false,
                             UserName = "administracion@frro.utn.edu.ar",
                             FirstName = "Administracion",
@@ -510,11 +527,19 @@ namespace ApiBolsaTrabajoUTN.API.Migrations
 
             modelBuilder.Entity("ApiBolsaTrabajoUTN.API.Entities.JobPosition", b =>
                 {
+                    b.HasOne("ApiBolsaTrabajoUTN.API.Entities.Career", "Career")
+                        .WithMany("JobPositions")
+                        .HasForeignKey("CareerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("ApiBolsaTrabajoUTN.API.Entities.Company", "Company")
                         .WithMany("JobPositions")
                         .HasForeignKey("CompanyId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Career");
 
                     b.Navigation("Company");
                 });
@@ -583,6 +608,11 @@ namespace ApiBolsaTrabajoUTN.API.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("ApiBolsaTrabajoUTN.API.Entities.Career", b =>
+                {
+                    b.Navigation("JobPositions");
                 });
 
             modelBuilder.Entity("ApiBolsaTrabajoUTN.API.Entities.Company", b =>

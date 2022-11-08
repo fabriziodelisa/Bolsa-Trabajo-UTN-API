@@ -36,6 +36,11 @@ namespace ApiBolsaTrabajoUTN.API.Services.JobPositions
                 Location = rq.Location,
                 CreatedDate = DateTime.Now,
                 EndDate = DateTime.Now.AddDays(90),
+                StartDate = DateTime.Now,
+                PositionsToCover = rq.PositionsToCover,
+                WorkDay = rq.WorkDay,
+                JobType = rq.JobType,
+                CareerId = rq.CareerId,
             };
 
             // Add the JobPosition

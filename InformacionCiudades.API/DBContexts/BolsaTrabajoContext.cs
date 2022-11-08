@@ -81,7 +81,8 @@ namespace ApiBolsaTrabajoUTN.API.DBContexts
                     Name = "Tecnicatura Universitaria En Programacion",
                     Type = Enums.CareerTypes.Tecnicatura,
                     Abbreviation = "TUP",
-                    TotalSubjets = 21
+                    TotalSubjets = 21,
+                    JobPositions = new List<JobPosition>(),
                 }
             ); 
 

@@ -15,5 +15,6 @@ namespace ApiBolsaTrabajoUTN.API.Entities
         public string Abbreviation { get; set; }
         [Required]
         public int TotalSubjets { get; set; }
+        public List<JobPosition> JobPositions { get; set; } = new List<JobPosition>();
     }
 }
