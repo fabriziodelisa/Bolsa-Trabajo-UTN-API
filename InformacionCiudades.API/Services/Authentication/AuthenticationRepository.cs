@@ -37,7 +37,7 @@ namespace ApiBolsaTrabajoUTN.API.Services.Authentication
             }
 
             // Finds user through email
-            var user = await _userManager.FindByEmailAsync(rq.Email);
+            var user = await _userManager.FindByNameAsync(rq.Email);
 
             // Validation that the user exists and passwords are the same
             if (user is null || !await _userManager.CheckPasswordAsync(user, rq.Password))

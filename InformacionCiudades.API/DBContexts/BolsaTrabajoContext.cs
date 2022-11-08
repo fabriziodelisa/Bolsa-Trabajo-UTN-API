@@ -56,6 +56,8 @@ namespace ApiBolsaTrabajoUTN.API.DBContexts
                 EmailConfirmed = true,
                 FirstName = "Administracion",
                 LastName = "Utn",
+                UserName = "administracion@frro.utn.edu.ar",
+                NormalizedUserName = "ADMINISTRACION@FRRO.UTN.EDU.AR",
             };
 
             //set user password
