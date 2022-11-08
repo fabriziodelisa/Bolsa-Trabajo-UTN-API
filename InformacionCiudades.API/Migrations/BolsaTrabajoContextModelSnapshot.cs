@@ -95,6 +95,9 @@ namespace ApiBolsaTrabajoUTN.API.Migrations
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("INTEGER");
 
+                    b.Property<bool>("ActiveAccount")
+                        .HasColumnType("INTEGER");
+
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
                         .HasColumnType("TEXT");
@@ -108,6 +111,9 @@ namespace ApiBolsaTrabajoUTN.API.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<bool>("EmailConfirmed")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("FirstChargeData")
                         .HasColumnType("INTEGER");
 
                     b.Property<bool>("LockoutEnabled")
@@ -351,15 +357,17 @@ namespace ApiBolsaTrabajoUTN.API.Migrations
                         {
                             Id = "02174cf0–9412–4cfe-afbf-59f706d72cf6",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "2ad0c666-69cb-42ca-b664-c6f100486ac2",
+                            ActiveAccount = false,
+                            ConcurrencyStamp = "1e6cb198-4408-430e-a92d-4c512d68d25b",
                             Email = "administracion@frro.utn.edu.ar",
                             EmailConfirmed = true,
+                            FirstChargeData = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMINISTRACION@FRRO.UTN.EDU.AR",
                             NormalizedUserName = "ADMINISTRACION@FRRO.UTN.EDU.AR",
-                            PasswordHash = "AQAAAAEAACcQAAAAEIUR1UrOEF+smJSvTNDUVvP0kxHKMhKnkOZiYsL45GSyH7zISCHUcFKELZGiz9Tr6Q==",
+                            PasswordHash = "AQAAAAEAACcQAAAAECqkjefkmZyNXlX9FwRexDYwX5Giwxvrq/gr2desKxML665gEsTS7IP+EKngfKhcsA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "28e92fdb-7696-4202-9b72-7775d259328f",
+                            SecurityStamp = "ef82a135-fb41-4f9f-8d0d-4a6ec35f891c",
                             TwoFactorEnabled = false,
                             UserName = "administracion@frro.utn.edu.ar",
                             FirstName = "Administracion",
@@ -371,20 +379,12 @@ namespace ApiBolsaTrabajoUTN.API.Migrations
                 {
                     b.HasBaseType("ApiBolsaTrabajoUTN.API.Entities.User");
 
-                    b.Property<bool>("ActiveAccount")
-                        .HasColumnType("INTEGER")
-                        .HasColumnName("Company_ActiveAccount");
-
                     b.Property<string>("CompanyName")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<int>("Cuit")
                         .HasColumnType("INTEGER");
-
-                    b.Property<bool>("FirstChargeData")
-                        .HasColumnType("INTEGER")
-                        .HasColumnName("Company_FirstChargeData");
 
                     b.Property<string>("LegalAdress")
                         .IsRequired()
@@ -435,9 +435,6 @@ namespace ApiBolsaTrabajoUTN.API.Migrations
                 {
                     b.HasBaseType("ApiBolsaTrabajoUTN.API.Entities.User");
 
-                    b.Property<bool>("ActiveAccount")
-                        .HasColumnType("INTEGER");
-
                     b.Property<string>("Address")
                         .HasColumnType("TEXT");
 
@@ -478,9 +475,6 @@ namespace ApiBolsaTrabajoUTN.API.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<int>("DocumentType")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<bool>("FirstChargeData")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("FirstName")
