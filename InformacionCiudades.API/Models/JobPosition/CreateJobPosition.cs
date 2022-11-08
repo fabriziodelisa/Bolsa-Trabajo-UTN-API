@@ -9,6 +9,9 @@ namespace ApiBolsaTrabajoUTN.API.Models.JobPosition
         public string Location { get; set; }
         public int CareerId { get; set; }
         public int PositionsToCover { get; set; }
+        public bool FrameworkAgreement { get; set; }
+        public DateTime StartDate { get; set; }
+        public DateTime EndDate { get; set; }
         public JobType JobType { get; set; }
         public WorkDay WorkDay { get; set; }
     }

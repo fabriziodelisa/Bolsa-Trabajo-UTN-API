@@ -222,6 +222,7 @@ namespace ApiBolsaTrabajoUTN.API.Migrations
                     JobDescription = table.Column<string>(type: "TEXT", nullable: false),
                     Location = table.Column<string>(type: "TEXT", nullable: false),
                     PositionsToCover = table.Column<int>(type: "INTEGER", nullable: false),
+                    FrameworkAgreement = table.Column<bool>(type: "INTEGER", nullable: false),
                     JobType = table.Column<int>(type: "INTEGER", nullable: false),
                     WorkDay = table.Column<int>(type: "INTEGER", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "TEXT", nullable: false),
@@ -287,7 +288,7 @@ namespace ApiBolsaTrabajoUTN.API.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ActiveAccount", "ConcurrencyStamp", "Discriminator", "Email", "EmailConfirmed", "FirstChargeData", "Admin_FirstName", "Admin_LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "02174cf0–9412–4cfe-afbf-59f706d72cf6", 0, false, "e68afb1a-1b31-415c-9ec6-198ac7973609", "Admin", "administracion@frro.utn.edu.ar", true, false, "Administracion", "Utn", false, null, "ADMINISTRACION@FRRO.UTN.EDU.AR", "ADMINISTRACION@FRRO.UTN.EDU.AR", "AQAAAAEAACcQAAAAEJg+Ml63lFVcDCporycBsT08PVBd9Ju0agruAl7g+w8ALYJGu1weVjdCd074eZtUzw==", null, false, "7c656fca-b85d-44af-a67d-225f62b87c91", false, "administracion@frro.utn.edu.ar" });
+                values: new object[] { "02174cf0–9412–4cfe-afbf-59f706d72cf6", 0, false, "30bfbcc6-ae07-48b0-bc99-d95e4516cf64", "Admin", "administracion@frro.utn.edu.ar", true, false, "Administracion", "Utn", false, null, "ADMINISTRACION@FRRO.UTN.EDU.AR", "ADMINISTRACION@FRRO.UTN.EDU.AR", "AQAAAAEAACcQAAAAEEgembcEYj7oNlrkMmWQSTDb6mjY5JW7gleQbxeU7akPXa+slVLQ80h5nFxYn4k6OA==", null, false, "2a016f10-99cb-4170-91da-5863e2a9a989", false, "administracion@frro.utn.edu.ar" });
 
             migrationBuilder.InsertData(
                 table: "Careers",
