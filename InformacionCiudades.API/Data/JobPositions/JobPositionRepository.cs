@@ -27,7 +27,7 @@ namespace ApiBolsaTrabajoUTN.API.Data.JobPositions
 
         public IQueryable<JobPosition> GetAllJobPositions()
         {
-            return _bolsaTrabajoContext.JobPositions.Include(x => x.Company).AsQueryable();
+            return _bolsaTrabajoContext.JobPositions.Include(x => x.Company).Include(x => x.Career).AsQueryable();
         }
 
         public IQueryable<JobPosition> GetCompanyJobPositions(string companyId)
