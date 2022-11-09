@@ -1,4 +1,5 @@
 ﻿using ApiBolsaTrabajoUTN.API.Enums;
+using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 
@@ -32,9 +33,11 @@ namespace ApiBolsaTrabajoUTN.API.Entities
         public Turn Turn { get; set; }
         public float Average { get; set; }
         public float AverageWithFails { get; set; }
+        public List<Skill>? Skills { get; set; }
 
         public bool FirstChargeData { get; set; }
         public bool ActiveAccount { get; set; } = false;
         public List<JobPosition> JobApplies { get; set; } = new List<JobPosition>();
+
     }
 }

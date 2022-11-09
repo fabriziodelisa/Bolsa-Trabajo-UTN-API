@@ -1,4 +1,4 @@
-﻿    using ApiBolsaTrabajoUTN.API.Entities;
+﻿using ApiBolsaTrabajoUTN.API.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -10,10 +10,11 @@ namespace ApiBolsaTrabajoUTN.API.DBContexts
         public DbSet<User> BolsaTrabajoUsers { get; set; }
         public DbSet<Career> Careers { get; set; }
         public DbSet<JobPosition> JobPositions { get; set; }
-        public DbSet<Company> Companies { get; set; } 
+        public DbSet<Company> Companies { get; set; }
         public DbSet<Student> students { get; set; }
+        public DbSet<Skill> Skills { get; set; }
 
-        public BolsaTrabajoContext(DbContextOptions<BolsaTrabajoContext> options) : base(options) //Acá estamos llamando al constructor de DbContext que es el que acepta las opciones
+        public BolsaTrabajoContext(DbContextOptions<BolsaTrabajoContext> options) : base(options)
         {
 
         }
@@ -81,7 +82,143 @@ namespace ApiBolsaTrabajoUTN.API.DBContexts
                     Abbreviation = "TUP",
                     TotalSubjets = 21
                 }
-            ); 
+            );
+
+            modelBuilder.Entity<Skill>().HasData(
+                new Skill
+                {
+                    Id = 1,
+                    SkillName = "C#",
+                }, new Skill
+                {
+                    Id = 2,
+                    SkillName = ".NET",
+                }, new Skill
+                {
+                    Id = 3,
+                    SkillName = "ASP.NET core",
+                }, new Skill
+                {
+                    Id = 4,
+                    SkillName = "Python",
+                }, new Skill
+                {
+                    Id = 5,
+                    SkillName = "CSS",
+                }, new Skill
+                {
+                    Id = 6,
+                    SkillName = "HTML",
+                }, new Skill
+                {
+                    Id = 7,
+                    SkillName = "Javascript",
+                }, new Skill
+                {
+                    Id = 8,
+                    SkillName = "Node.js",
+                }, new Skill
+                {
+                    Id = 9,
+                    SkillName = "React.js",
+                }, new Skill
+                {
+                    Id = 10,
+                    SkillName = "Vue.js",
+                }, new Skill
+                {
+                    Id = 11,
+                    SkillName = "Angular",
+                }, new Skill
+                {
+                    Id = 12,
+                    SkillName = "SQL",
+                }, new Skill
+                {
+                    Id = 13,
+                    SkillName = "JQuery",
+                }, new Skill
+                {
+                    Id = 14,
+                    SkillName = "Java",
+                }, new Skill
+                {
+                    Id = 15,
+                    SkillName = "C/C++",
+                }, new Skill
+                {
+                    Id = 16,
+                    SkillName = "Golang",
+                }, new Skill
+                {
+                    Id = 17,
+                    SkillName = "Docker",
+                }, new Skill
+                {
+                    Id = 18,
+                    SkillName = "Kubernetes",
+                }, new Skill
+                {
+                    Id = 19,
+                    SkillName = "Bootstrap",
+                }, new Skill
+                {
+                    Id = 20,
+                    SkillName = "Typescript",
+                }, new Skill
+                {
+                    Id = 21,
+                    SkillName = "Entity Framework",
+                }, new Skill
+                {
+                    Id = 22,
+                    SkillName = "PHP",
+                }, new Skill
+                {
+                    Id = 23,
+                    SkillName = "Git",
+                }, new Skill
+                {
+                    Id = 24,
+                    SkillName = "Linux",
+                }, new Skill
+                {
+                    Id = 25,
+                    SkillName = "NoSQL",
+                }, new Skill
+                {
+                    Id = 26,
+                    SkillName = "Django",
+                }, new Skill
+                {
+                    Id = 27,
+                    SkillName = "AWS",
+                }, new Skill
+                {
+                    Id = 28,
+                    SkillName = "Wordpress",
+                }, new Skill
+                {
+                    Id = 29,
+                    SkillName = "Azure",
+                }, new Skill
+                {
+                    Id = 30,
+                    SkillName = "Unit Testing",
+                }, new Skill
+                {
+                    Id = 31,
+                    SkillName = "SCRUM",
+                }, new Skill
+                {
+                    Id = 32,
+                    SkillName = "Ruby",
+                }, new Skill
+                {
+                    Id = 33,
+                    SkillName = "MVC model",
+                }
+            );
 
             base.OnModelCreating(modelBuilder);
         }
