@@ -1,5 +1,6 @@
 ﻿using ApiBolsaTrabajoUTN.API.Data.UsersInfo;
 using ApiBolsaTrabajoUTN.API.Entities;
+using ApiBolsaTrabajoUTN.API.Models.JobPosition;
 using ApiBolsaTrabajoUTN.API.Models.users;
 using ApiBolsaTrabajoUTN.API.Models.users.Company;
 using ApiBolsaTrabajoUTN.API.Models.users.Student;
@@ -195,17 +196,24 @@ namespace ApiBolsaTrabajoUTN.API.Controllers
             return Ok();
         }
 
-        [HttpGet("DownloadCV")]
-        public async Task<IActionResult> GetCurriculum()
+        [HttpGet("{studentId}")]
+        public async Task<IActionResult> GetCurriculum(string studentId)
         {
-            var userId = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
-            var student = await _studentManager.FindByIdAsync(userId);
+            var rs = new CreateJobPositionResponse
+            {
+                Success = false,
+            };
+            var student = await _studentManager.FindByIdAsync(studentId);
             if (student is null)
-                return NotFound();
+            {
+                rs.Message = "El estudiante propietario del CV no fue encontrado";
+                return Ok(rs);
+            }
 
             if (student.Curriculum is null)
             {
-                return BadRequest();
+                rs.Message = "El CV del estudiante es inexistente/aún no fue cargado";
+                return Ok(rs);
             }
 
             return File(student.Curriculum, "application/pdf", $"{student.FirstName}_{student.LastName}_CV.pdf");

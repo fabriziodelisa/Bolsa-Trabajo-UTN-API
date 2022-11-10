@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ApiBolsaTrabajoUTN.API.Migrations
 {
-    public partial class JobPosition : Migration
+    public partial class Student : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -61,6 +61,8 @@ namespace ApiBolsaTrabajoUTN.API.Migrations
                     Province = table.Column<string>(type: "TEXT", nullable: true),
                     City = table.Column<string>(type: "TEXT", nullable: true),
                     Curriculum = table.Column<byte[]>(type: "BLOB", nullable: true),
+                    GithubProfileURL = table.Column<string>(type: "TEXT", nullable: true),
+                    LinkedinProfileURL = table.Column<string>(type: "TEXT", nullable: true),
                     CareerId = table.Column<int>(type: "INTEGER", nullable: true),
                     ApprovedSubjets = table.Column<int>(type: "INTEGER", nullable: true),
                     PlanDeEstudio = table.Column<string>(type: "TEXT", nullable: true),
@@ -222,11 +224,11 @@ namespace ApiBolsaTrabajoUTN.API.Migrations
                     JobDescription = table.Column<string>(type: "TEXT", nullable: false),
                     Location = table.Column<string>(type: "TEXT", nullable: false),
                     PositionsToCover = table.Column<int>(type: "INTEGER", nullable: false),
-                    FrameworkAgreement = table.Column<bool>(type: "INTEGER", nullable: false),
+                    FrameworkAgreement = table.Column<bool>(type: "INTEGER", nullable: true),
                     JobType = table.Column<int>(type: "INTEGER", nullable: false),
-                    WorkDay = table.Column<int>(type: "INTEGER", nullable: false),
+                    WorkDay = table.Column<int>(type: "INTEGER", nullable: true),
                     CreatedDate = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    EndDate = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    EndDate = table.Column<DateTime>(type: "TEXT", nullable: true),
                     StartDate = table.Column<DateTime>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
@@ -288,7 +290,7 @@ namespace ApiBolsaTrabajoUTN.API.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ActiveAccount", "ConcurrencyStamp", "Discriminator", "Email", "EmailConfirmed", "FirstChargeData", "Admin_FirstName", "Admin_LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "02174cf0–9412–4cfe-afbf-59f706d72cf6", 0, false, "30bfbcc6-ae07-48b0-bc99-d95e4516cf64", "Admin", "administracion@frro.utn.edu.ar", true, false, "Administracion", "Utn", false, null, "ADMINISTRACION@FRRO.UTN.EDU.AR", "ADMINISTRACION@FRRO.UTN.EDU.AR", "AQAAAAEAACcQAAAAEEgembcEYj7oNlrkMmWQSTDb6mjY5JW7gleQbxeU7akPXa+slVLQ80h5nFxYn4k6OA==", null, false, "2a016f10-99cb-4170-91da-5863e2a9a989", false, "administracion@frro.utn.edu.ar" });
+                values: new object[] { "02174cf0–9412–4cfe-afbf-59f706d72cf6", 0, false, "9da983a1-7490-4318-b786-399646da8cb0", "Admin", "administracion@frro.utn.edu.ar", true, false, "Administracion", "Utn", false, null, "ADMINISTRACION@FRRO.UTN.EDU.AR", "ADMINISTRACION@FRRO.UTN.EDU.AR", "AQAAAAEAACcQAAAAEHxSvjdTKymIzBpBaMInbzPigJVIPXJPXyo8MVQXTafYC2BtJswq4uKl4LGsDU0QbA==", null, false, "db193ca3-c1df-4ad4-802c-12e1cc9bfd80", false, "administracion@frro.utn.edu.ar" });
 
             migrationBuilder.InsertData(
                 table: "Careers",

@@ -25,6 +25,8 @@ namespace ApiBolsaTrabajoUTN.API.Entities
         public string? Province { get; set; }
         public string? City { get; set; }
         public byte[]? Curriculum { get; set; }
+        public string? GithubProfileURL { get; set; }
+        public string? LinkedinProfileURL { get; set; }
 
         // University data
         public int CareerId { get; set; }
