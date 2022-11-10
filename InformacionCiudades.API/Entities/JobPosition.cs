@@ -14,11 +14,11 @@ namespace ApiBolsaTrabajoUTN.API.Entities
         public string JobDescription { get; set; }
         public string Location { get; set; }
         public int PositionsToCover { get; set; }
-        public bool FrameworkAgreement { get; set; }
+        public bool? FrameworkAgreement { get; set; }
         public JobType JobType { get; set; }
-        public WorkDay WorkDay { get; set; }
+        public WorkDay? WorkDay { get; set; }
         public DateTime CreatedDate { get; set; }
-        public DateTime EndDate { get; set; }
+        public DateTime? EndDate { get; set; }
         public DateTime StartDate { get; set; }
         [ForeignKey("CareerId")]
         public Career Career { get; set; }

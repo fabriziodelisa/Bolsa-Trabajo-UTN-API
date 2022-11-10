@@ -15,7 +15,9 @@ namespace ApiBolsaTrabajoUTN.API.Services.JobPositions
         public async Task<CreateJobPositionResponse> AddJobPosition(string companyId, CreateJobPositionRequest rq)
         {
             // Create response object
-            var rs = new CreateJobPositionResponse { };
+            var rs = new CreateJobPositionResponse {
+                Success = false,
+            };
 
             // Get the company
             var company = await _jobPositionRepository.GetCompany(companyId);
@@ -24,7 +26,13 @@ namespace ApiBolsaTrabajoUTN.API.Services.JobPositions
             if (company == null)
             {
                 rs.Message = "La oferta laboral no pudo ser creada, no existe una empresa asociada";
-                rs.Success = false;
+                return rs;
+            }
+
+            // ActiveAccount validation
+            if (!company.ActiveAccount)
+            {
+                rs.Message = "No podés crear ofertas hasta que tu cuenta este validada por administración";
                 return rs;
             }
 
