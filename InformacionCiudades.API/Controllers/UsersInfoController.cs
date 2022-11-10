@@ -39,7 +39,6 @@ namespace ApiBolsaTrabajoUTN.API.Controllers
 
             return Ok(_mapper.Map<IEnumerable<UserWithoutContentsDto>>(users));
         }
-        /***************************************************************************************************** ***/
 
         [HttpGet("Company")]
         public async Task<ActionResult> GetCompanyInfo()
@@ -78,7 +77,7 @@ namespace ApiBolsaTrabajoUTN.API.Controllers
                 return NotFound();
 
             _mapper.Map(companyData, companyInfo);
-            var result = await _userManager.UpdateAsync(companyInfo);
+            var result = await _companyManager.UpdateAsync(companyInfo);
 
             if (result.Succeeded)
             {
@@ -96,7 +95,7 @@ namespace ApiBolsaTrabajoUTN.API.Controllers
                 return NotFound();
 
             _mapper.Map(updateCompanyData, companyInfo);
-            var result = await _userManager.UpdateAsync(companyInfo);
+            var result = await _companyManager.UpdateAsync(companyInfo);
 
             if (result.Succeeded)
             {
@@ -104,7 +103,6 @@ namespace ApiBolsaTrabajoUTN.API.Controllers
             }
             return BadRequest(result);
         }
-        /*******************************************************************************************************/
 
         [HttpGet("Student")]
         public async Task<ActionResult> GetStudentInfo()
@@ -144,7 +142,7 @@ namespace ApiBolsaTrabajoUTN.API.Controllers
                 return NotFound();
 
             _mapper.Map(studentData, studentInfo);
-            var result = await _userManager.UpdateAsync(studentInfo);
+            var result = await _studentManager.UpdateAsync(studentInfo);
 
             if (result.Succeeded)
             {
@@ -162,7 +160,7 @@ namespace ApiBolsaTrabajoUTN.API.Controllers
                 return NotFound();
 
             _mapper.Map(studentData, studentInfo);
-            var result = await _userManager.UpdateAsync(studentInfo);
+            var result = await _studentManager.UpdateAsync(studentInfo);
 
             if (result.Succeeded)
             {

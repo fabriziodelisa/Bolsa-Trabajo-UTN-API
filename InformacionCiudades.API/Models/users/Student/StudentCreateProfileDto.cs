@@ -27,9 +27,8 @@ namespace ApiBolsaTrabajoUTN.API.Models.users.Student
         public int CurrentCareerYear { get; set; }
         [JsonConverter(typeof(JsonStringEnumConverter))]
         public Turn Turn { get; set; }
-        public int Average { get; set; }
-        public int AverageWithFails { get; set; }
-        //public List<string> Skils { get; set; }   //*** sin implementar aun
+        public float Average { get; set; }
+        public float AverageWithFails { get; set; }
         public bool FirstChargeData { get; set; }
     }
 }
