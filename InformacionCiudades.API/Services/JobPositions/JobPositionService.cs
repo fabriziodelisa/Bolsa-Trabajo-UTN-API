@@ -19,6 +19,34 @@ namespace ApiBolsaTrabajoUTN.API.Services.JobPositions
                 Success = false,
             };
 
+            // Title validation
+            if (string.IsNullOrEmpty(rq.JobTitle))
+            {
+                rs.Message = "La oferta laboral debe tener un título";
+                return rs;
+            }
+
+            // Description validation
+            if (string.IsNullOrEmpty(rq.JobDescription))
+            {
+                rs.Message = "La oferta laboral debe tener una descripción";
+                return rs;
+            }
+
+            // Location validation
+            if (string.IsNullOrEmpty(rq.Location))
+            {
+                rs.Message = "La oferta laboral debe tener un lugar de trabajo";
+                return rs;
+            }
+
+            // Positions to cover can't be 0
+            if (rq.PositionsToCover == 0)
+            {
+                rs.Message = "Debe haber al menos 1 posición a cubrir";
+                return rs;
+            }
+
             // Get the company
             var company = await _jobPositionRepository.GetCompany(companyId);
 
