@@ -33,7 +33,6 @@ namespace ApiBolsaTrabajoUTN.API.Entities
         public Turn Turn { get; set; }
         public float Average { get; set; }
         public float AverageWithFails { get; set; }
-        public List<Skill>? Skills { get; set; }
 
         public bool FirstChargeData { get; set; }
         public bool ActiveAccount { get; set; } = false;

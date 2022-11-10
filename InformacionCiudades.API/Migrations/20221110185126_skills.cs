@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ApiBolsaTrabajoUTN.API.Migrations
 {
-    public partial class ActiveDeactiveAccount : Migration
+    public partial class skills : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -66,8 +66,8 @@ namespace ApiBolsaTrabajoUTN.API.Migrations
                     PlanDeEstudio = table.Column<string>(type: "TEXT", nullable: true),
                     CurrentCareerYear = table.Column<int>(type: "INTEGER", nullable: true),
                     Turn = table.Column<int>(type: "INTEGER", nullable: true),
-                    Average = table.Column<int>(type: "INTEGER", nullable: true),
-                    AverageWithFails = table.Column<int>(type: "INTEGER", nullable: true),
+                    Average = table.Column<float>(type: "REAL", nullable: true),
+                    AverageWithFails = table.Column<float>(type: "REAL", nullable: true),
                     FirstChargeData = table.Column<bool>(type: "INTEGER", nullable: true),
                     ActiveAccount = table.Column<bool>(type: "INTEGER", nullable: true),
                     UserName = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true),
@@ -104,6 +104,19 @@ namespace ApiBolsaTrabajoUTN.API.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Careers", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Skills",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    SkillName = table.Column<string>(type: "TEXT", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Skills", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -278,7 +291,7 @@ namespace ApiBolsaTrabajoUTN.API.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Discriminator", "Email", "EmailConfirmed", "Admin_FirstName", "Admin_LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "02174cf0–9412–4cfe-afbf-59f706d72cf6", 0, "d36c3171-e274-4b65-be29-4cc9b2b05351", "Admin", "administracion@frro.utn.edu.ar", true, "Administracion", "Utn", false, null, "ADMINISTRACION@FRRO.UTN.EDU.AR", null, "AQAAAAEAACcQAAAAEKptHu6cg9ygv6yyz5eja6DwDFZGRJQjaMbBxnKx9szPkpcnNXyfG7v0klLJ5cJRmg==", null, false, "0f643e74-2152-4998-ab67-9afad1cb2e3b", false, null });
+                values: new object[] { "02174cf0–9412–4cfe-afbf-59f706d72cf6", 0, "df948516-6a31-46f7-8c09-e6a54c9b6711", "Admin", "administracion@frro.utn.edu.ar", true, "Administracion", "Utn", false, null, "ADMINISTRACION@FRRO.UTN.EDU.AR", null, "AQAAAAEAACcQAAAAEMc9IWX/m/sHIKZDqpiAQeUgxM8ZZC1q44Hx7I+2hcEW7Jr6HO4ICgWzIcJcZfkpQA==", null, false, "08bd93a7-4c31-43ea-9b37-a5d4e63393ce", false, null });
 
             migrationBuilder.InsertData(
                 table: "Careers",
@@ -360,6 +373,9 @@ namespace ApiBolsaTrabajoUTN.API.Migrations
 
             migrationBuilder.DropTable(
                 name: "JobPositionStudent");
+
+            migrationBuilder.DropTable(
+                name: "Skills");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");

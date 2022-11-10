@@ -96,181 +96,9 @@ namespace ApiBolsaTrabajoUTN.API.Migrations
                     b.Property<string>("SkillName")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("StudentId")
-                        .HasColumnType("TEXT");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("StudentId");
-
                     b.ToTable("Skills");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            SkillName = "C#"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            SkillName = ".NET"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            SkillName = "ASP.NET core"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            SkillName = "Python"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            SkillName = "CSS"
-                        },
-                        new
-                        {
-                            Id = 6,
-                            SkillName = "HTML"
-                        },
-                        new
-                        {
-                            Id = 7,
-                            SkillName = "Javascript"
-                        },
-                        new
-                        {
-                            Id = 8,
-                            SkillName = "Node.js"
-                        },
-                        new
-                        {
-                            Id = 9,
-                            SkillName = "React.js"
-                        },
-                        new
-                        {
-                            Id = 10,
-                            SkillName = "Vue.js"
-                        },
-                        new
-                        {
-                            Id = 11,
-                            SkillName = "Angular"
-                        },
-                        new
-                        {
-                            Id = 12,
-                            SkillName = "SQL"
-                        },
-                        new
-                        {
-                            Id = 13,
-                            SkillName = "JQuery"
-                        },
-                        new
-                        {
-                            Id = 14,
-                            SkillName = "Java"
-                        },
-                        new
-                        {
-                            Id = 15,
-                            SkillName = "C/C++"
-                        },
-                        new
-                        {
-                            Id = 16,
-                            SkillName = "Golang"
-                        },
-                        new
-                        {
-                            Id = 17,
-                            SkillName = "Docker"
-                        },
-                        new
-                        {
-                            Id = 18,
-                            SkillName = "Kubernetes"
-                        },
-                        new
-                        {
-                            Id = 19,
-                            SkillName = "Bootstrap"
-                        },
-                        new
-                        {
-                            Id = 20,
-                            SkillName = "Typescript"
-                        },
-                        new
-                        {
-                            Id = 21,
-                            SkillName = "Entity Framework"
-                        },
-                        new
-                        {
-                            Id = 22,
-                            SkillName = "PHP"
-                        },
-                        new
-                        {
-                            Id = 23,
-                            SkillName = "Git"
-                        },
-                        new
-                        {
-                            Id = 24,
-                            SkillName = "Linux"
-                        },
-                        new
-                        {
-                            Id = 25,
-                            SkillName = "NoSQL"
-                        },
-                        new
-                        {
-                            Id = 26,
-                            SkillName = "Django"
-                        },
-                        new
-                        {
-                            Id = 27,
-                            SkillName = "AWS"
-                        },
-                        new
-                        {
-                            Id = 28,
-                            SkillName = "Wordpress"
-                        },
-                        new
-                        {
-                            Id = 29,
-                            SkillName = "Azure"
-                        },
-                        new
-                        {
-                            Id = 30,
-                            SkillName = "Unit Testing"
-                        },
-                        new
-                        {
-                            Id = 31,
-                            SkillName = "SCRUM"
-                        },
-                        new
-                        {
-                            Id = 32,
-                            SkillName = "Ruby"
-                        },
-                        new
-                        {
-                            Id = 33,
-                            SkillName = "MVC model"
-                        });
                 });
 
             modelBuilder.Entity("ApiBolsaTrabajoUTN.API.Entities.User", b =>
@@ -537,14 +365,14 @@ namespace ApiBolsaTrabajoUTN.API.Migrations
                         {
                             Id = "02174cf0–9412–4cfe-afbf-59f706d72cf6",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "cd2a1f35-1894-473a-a49f-7403df8f7a17",
+                            ConcurrencyStamp = "df948516-6a31-46f7-8c09-e6a54c9b6711",
                             Email = "administracion@frro.utn.edu.ar",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMINISTRACION@FRRO.UTN.EDU.AR",
-                            PasswordHash = "AQAAAAEAACcQAAAAEOGmoXv1iJfqmtiQuFoBqNAUNlN1Y4jMm84k7bcD7HQYrAIDCzfqdHR3wokw++2xNg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEMc9IWX/m/sHIKZDqpiAQeUgxM8ZZC1q44Hx7I+2hcEW7Jr6HO4ICgWzIcJcZfkpQA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "1463109b-ed73-48de-9ab5-185f9f21c236",
+                            SecurityStamp = "08bd93a7-4c31-43ea-9b37-a5d4e63393ce",
                             TwoFactorEnabled = false,
                             FirstName = "Administracion",
                             LastName = "Utn"
@@ -698,13 +526,6 @@ namespace ApiBolsaTrabajoUTN.API.Migrations
                     b.Navigation("Company");
                 });
 
-            modelBuilder.Entity("ApiBolsaTrabajoUTN.API.Entities.Skill", b =>
-                {
-                    b.HasOne("ApiBolsaTrabajoUTN.API.Entities.Student", null)
-                        .WithMany("Skills")
-                        .HasForeignKey("StudentId");
-                });
-
             modelBuilder.Entity("JobPositionStudent", b =>
                 {
                     b.HasOne("ApiBolsaTrabajoUTN.API.Entities.JobPosition", null)
@@ -774,11 +595,6 @@ namespace ApiBolsaTrabajoUTN.API.Migrations
             modelBuilder.Entity("ApiBolsaTrabajoUTN.API.Entities.Company", b =>
                 {
                     b.Navigation("JobPositions");
-                });
-
-            modelBuilder.Entity("ApiBolsaTrabajoUTN.API.Entities.Student", b =>
-                {
-                    b.Navigation("Skills");
                 });
 #pragma warning restore 612, 618
         }

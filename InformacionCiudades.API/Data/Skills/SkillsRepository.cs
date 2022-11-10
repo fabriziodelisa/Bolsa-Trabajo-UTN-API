@@ -14,17 +14,6 @@ namespace ApiBolsaTrabajoUTN.API.Data.Skills
             return _bolsaTrabajoContext.Skills.OrderBy(x => x.SkillName).ToList();
         }
 
-        public List<Skill> UpdateStudentSkills(List<int> SkillsId)
-        {
-            List<Skill> newSkills = new List<Skill>();
-            foreach (int id in SkillsId)
-            {
-               var skill = _bolsaTrabajoContext.Skills.Find(id);
-                if (skill != null)
-                    newSkills.Add(skill);
-            }
-            return newSkills;
-        }
         public void AddSkill(Skill newSkill)
         {
             _bolsaTrabajoContext.Skills.Add(newSkill);
