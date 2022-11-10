@@ -1,4 +1,4 @@
-﻿    using ApiBolsaTrabajoUTN.API.Entities;
+﻿using ApiBolsaTrabajoUTN.API.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -10,10 +10,11 @@ namespace ApiBolsaTrabajoUTN.API.DBContexts
         public DbSet<User> BolsaTrabajoUsers { get; set; }
         public DbSet<Career> Careers { get; set; }
         public DbSet<JobPosition> JobPositions { get; set; }
-        public DbSet<Company> Companies { get; set; } 
+        public DbSet<Company> Companies { get; set; }
         public DbSet<Student> students { get; set; }
+        public DbSet<Skill> Skills { get; set; }
 
-        public BolsaTrabajoContext(DbContextOptions<BolsaTrabajoContext> options) : base(options) //Acá estamos llamando al constructor de DbContext que es el que acepta las opciones
+        public BolsaTrabajoContext(DbContextOptions<BolsaTrabajoContext> options) : base(options)
         {
 
         }
@@ -81,7 +82,7 @@ namespace ApiBolsaTrabajoUTN.API.DBContexts
                     Abbreviation = "TUP",
                     TotalSubjets = 21
                 }
-            ); 
+            );
 
             base.OnModelCreating(modelBuilder);
         }

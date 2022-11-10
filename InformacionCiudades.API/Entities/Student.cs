@@ -1,4 +1,5 @@
 ﻿using ApiBolsaTrabajoUTN.API.Enums;
+using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 
@@ -6,7 +7,6 @@ namespace ApiBolsaTrabajoUTN.API.Entities
 {
     public class Student : User
     {
-        // Personal data
         [Required]
         public int Legajo { get; set; }
         [Required]
@@ -26,18 +26,17 @@ namespace ApiBolsaTrabajoUTN.API.Entities
         public string? City { get; set; }
         public byte[]? Curriculum { get; set; }
 
-        // University data
         public int CareerId { get; set; }
         public int ApprovedSubjets { get; set; }
         public string? PlanDeEstudio { get; set; }
         public int CurrentCareerYear { get; set; }
         public Turn Turn { get; set; }
-        public int Average { get; set; }
-        public int AverageWithFails { get; set; }
-        // public List<string> Skils { get; set; } = new List<string>();   //*** sin implementar aun
-        public List<JobPosition> JobApplies { get; set; } = new List<JobPosition>();
+        public float Average { get; set; }
+        public float AverageWithFails { get; set; }
 
         public bool FirstChargeData { get; set; }
         public bool ActiveAccount { get; set; } = false;
+        public List<JobPosition> JobApplies { get; set; } = new List<JobPosition>();
+
     }
 }

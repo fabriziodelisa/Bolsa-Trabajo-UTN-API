@@ -2,13 +2,11 @@
 using ApiBolsaTrabajoUTN.API.Models.Career;
 using ApiBolsaTrabajoUTN.API.Services.Careers;
 using AutoMapper;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ApiBolsaTrabajoUTN.API.Controllers
 {
     [ApiController]
-    [Authorize(Roles = "SuperAdmin")]
     [Route("api/Careers")]
     public class CareerController : ControllerBase
     {

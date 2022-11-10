@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ApiBolsaTrabajoUTN.API.Migrations
 {
     [DbContext(typeof(BolsaTrabajoContext))]
-    [Migration("20221025213536_ActiveDeactiveAccount")]
-    partial class ActiveDeactiveAccount
+    [Migration("20221110185126_skills")]
+    partial class skills
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -87,6 +87,20 @@ namespace ApiBolsaTrabajoUTN.API.Migrations
                     b.HasIndex("CompanyId");
 
                     b.ToTable("JobPositions");
+                });
+
+            modelBuilder.Entity("ApiBolsaTrabajoUTN.API.Entities.Skill", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("SkillName")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Skills");
                 });
 
             modelBuilder.Entity("ApiBolsaTrabajoUTN.API.Entities.User", b =>
@@ -353,14 +367,14 @@ namespace ApiBolsaTrabajoUTN.API.Migrations
                         {
                             Id = "02174cf0–9412–4cfe-afbf-59f706d72cf6",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "d36c3171-e274-4b65-be29-4cc9b2b05351",
+                            ConcurrencyStamp = "df948516-6a31-46f7-8c09-e6a54c9b6711",
                             Email = "administracion@frro.utn.edu.ar",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMINISTRACION@FRRO.UTN.EDU.AR",
-                            PasswordHash = "AQAAAAEAACcQAAAAEKptHu6cg9ygv6yyz5eja6DwDFZGRJQjaMbBxnKx9szPkpcnNXyfG7v0klLJ5cJRmg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEMc9IWX/m/sHIKZDqpiAQeUgxM8ZZC1q44Hx7I+2hcEW7Jr6HO4ICgWzIcJcZfkpQA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "0f643e74-2152-4998-ab67-9afad1cb2e3b",
+                            SecurityStamp = "08bd93a7-4c31-43ea-9b37-a5d4e63393ce",
                             TwoFactorEnabled = false,
                             FirstName = "Administracion",
                             LastName = "Utn"
@@ -387,42 +401,33 @@ namespace ApiBolsaTrabajoUTN.API.Migrations
                         .HasColumnName("Company_FirstChargeData");
 
                     b.Property<string>("LegalAdress")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("PostalCode")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("RecruiterEmail")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("RecruiterLastName")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("RecruiterName")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("RecruiterPhoneNumber")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("RecruiterPosition")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<int>("RecruiterRelWithCompany")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Sector")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("TelephoneNumber")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Web")
@@ -447,11 +452,11 @@ namespace ApiBolsaTrabajoUTN.API.Migrations
                     b.Property<int>("ApprovedSubjets")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("Average")
-                        .HasColumnType("INTEGER");
+                    b.Property<float>("Average")
+                        .HasColumnType("REAL");
 
-                    b.Property<int>("AverageWithFails")
-                        .HasColumnType("INTEGER");
+                    b.Property<float>("AverageWithFails")
+                        .HasColumnType("REAL");
 
                     b.Property<DateTime>("BirthDate")
                         .HasColumnType("TEXT");
