@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ApiBolsaTrabajoUTN.API.Migrations
 {
     [DbContext(typeof(BolsaTrabajoContext))]
-    [Migration("20221110203630_Merging")]
-    partial class Merging
+    [Migration("20221111001558_FinalMig")]
+    partial class FinalMig
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -394,16 +394,16 @@ namespace ApiBolsaTrabajoUTN.API.Migrations
                             Id = "02174cf0–9412–4cfe-afbf-59f706d72cf6",
                             AccessFailedCount = 0,
                             ActiveAccount = false,
-                            ConcurrencyStamp = "9c45b778-3444-460d-88d4-5fe8f0c05988",
+                            ConcurrencyStamp = "c398060d-b38a-459d-994d-d420de1c8004",
                             Email = "administracion@frro.utn.edu.ar",
                             EmailConfirmed = true,
                             FirstChargeData = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMINISTRACION@FRRO.UTN.EDU.AR",
                             NormalizedUserName = "ADMINISTRACION@FRRO.UTN.EDU.AR",
-                            PasswordHash = "AQAAAAEAACcQAAAAEBgL0IpzHDPZvOgXwqoF0kwSB0KAoF7vgMATHkzEObnUF0rzSlkL1KB3bARiKaJfCg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAELG+/yzXzx4xEwjS2gjnf1QxXSAHNEVB8CKowOR4vvZCr5QUOIHJvfwzIjES5bSOQQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "3f4f696d-6bce-4225-8fa5-8cf546e905d6",
+                            SecurityStamp = "cff1a658-a662-4961-b961-ee13c8c085ec",
                             TwoFactorEnabled = false,
                             UserName = "administracion@frro.utn.edu.ar",
                             FirstName = "Administracion",
