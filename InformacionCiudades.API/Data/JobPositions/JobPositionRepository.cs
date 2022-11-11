@@ -32,7 +32,7 @@ namespace ApiBolsaTrabajoUTN.API.Data.JobPositions
 
         public IQueryable<JobPosition> GetCompanyJobPositions(string companyId)
         {
-            return _bolsaTrabajoContext.JobPositions.Include(x => x.StudentsWhoApplied).Where(x => x.CompanyId == companyId).AsQueryable();
+            return _bolsaTrabajoContext.JobPositions.Include(x => x.StudentsWhoApplied).Include(x => x.Company).Where(x => x.CompanyId == companyId).AsQueryable();
         }
 
         public JobPosition GetJobPosition(int jobPositionId)
