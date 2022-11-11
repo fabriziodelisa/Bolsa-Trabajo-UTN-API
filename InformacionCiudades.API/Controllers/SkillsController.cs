@@ -4,6 +4,11 @@ using ApiBolsaTrabajoUTN.API.Models.users.Student;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 
+public class DeleteSkillRequest
+{
+    public int Id { get; set; }
+}
+
 namespace ApiBolsaTrabajoUTN.API.Controllers
 {
     [Route("api/[Controller]")]
@@ -37,15 +42,19 @@ namespace ApiBolsaTrabajoUTN.API.Controllers
 
                 _skillsRepository.SaveChange();
 
-                return Ok();
+                var Data = new
+                {
+                    skillName = newSkill.SkillName,
+                };
+                return Ok(Data);
             }
             return BadRequest();
         }
 
         [HttpDelete("DeleteSkill")]
-        public ActionResult DeleteSkill(int id)
+        public ActionResult DeleteSkill(DeleteSkillRequest rq)
         {
-            _skillsRepository.DeleteSkill(id);
+            _skillsRepository.DeleteSkill(rq.Id);
 
             return NoContent();
         }
