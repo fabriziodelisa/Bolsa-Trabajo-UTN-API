@@ -3,7 +3,7 @@
     public interface IMailService
     {
 
-        public bool enviaMail(string To);
+        public bool enviaMail(string To, string TextMessage, string TextSubject);
 
     }
 }

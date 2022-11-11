@@ -1,6 +1,7 @@
 ﻿using ApiBolsaTrabajoUTN.API.Data.JobPositions;
 using ApiBolsaTrabajoUTN.API.Entities;
 using ApiBolsaTrabajoUTN.API.Models.JobApply;
+using ApiBolsaTrabajoUTN.API.Services.Mails;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -15,10 +16,12 @@ namespace ApiBolsaTrabajoUTN.API.Controllers
     {
         private readonly UserManager<User> _userManager;
         private readonly IJobPositionRepository _jobPositionRepository;
-        public JobApplyController(UserManager<User> userManager, IJobPositionRepository jobPositionRepository)
+        private readonly IMailService _mailService;
+        public JobApplyController(UserManager<User> userManager, IJobPositionRepository jobPositionRepository, IMailService mailService)
         {
             _userManager = userManager;
             _jobPositionRepository = jobPositionRepository;
+            _mailService = mailService;
         }
 
         [HttpPost("CreateJobApply")]
@@ -32,7 +35,13 @@ namespace ApiBolsaTrabajoUTN.API.Controllers
             var jobPositionToApply = _jobPositionRepository.GetJobPosition(jobPositionId);
             if (jobPositionToApply == null)
             {
-                return Ok("La postulación no se ha podido concretar. No se ha encontrado una Oferta laboral");
+                rs.Message = "La postulación no se ha podido concretar. No se ha encontrado una Oferta laboral";
+                return Ok(rs);
+            }
+            if (jobPositionToApply.StudentsWhoApplied.Any(x => x.Id == studentId))
+            {
+                rs.Message = "Ya has postulado a esta oferta laboral";
+                return Ok(rs);
             }
             var student = (Student) await _userManager.FindByIdAsync(studentId);
             student.JobApplies.Add(jobPositionToApply);
@@ -42,7 +51,8 @@ namespace ApiBolsaTrabajoUTN.API.Controllers
                 rs.Message = "La postulación no se ha podido concretar";
                 return Ok(rs);
             }
-            rs.Message = "Postulaste correctamente a la Oferta laboral: " + jobPositionToApply.JobTitle;
+            _mailService.enviaMail(jobPositionToApply.Company.UserName, $"{student.FirstName} {student.LastName} ha postulado a la oferta laboral {jobPositionToApply.JobTitle}", "Bolsa de Trabajo UTN FRRO");
+            rs.Message = "Postulaste correctamente a: " + jobPositionToApply.JobTitle;
             return Ok(rs);
         }
         

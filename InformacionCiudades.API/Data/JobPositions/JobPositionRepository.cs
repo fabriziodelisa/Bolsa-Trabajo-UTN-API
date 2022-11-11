@@ -27,7 +27,7 @@ namespace ApiBolsaTrabajoUTN.API.Data.JobPositions
 
         public IQueryable<JobPosition> GetAllJobPositions()
         {
-            return _bolsaTrabajoContext.JobPositions.Include(x => x.Company).AsQueryable();
+            return _bolsaTrabajoContext.JobPositions.Include(x => x.Company).Include(x => x.Career).AsQueryable();
         }
 
         public IQueryable<JobPosition> GetCompanyJobPositions(string companyId)
@@ -37,7 +37,7 @@ namespace ApiBolsaTrabajoUTN.API.Data.JobPositions
 
         public JobPosition GetJobPosition(int jobPositionId)
         {
-            return _bolsaTrabajoContext.JobPositions.FirstOrDefault(x => x.Id == jobPositionId);
+            return _bolsaTrabajoContext.JobPositions.Include(x => x.StudentsWhoApplied).Include(x => x.Company).FirstOrDefault(x => x.Id == jobPositionId);
         }
 
         public bool UpdateJobPosition(UpdateJobPositionRequest rq)

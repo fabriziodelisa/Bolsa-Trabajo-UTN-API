@@ -25,6 +25,8 @@ namespace ApiBolsaTrabajoUTN.API.Entities
         public string? Province { get; set; }
         public string? City { get; set; }
         public byte[]? Curriculum { get; set; }
+        public string? GithubProfileURL { get; set; }
+        public string? LinkedinProfileURL { get; set; }
 
         public int CareerId { get; set; }
         public int ApprovedSubjets { get; set; }
@@ -33,10 +35,6 @@ namespace ApiBolsaTrabajoUTN.API.Entities
         public Turn Turn { get; set; }
         public float Average { get; set; }
         public float AverageWithFails { get; set; }
-
-        public bool FirstChargeData { get; set; }
-        public bool ActiveAccount { get; set; } = false;
         public List<JobPosition> JobApplies { get; set; } = new List<JobPosition>();
-
     }
 }

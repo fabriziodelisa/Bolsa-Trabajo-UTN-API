@@ -1,8 +1,10 @@
 ﻿using ApiBolsaTrabajoUTN.API.Data.UsersInfo;
 using ApiBolsaTrabajoUTN.API.Entities;
+using ApiBolsaTrabajoUTN.API.Models.JobPosition;
 using ApiBolsaTrabajoUTN.API.Models.users;
 using ApiBolsaTrabajoUTN.API.Models.users.Company;
 using ApiBolsaTrabajoUTN.API.Models.users.Student;
+using ApiBolsaTrabajoUTN.API.Services.Mails;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -21,14 +23,16 @@ namespace ApiBolsaTrabajoUTN.API.Controllers
         private readonly UserManager<Student> _studentManager;
         private readonly UserManager<Company> _companyManager;
         private readonly IUsersInfoRepository _usersInfoRepository;
+        private readonly IMailService _mailService;
 
-        public UsersInfoController(IMapper mapper, UserManager<User> userManager, UserManager<Student> studentManager, UserManager<Company> companyManager, IUsersInfoRepository usersInfoRepository)
+        public UsersInfoController(IMapper mapper, UserManager<User> userManager, UserManager<Student> studentManager, UserManager<Company> companyManager, IUsersInfoRepository usersInfoRepository, IMailService mailService)
         {
             _mapper = mapper;
             _userManager = userManager;
             _studentManager = studentManager;
             _companyManager = companyManager;
             _usersInfoRepository = usersInfoRepository;
+            _mailService = mailService;
         }
 
         [HttpGet("GetAllUsers")]
@@ -80,6 +84,7 @@ namespace ApiBolsaTrabajoUTN.API.Controllers
 
             if (result.Succeeded)
             {
+                _mailService.enviaMail("fakeutn@gmail.com", $"{companyInfo.CompanyName} ha realizado la carga de datos de su cuenta", "Bolsa de Trabajo UTN FRRO");
                 return NoContent();
             }
             return BadRequest(result);
@@ -145,6 +150,7 @@ namespace ApiBolsaTrabajoUTN.API.Controllers
 
             if (result.Succeeded)
             {
+                _mailService.enviaMail("fakeutn@gmail.com", $"{studentInfo.FirstName} {studentInfo.LastName} ha realizado la carga de datos de su cuenta", "Bolsa de Trabajo UTN FRRO");
                 return NoContent();
             }
             return BadRequest(result);
@@ -193,17 +199,24 @@ namespace ApiBolsaTrabajoUTN.API.Controllers
             return Ok();
         }
 
-        [HttpGet("DownloadCV")]
-        public async Task<IActionResult> GetCurriculum()
+        [HttpGet("{studentId}")]
+        public async Task<IActionResult> GetCurriculum(string studentId)
         {
-            var userId = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
-            var student = await _studentManager.FindByIdAsync(userId);
+            var rs = new CreateJobPositionResponse
+            {
+                Success = false,
+            };
+            var student = await _studentManager.FindByIdAsync(studentId);
             if (student is null)
-                return NotFound();
+            {
+                rs.Message = "El estudiante propietario del CV no fue encontrado";
+                return Ok(rs);
+            }
 
             if (student.Curriculum is null)
             {
-                return BadRequest();
+                rs.Message = "El CV del estudiante es inexistente/aún no fue cargado";
+                return Ok(rs);
             }
 
             return File(student.Curriculum, "application/pdf", $"{student.FirstName}_{student.LastName}_CV.pdf");
@@ -217,33 +230,23 @@ namespace ApiBolsaTrabajoUTN.API.Controllers
                 return BadRequest("El id del usuario es nulo");
             }
 
-            if (rq.IsStudent)
+            var user = await _userManager.FindByIdAsync(rq.UserId);
+            user.ActiveAccount = rq.Activate;
+            var result = await _userManager.UpdateAsync(user);
+            if (result.Succeeded)
             {
-                var user = await _studentManager.FindByIdAsync(rq.UserId);
-                user.ActiveAccount = rq.Activate;
-                var result = await _studentManager.UpdateAsync(user);
-                if (result.Succeeded)
+                if (user.ActiveAccount)
                 {
-                    return Ok();
-                }
-                else
+                    _mailService.enviaMail(user.UserName, "Administración ha verificado y aprobado tu cuenta del sistema de la bolsa de trabajo", "Bolsa de Trabajo UTN FRRO");
+                } else
                 {
-                    return BadRequest();
+                    _mailService.enviaMail(user.UserName, "Administración ha inhabilitado tu cuenta del sistema de la bolsa de trabajo", "Bolsa de Trabajo UTN FRRO");
                 }
+                return Ok();
             }
             else
             {
-                var user = await _companyManager.FindByIdAsync(rq.UserId);
-                user.ActiveAccount = rq.Activate;
-                var result = await _companyManager.UpdateAsync(user);
-                if (result.Succeeded)
-                {
-                    return Ok();
-                }
-                else
-                {
-                    return BadRequest();
-                }
+                return BadRequest();
             }
         }
 

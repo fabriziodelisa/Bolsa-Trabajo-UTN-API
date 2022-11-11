@@ -57,6 +57,8 @@ namespace ApiBolsaTrabajoUTN.API.DBContexts
                 EmailConfirmed = true,
                 FirstName = "Administracion",
                 LastName = "Utn",
+                UserName = "administracion@frro.utn.edu.ar",
+                NormalizedUserName = "ADMINISTRACION@FRRO.UTN.EDU.AR",
             };
 
             //set user password
@@ -80,7 +82,8 @@ namespace ApiBolsaTrabajoUTN.API.DBContexts
                     Name = "Tecnicatura Universitaria En Programacion",
                     Type = Enums.CareerTypes.Tecnicatura,
                     Abbreviation = "TUP",
-                    TotalSubjets = 21
+                    TotalSubjets = 21,
+                    JobPositions = new List<JobPosition>(),
                 }
             );
 

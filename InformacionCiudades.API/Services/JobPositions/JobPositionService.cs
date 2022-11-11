@@ -15,7 +15,37 @@ namespace ApiBolsaTrabajoUTN.API.Services.JobPositions
         public async Task<CreateJobPositionResponse> AddJobPosition(string companyId, CreateJobPositionRequest rq)
         {
             // Create response object
-            var rs = new CreateJobPositionResponse { };
+            var rs = new CreateJobPositionResponse {
+                Success = false,
+            };
+
+            // Title validation
+            if (string.IsNullOrEmpty(rq.JobTitle))
+            {
+                rs.Message = "La oferta laboral debe tener un título";
+                return rs;
+            }
+
+            // Description validation
+            if (string.IsNullOrEmpty(rq.JobDescription))
+            {
+                rs.Message = "La oferta laboral debe tener una descripción";
+                return rs;
+            }
+
+            // Location validation
+            if (string.IsNullOrEmpty(rq.Location))
+            {
+                rs.Message = "La oferta laboral debe tener un lugar de trabajo";
+                return rs;
+            }
+
+            // Positions to cover can't be 0
+            if (rq.PositionsToCover == 0)
+            {
+                rs.Message = "Debe haber al menos 1 posición a cubrir";
+                return rs;
+            }
 
             // Get the company
             var company = await _jobPositionRepository.GetCompany(companyId);
@@ -24,7 +54,13 @@ namespace ApiBolsaTrabajoUTN.API.Services.JobPositions
             if (company == null)
             {
                 rs.Message = "La oferta laboral no pudo ser creada, no existe una empresa asociada";
-                rs.Success = false;
+                return rs;
+            }
+
+            // ActiveAccount validation
+            if (!company.ActiveAccount)
+            {
+                rs.Message = "No podés crear ofertas hasta que tu cuenta este validada por administración";
                 return rs;
             }
 
@@ -35,7 +71,13 @@ namespace ApiBolsaTrabajoUTN.API.Services.JobPositions
                 JobDescription = rq.JobDescription,
                 Location = rq.Location,
                 CreatedDate = DateTime.Now,
-                EndDate = DateTime.Now.AddDays(90),
+                StartDate = rq.StartDate,
+                EndDate = rq.EndDate,
+                FrameworkAgreement = rq.FrameworkAgreement,
+                PositionsToCover = rq.PositionsToCover,
+                WorkDay = rq.WorkDay,
+                JobType = rq.JobType,
+                CareerId = rq.CareerId,
             };
 
             // Add the JobPosition
