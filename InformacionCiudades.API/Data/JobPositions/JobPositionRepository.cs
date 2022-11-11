@@ -57,7 +57,7 @@ namespace ApiBolsaTrabajoUTN.API.Data.JobPositions
 
         public List<JobPosition> GetJobAppliesOfStudent(string studentId)
         {
-            var student = _bolsaTrabajoContext.students.Include(x => x.JobApplies).FirstOrDefault(x => x.Id == studentId);
+            var student = _bolsaTrabajoContext.students.Include(x => x.JobApplies).ThenInclude(x => x.Company).FirstOrDefault(x => x.Id == studentId);
             return student.JobApplies;
         }
     }
