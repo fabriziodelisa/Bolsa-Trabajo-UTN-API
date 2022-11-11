@@ -4,6 +4,7 @@ using ApiBolsaTrabajoUTN.API.Models.JobPosition;
 using ApiBolsaTrabajoUTN.API.Models.users;
 using ApiBolsaTrabajoUTN.API.Models.users.Company;
 using ApiBolsaTrabajoUTN.API.Models.users.Student;
+using ApiBolsaTrabajoUTN.API.Services.Mails;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -22,14 +23,16 @@ namespace ApiBolsaTrabajoUTN.API.Controllers
         private readonly UserManager<Student> _studentManager;
         private readonly UserManager<Company> _companyManager;
         private readonly IUsersInfoRepository _usersInfoRepository;
+        private readonly IMailService _mailService;
 
-        public UsersInfoController(IMapper mapper, UserManager<User> userManager, UserManager<Student> studentManager, UserManager<Company> companyManager, IUsersInfoRepository usersInfoRepository)
+        public UsersInfoController(IMapper mapper, UserManager<User> userManager, UserManager<Student> studentManager, UserManager<Company> companyManager, IUsersInfoRepository usersInfoRepository, IMailService mailService)
         {
             _mapper = mapper;
             _userManager = userManager;
             _studentManager = studentManager;
             _companyManager = companyManager;
             _usersInfoRepository = usersInfoRepository;
+            _mailService = mailService;
         }
 
         [HttpGet("GetAllUsers")]
@@ -81,6 +84,7 @@ namespace ApiBolsaTrabajoUTN.API.Controllers
 
             if (result.Succeeded)
             {
+                _mailService.enviaMail("fakeutn@gmail.com", $"{companyInfo.CompanyName} ha realizado la carga de datos de su cuenta", "Bolsa de Trabajo UTN FRRO");
                 return NoContent();
             }
             return BadRequest(result);
@@ -146,6 +150,7 @@ namespace ApiBolsaTrabajoUTN.API.Controllers
 
             if (result.Succeeded)
             {
+                _mailService.enviaMail("fakeutn@gmail.com", $"{studentInfo.FirstName} {studentInfo.LastName} ha realizado la carga de datos de su cuenta", "Bolsa de Trabajo UTN FRRO");
                 return NoContent();
             }
             return BadRequest(result);
@@ -230,6 +235,13 @@ namespace ApiBolsaTrabajoUTN.API.Controllers
             var result = await _userManager.UpdateAsync(user);
             if (result.Succeeded)
             {
+                if (user.ActiveAccount)
+                {
+                    _mailService.enviaMail(user.UserName, "Administración ha verificado y aprobado tu cuenta del sistema de la bolsa de trabajo", "Bolsa de Trabajo UTN FRRO");
+                } else
+                {
+                    _mailService.enviaMail(user.UserName, "Administración ha inhabilitado tu cuenta del sistema de la bolsa de trabajo", "Bolsa de Trabajo UTN FRRO");
+                }
                 return Ok();
             }
             else

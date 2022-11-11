@@ -1,6 +1,7 @@
 ﻿using ApiBolsaTrabajoUTN.API.Data.JobPositions;
 using ApiBolsaTrabajoUTN.API.Entities;
 using ApiBolsaTrabajoUTN.API.Models.JobApply;
+using ApiBolsaTrabajoUTN.API.Services.Mails;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -15,10 +16,12 @@ namespace ApiBolsaTrabajoUTN.API.Controllers
     {
         private readonly UserManager<User> _userManager;
         private readonly IJobPositionRepository _jobPositionRepository;
-        public JobApplyController(UserManager<User> userManager, IJobPositionRepository jobPositionRepository)
+        private readonly IMailService _mailService;
+        public JobApplyController(UserManager<User> userManager, IJobPositionRepository jobPositionRepository, IMailService mailService)
         {
             _userManager = userManager;
             _jobPositionRepository = jobPositionRepository;
+            _mailService = mailService;
         }
 
         [HttpPost("CreateJobApply")]
@@ -48,6 +51,7 @@ namespace ApiBolsaTrabajoUTN.API.Controllers
                 rs.Message = "La postulación no se ha podido concretar";
                 return Ok(rs);
             }
+            _mailService.enviaMail(jobPositionToApply.Company.UserName, $"{student.FirstName} {student.LastName} ha postulado a la oferta laboral {jobPositionToApply.JobTitle}", "Bolsa de Trabajo UTN FRRO");
             rs.Message = "Postulaste correctamente a: " + jobPositionToApply.JobTitle;
             return Ok(rs);
         }

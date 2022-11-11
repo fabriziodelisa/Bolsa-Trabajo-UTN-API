@@ -37,7 +37,7 @@ namespace ApiBolsaTrabajoUTN.API.Data.JobPositions
 
         public JobPosition GetJobPosition(int jobPositionId)
         {
-            return _bolsaTrabajoContext.JobPositions.Include(x => x.StudentsWhoApplied).FirstOrDefault(x => x.Id == jobPositionId);
+            return _bolsaTrabajoContext.JobPositions.Include(x => x.StudentsWhoApplied).Include(x => x.Company).FirstOrDefault(x => x.Id == jobPositionId);
         }
 
         public bool UpdateJobPosition(UpdateJobPositionRequest rq)

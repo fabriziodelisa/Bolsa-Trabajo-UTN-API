@@ -55,7 +55,7 @@ namespace ApiBolsaTrabajoUTN.API.Controllers
                 var studentToReturn = _mapper.Map<StudentDto>(newStudent);
                 studentToReturn.Password = "";
                 string URI = $"https://localhost:7172/api/Register{studentToReturn.Id}";
-                _mailService.enviaMail("lucapecorelli1@gmail.com");    
+                _mailService.enviaMail(newStudent.UserName, $"Bienvenido {newStudent.FirstName}!. Te has registrado correctamente en el sistema de la bolsa de trabajo de la UTN FRRO", "Bolsa Trabajo UTN FRRO");    
                 return Created(URI, studentToReturn);
             }     
             return BadRequest(result);
@@ -86,7 +86,7 @@ namespace ApiBolsaTrabajoUTN.API.Controllers
             {
                 var companyToReturn = _mapper.Map<CompanyDto>(newCompany);
                 string URI = $"https://localhost:7172/api/Register{companyToReturn.Id}";
-                _mailService.enviaMail("lucapecorelli1@gmail.com");
+                _mailService.enviaMail(newCompany.UserName, $"Te has registrado correctamente en el sistema de la bolsa de trabajo de la UTN FRRO", "Bolsa Trabajo UTN FRRO");
                 return Created(URI, companyToReturn);  
             }
             return BadRequest(result);
