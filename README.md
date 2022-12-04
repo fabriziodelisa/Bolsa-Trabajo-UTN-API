@@ -4,11 +4,11 @@ API para aplicación web (bolsa de trabajo de UTN Rosario) creada como posible r
 
 Para la misma se utilizo lo siguiente:
 
-C#
-NET 6
-ASP.NET
-Entity Framework
-Linq
-sql Lite
-MVC model
-API rest
+* C#
+* NET 6
+* ASP.NET
+* Entity Framework
+* Linq
+* SQL Lite
+* MVC model
+* API rest
