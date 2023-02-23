@@ -6,6 +6,5 @@ namespace ApiBolsaTrabajoUTN.API.Entities
         [Key]
         public int Id { get; set; }
         public string? SkillName { get; set; }
-        public ICollection<StudentSkill> StudentSkills { get; set; }
     }
 }

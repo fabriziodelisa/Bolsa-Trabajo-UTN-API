@@ -13,7 +13,6 @@ namespace ApiBolsaTrabajoUTN.API.DBContexts
         public DbSet<Company> Companies { get; set; }
         public DbSet<Student> students { get; set; }
         public DbSet<Skill> Skills { get; set; }
-        public DbSet<StudentSkill> studentSkills { get; set; }
 
         public BolsaTrabajoContext(DbContextOptions<BolsaTrabajoContext> options) : base(options)
         {
@@ -88,18 +87,13 @@ namespace ApiBolsaTrabajoUTN.API.DBContexts
                 }
             );
 
-            modelBuilder.Entity<StudentSkill>()
-                .HasKey(ss => new { ss.StudentId, ss.SkillId });
-
-            modelBuilder.Entity<StudentSkill>()
-                .HasOne(ss => ss.Student)
-                .WithMany(s => s.StudentSkills)
-                .HasForeignKey(ss => ss.StudentId);
-
-            modelBuilder.Entity<StudentSkill>()
-                .HasOne(ss => ss.Skill)
-                .WithMany(s => s.StudentSkills)
-                .HasForeignKey(ss => ss.SkillId);
+            modelBuilder.Entity<Student>()
+                .Property(s => s.SkillsId)
+                .HasConversion(
+                    v => string.Join(',', v),
+                    v => v.Split(',', StringSplitOptions.RemoveEmptyEntries)
+                            .Select(int.Parse)
+                            .ToList());
 
             base.OnModelCreating(modelBuilder);
         }

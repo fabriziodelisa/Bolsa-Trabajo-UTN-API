@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ApiBolsaTrabajoUTN.API.Migrations
 {
     [DbContext(typeof(BolsaTrabajoContext))]
-    [Migration("20230223024903_123")]
-    partial class _123
+    [Migration("20230223183004_skills")]
+    partial class skills
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -121,21 +121,6 @@ namespace ApiBolsaTrabajoUTN.API.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Skills");
-                });
-
-            modelBuilder.Entity("ApiBolsaTrabajoUTN.API.Entities.StudentSkill", b =>
-                {
-                    b.Property<string>("StudentId")
-                        .HasColumnType("TEXT");
-
-                    b.Property<int>("SkillId")
-                        .HasColumnType("INTEGER");
-
-                    b.HasKey("StudentId", "SkillId");
-
-                    b.HasIndex("SkillId");
-
-                    b.ToTable("studentSkills");
                 });
 
             modelBuilder.Entity("ApiBolsaTrabajoUTN.API.Entities.User", b =>
@@ -409,16 +394,16 @@ namespace ApiBolsaTrabajoUTN.API.Migrations
                             Id = "02174cf0–9412–4cfe-afbf-59f706d72cf6",
                             AccessFailedCount = 0,
                             ActiveAccount = false,
-                            ConcurrencyStamp = "8d22d27b-c4b6-4e37-b4dc-10b911e72a79",
+                            ConcurrencyStamp = "5595cbe9-5c15-4108-8faa-fc46df6680d3",
                             Email = "administracion@frro.utn.edu.ar",
                             EmailConfirmed = true,
                             FirstChargeData = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMINISTRACION@FRRO.UTN.EDU.AR",
                             NormalizedUserName = "ADMINISTRACION@FRRO.UTN.EDU.AR",
-                            PasswordHash = "AQAAAAEAACcQAAAAEPWGMNyYm/ZoFg2OQ/i2i5Ba3r2Ej+ux5TVDi65g4FtlNi5x+Tzw/K7jnyAugYvDZw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEA0vXXhtPdu8KV09Qf+HEYvlm2inGMCnFhBoMrjmY2vObmMEtjjBMOgKiAYnJ33DZg==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "8996c8d9-07e7-4238-a747-f63c71c4a459",
+                            SecurityStamp = "3632fb34-aa09-45d9-b036-403d6a86c39e",
                             TwoFactorEnabled = false,
                             UserName = "administracion@frro.utn.edu.ar",
                             FirstName = "Administracion",
@@ -548,6 +533,10 @@ namespace ApiBolsaTrabajoUTN.API.Migrations
                     b.Property<string>("Sex")
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("SkillsId")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
                     b.Property<int>("Turn")
                         .HasColumnType("INTEGER");
 
@@ -571,25 +560,6 @@ namespace ApiBolsaTrabajoUTN.API.Migrations
                     b.Navigation("Career");
 
                     b.Navigation("Company");
-                });
-
-            modelBuilder.Entity("ApiBolsaTrabajoUTN.API.Entities.StudentSkill", b =>
-                {
-                    b.HasOne("ApiBolsaTrabajoUTN.API.Entities.Skill", "Skill")
-                        .WithMany("StudentSkills")
-                        .HasForeignKey("SkillId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("ApiBolsaTrabajoUTN.API.Entities.Student", "Student")
-                        .WithMany("StudentSkills")
-                        .HasForeignKey("StudentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Skill");
-
-                    b.Navigation("Student");
                 });
 
             modelBuilder.Entity("JobPositionStudent", b =>
@@ -663,19 +633,9 @@ namespace ApiBolsaTrabajoUTN.API.Migrations
                     b.Navigation("JobPositions");
                 });
 
-            modelBuilder.Entity("ApiBolsaTrabajoUTN.API.Entities.Skill", b =>
-                {
-                    b.Navigation("StudentSkills");
-                });
-
             modelBuilder.Entity("ApiBolsaTrabajoUTN.API.Entities.Company", b =>
                 {
                     b.Navigation("JobPositions");
-                });
-
-            modelBuilder.Entity("ApiBolsaTrabajoUTN.API.Entities.Student", b =>
-                {
-                    b.Navigation("StudentSkills");
                 });
 #pragma warning restore 612, 618
         }

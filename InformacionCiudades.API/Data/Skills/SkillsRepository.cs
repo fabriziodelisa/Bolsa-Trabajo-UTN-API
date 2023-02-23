@@ -29,40 +29,41 @@ namespace ApiBolsaTrabajoUTN.API.Data.Skills
                 _bolsaTrabajoContext.SaveChanges();
         }
 
-        public void ReplaceSkillsOfStudent(Student student, AssignSkillsRequest skillIds)
-        {
-            if (skillIds.SkillsId != null)
-            {
-                if (student.StudentSkills != null)
-                {
-                student.StudentSkills.Clear();
-                }
 
-                foreach (var skillId in skillIds.SkillsId)
-                {
-                    var skill = _bolsaTrabajoContext.Skills.Find(skillId);
+        //public void ReplaceSkillsOfStudent(Student student, AssignSkillsRequest skillIds)
+        //{
+        //    if (skillIds.SkillsId != null)
+        //    {
+        //        if (student.StudentSkills != null)
+        //        {
+        //        student.StudentSkills.Clear();
+        //        }
 
-                    if (student.StudentSkills == null)
-                    {
-                        student.StudentSkills = new List<StudentSkill>();
-                    }
-                    if (skill != null)
-                    {
-                        StudentSkill newStudentSkill = new StudentSkill
-                        {
-                            Student = student,
-                            Skill = skill
-                        };
-                        student.StudentSkills.Add(newStudentSkill);                  
-                    }
-                }
-            _bolsaTrabajoContext.Update(student);
-            _bolsaTrabajoContext.SaveChanges();
-            }
-        }
-        public async Task<List<StudentSkill>> GetStudentSkillsByStudentId(string studentId)
-        {
-            return await _bolsaTrabajoContext.studentSkills.Where(ss => ss.StudentId == studentId).ToListAsync();
-        }
+        //        foreach (var skillId in skillIds.SkillsId)
+        //        {
+        //            var skill = _bolsaTrabajoContext.Skills.Find(skillId);
+
+        //            if (student.StudentSkills == null)
+        //            {
+        //                student.StudentSkills = new List<StudentSkill>();
+        //            }
+        //            if (skill != null)
+        //            {
+        //                StudentSkill newStudentSkill = new StudentSkill
+        //                {
+        //                    Student = student,
+        //                    Skill = skill
+        //                };
+        //                student.StudentSkills.Add(newStudentSkill);                  
+        //            }
+        //        }
+        //    _bolsaTrabajoContext.Update(student);
+        //    _bolsaTrabajoContext.SaveChanges();
+        //    }
+        //}
+        //public async Task<List<StudentSkill>> GetStudentSkillsByStudentId(string studentId)
+        //{
+        //    return await _bolsaTrabajoContext.studentSkills.Where(ss => ss.StudentId == studentId).ToListAsync();
+        //}
     }
 }

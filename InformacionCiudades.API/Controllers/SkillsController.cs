@@ -1,4 +1,5 @@
 ﻿using ApiBolsaTrabajoUTN.API.Data.Skills;
+using ApiBolsaTrabajoUTN.API.DBContexts;
 using ApiBolsaTrabajoUTN.API.Entities;
 using ApiBolsaTrabajoUTN.API.Models.users.Student;
 using AutoMapper;
@@ -13,7 +14,7 @@ public class DeleteSkillRequest
 
 public class AssignSkillsRequest
 {
-    public ICollection<int>? SkillsId { get; set; }
+    public List<int>? SkillsId { get; set; }
 }
 
 namespace ApiBolsaTrabajoUTN.API.Controllers
@@ -25,12 +26,14 @@ namespace ApiBolsaTrabajoUTN.API.Controllers
         private readonly ISkillsRepository _skillsRepository;
         private readonly IMapper _mapper;
         private readonly UserManager<Student> _studentManager;
+        private readonly BolsaTrabajoContext _bolsaTrabajoContext;
 
-        public SkillsController(IMapper mapper, ISkillsRepository skillsRepository, UserManager<Student> studentManager)
+        public SkillsController(IMapper mapper, ISkillsRepository skillsRepository, UserManager<Student> studentManager, BolsaTrabajoContext bolsaTrabajoContext)
         {
             _mapper = mapper;
             _skillsRepository = skillsRepository;
             _studentManager = studentManager;
+            _bolsaTrabajoContext = bolsaTrabajoContext;
         }
 
         [HttpGet("GetAllSkills")]
@@ -68,25 +71,43 @@ namespace ApiBolsaTrabajoUTN.API.Controllers
             return NoContent();
         }
 
-        [HttpPost("AssignSkillsToStudent")]
-        public async Task<ActionResult> AssignSkillsToStudent(AssignSkillsRequest skillIds)
+        [HttpPut]
+
+        public async Task<ActionResult> AddSkillsToStudent(AssignSkillsRequest skillsId) 
         {
             var userId = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
             var student = await _studentManager.FindByIdAsync(userId);
+            if (student != null)
+            {
+                student.SkillsId = skillsId.SkillsId;
 
-            _skillsRepository.ReplaceSkillsOfStudent(student, skillIds);
-
+                _bolsaTrabajoContext.Update(student);
+                _bolsaTrabajoContext.SaveChanges();
+            }
             return Ok();
         }
 
-        [HttpGet("SkillsOfStudent")]
-        public async Task<ActionResult> SkillsOfStudent()
-        {
-            var userId = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
-           
-            var skills = await _skillsRepository.GetStudentSkillsByStudentId(userId);
 
-            return Ok(skills);
-        }
+
+        //[HttpPost("AssignSkillsToStudent")]
+        //public async Task<ActionResult> AssignSkillsToStudent(AssignSkillsRequest skillIds)
+        //{
+        //    var userId = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
+        //    var student = await _studentManager.FindByIdAsync(userId);
+
+        //    _skillsRepository.ReplaceSkillsOfStudent(student, skillIds);
+
+        //    return Ok();
+        //}
+
+        //[HttpGet("SkillsOfStudent")]
+        //public async Task<ActionResult> SkillsOfStudent()
+        //{
+        //    var userId = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
+           
+        //    var skills = await _skillsRepository.GetStudentSkillsByStudentId(userId);
+
+        //    return Ok(skills);
+        //}
     }
 }

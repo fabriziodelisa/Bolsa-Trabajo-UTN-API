@@ -35,6 +35,6 @@ namespace ApiBolsaTrabajoUTN.API.Models.users.Student
         public float AverageWithFails { get; set; }
         public bool FirstChargeData { get; set; }
         public bool ActiveAccount { get; set; }
-        public List<Skill>? Skills { get; set; }
+        public List<int>? SkillsId { get; set; }
     }
 }

@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ApiBolsaTrabajoUTN.API.Migrations
 {
-    public partial class _123 : Migration
+    public partial class asd : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -70,6 +70,7 @@ namespace ApiBolsaTrabajoUTN.API.Migrations
                     Turn = table.Column<int>(type: "INTEGER", nullable: true),
                     Average = table.Column<float>(type: "REAL", nullable: true),
                     AverageWithFails = table.Column<float>(type: "REAL", nullable: true),
+                    SkillsId = table.Column<string>(type: "TEXT", nullable: true),
                     UserName = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true),
@@ -262,30 +263,6 @@ namespace ApiBolsaTrabajoUTN.API.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "studentSkills",
-                columns: table => new
-                {
-                    StudentId = table.Column<string>(type: "TEXT", nullable: false),
-                    SkillId = table.Column<int>(type: "INTEGER", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_studentSkills", x => new { x.StudentId, x.SkillId });
-                    table.ForeignKey(
-                        name: "FK_studentSkills_AspNetUsers_StudentId",
-                        column: x => x.StudentId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_studentSkills_Skills_SkillId",
-                        column: x => x.SkillId,
-                        principalTable: "Skills",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "JobPositionStudent",
                 columns: table => new
                 {
@@ -327,7 +304,7 @@ namespace ApiBolsaTrabajoUTN.API.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ActiveAccount", "ConcurrencyStamp", "Discriminator", "Email", "EmailConfirmed", "FirstChargeData", "Admin_FirstName", "Admin_LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "02174cf0–9412–4cfe-afbf-59f706d72cf6", 0, false, "8d22d27b-c4b6-4e37-b4dc-10b911e72a79", "Admin", "administracion@frro.utn.edu.ar", true, false, "Administracion", "Utn", false, null, "ADMINISTRACION@FRRO.UTN.EDU.AR", "ADMINISTRACION@FRRO.UTN.EDU.AR", "AQAAAAEAACcQAAAAEPWGMNyYm/ZoFg2OQ/i2i5Ba3r2Ej+ux5TVDi65g4FtlNi5x+Tzw/K7jnyAugYvDZw==", null, false, "8996c8d9-07e7-4238-a747-f63c71c4a459", false, "administracion@frro.utn.edu.ar" });
+                values: new object[] { "02174cf0–9412–4cfe-afbf-59f706d72cf6", 0, false, "4b24e605-8ddc-4100-8111-62268847f8e3", "Admin", "administracion@frro.utn.edu.ar", true, false, "Administracion", "Utn", false, null, "ADMINISTRACION@FRRO.UTN.EDU.AR", "ADMINISTRACION@FRRO.UTN.EDU.AR", "AQAAAAEAACcQAAAAENfkR+OOM+xEzUqpO84aCjBYIgnaKF+kBpB1h+EdOaXEyBG9dP6jPbDscAXBC/hg9Q==", null, false, "763905db-75f8-4fda-9316-fd5be58cd2c8", false, "administracion@frro.utn.edu.ar" });
 
             migrationBuilder.InsertData(
                 table: "Careers",
@@ -390,11 +367,6 @@ namespace ApiBolsaTrabajoUTN.API.Migrations
                 name: "IX_JobPositionStudent_StudentsWhoAppliedId",
                 table: "JobPositionStudent",
                 column: "StudentsWhoAppliedId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_studentSkills_SkillId",
-                table: "studentSkills",
-                column: "SkillId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -418,16 +390,13 @@ namespace ApiBolsaTrabajoUTN.API.Migrations
                 name: "JobPositionStudent");
 
             migrationBuilder.DropTable(
-                name: "studentSkills");
+                name: "Skills");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
                 name: "JobPositions");
-
-            migrationBuilder.DropTable(
-                name: "Skills");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");

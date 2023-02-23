@@ -36,6 +36,6 @@ namespace ApiBolsaTrabajoUTN.API.Entities
         public float Average { get; set; }
         public float AverageWithFails { get; set; }
         public List<JobPosition> JobApplies { get; set; } = new List<JobPosition>();
-        public ICollection<StudentSkill> StudentSkills { get; set; }
+        public List<int> SkillsId { get; set; } = new List<int>();
     }
 }
