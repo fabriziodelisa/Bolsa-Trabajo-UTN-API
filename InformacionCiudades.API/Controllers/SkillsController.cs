@@ -86,28 +86,5 @@ namespace ApiBolsaTrabajoUTN.API.Controllers
             }
             return Ok();
         }
-
-
-
-        //[HttpPost("AssignSkillsToStudent")]
-        //public async Task<ActionResult> AssignSkillsToStudent(AssignSkillsRequest skillIds)
-        //{
-        //    var userId = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
-        //    var student = await _studentManager.FindByIdAsync(userId);
-
-        //    _skillsRepository.ReplaceSkillsOfStudent(student, skillIds);
-
-        //    return Ok();
-        //}
-
-        //[HttpGet("SkillsOfStudent")]
-        //public async Task<ActionResult> SkillsOfStudent()
-        //{
-        //    var userId = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
-           
-        //    var skills = await _skillsRepository.GetStudentSkillsByStudentId(userId);
-
-        //    return Ok(skills);
-        //}
     }
 }
