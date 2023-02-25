@@ -87,6 +87,34 @@ namespace ApiBolsaTrabajoUTN.API.DBContexts
                 }
             );
 
+            modelBuilder.Entity<Skill>().HasData(
+                new Skill
+                {
+                    Id = 1,
+                    SkillName = "Python",
+                }, new Skill
+                {
+                    Id = 2,
+                    SkillName = "JavaScript",
+                }, new Skill
+                {
+                    Id = 3,
+                    SkillName = "C#",
+                }, new Skill
+                {
+                    Id = 4,
+                    SkillName = "Java",
+                }, new Skill
+                {
+                    Id = 5,
+                    SkillName = "CSS",
+                }, new Skill
+                {
+                    Id = 6,
+                    SkillName = "HTML",
+                }
+            ) ;
+
             modelBuilder.Entity<Student>()
                 .Property(s => s.SkillsId)
                 .HasConversion(

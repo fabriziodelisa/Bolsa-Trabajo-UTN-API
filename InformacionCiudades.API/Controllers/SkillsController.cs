@@ -71,7 +71,7 @@ namespace ApiBolsaTrabajoUTN.API.Controllers
             return NoContent();
         }
 
-        [HttpPut]
+        [HttpPut("AddSkillToStudent")]
 
         public async Task<ActionResult> AddSkillsToStudent(AssignSkillsRequest skillsId) 
         {
