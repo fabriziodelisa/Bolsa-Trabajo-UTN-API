@@ -1,12 +1,20 @@
 ﻿using ApiBolsaTrabajoUTN.API.Data.Skills;
+using ApiBolsaTrabajoUTN.API.DBContexts;
 using ApiBolsaTrabajoUTN.API.Entities;
 using ApiBolsaTrabajoUTN.API.Models.users.Student;
 using AutoMapper;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 public class DeleteSkillRequest
 {
     public int Id { get; set; }
+}
+
+public class AssignSkillsRequest
+{
+    public List<int>? SkillsId { get; set; }
 }
 
 namespace ApiBolsaTrabajoUTN.API.Controllers
@@ -17,11 +25,15 @@ namespace ApiBolsaTrabajoUTN.API.Controllers
     {
         private readonly ISkillsRepository _skillsRepository;
         private readonly IMapper _mapper;
+        private readonly UserManager<Student> _studentManager;
+        private readonly BolsaTrabajoContext _bolsaTrabajoContext;
 
-        public SkillsController(IMapper mapper, ISkillsRepository skillsRepository)
+        public SkillsController(IMapper mapper, ISkillsRepository skillsRepository, UserManager<Student> studentManager, BolsaTrabajoContext bolsaTrabajoContext)
         {
             _mapper = mapper;
             _skillsRepository = skillsRepository;
+            _studentManager = studentManager;
+            _bolsaTrabajoContext = bolsaTrabajoContext;
         }
 
         [HttpGet("GetAllSkills")]
@@ -59,5 +71,20 @@ namespace ApiBolsaTrabajoUTN.API.Controllers
             return NoContent();
         }
 
+        [HttpPut("AddSkillToStudent")]
+
+        public async Task<ActionResult> AddSkillsToStudent(AssignSkillsRequest skillsId) 
+        {
+            var userId = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
+            var student = await _studentManager.FindByIdAsync(userId);
+            if (student != null)
+            {
+                student.SkillsId = skillsId.SkillsId;
+
+                _bolsaTrabajoContext.Update(student);
+                _bolsaTrabajoContext.SaveChanges();
+            }
+            return Ok();
+        }
     }
 }

@@ -8,5 +8,6 @@ namespace ApiBolsaTrabajoUTN.API.Data.Skills
         public IEnumerable<Skill> GetAllSkills();
         public void AddSkill(Skill newSkill);
         public void DeleteSkill(int SkillId);
+        public void DeleteSkill(int SkillId);
     }
 }

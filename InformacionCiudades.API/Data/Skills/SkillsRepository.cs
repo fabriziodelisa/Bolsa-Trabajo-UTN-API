@@ -1,5 +1,7 @@
 ﻿using ApiBolsaTrabajoUTN.API.DBContexts;
 using ApiBolsaTrabajoUTN.API.Entities;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 
 namespace ApiBolsaTrabajoUTN.API.Data.Skills

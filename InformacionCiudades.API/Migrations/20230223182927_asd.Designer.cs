@@ -3,6 +3,7 @@ using System;
 using ApiBolsaTrabajoUTN.API.DBContexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ApiBolsaTrabajoUTN.API.Migrations
 {
     [DbContext(typeof(BolsaTrabajoContext))]
-    partial class BolsaTrabajoContextModelSnapshot : ModelSnapshot
+    [Migration("20230223182927_asd")]
+    partial class asd
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "6.0.8");
@@ -119,38 +121,6 @@ namespace ApiBolsaTrabajoUTN.API.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Skills");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            SkillName = "Python"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            SkillName = "JavaScript"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            SkillName = "C#"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            SkillName = "Java"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            SkillName = "CSS"
-                        },
-                        new
-                        {
-                            Id = 6,
-                            SkillName = "HTML"
-                        });
                 });
 
             modelBuilder.Entity("ApiBolsaTrabajoUTN.API.Entities.User", b =>
@@ -424,16 +394,16 @@ namespace ApiBolsaTrabajoUTN.API.Migrations
                             Id = "02174cf0–9412–4cfe-afbf-59f706d72cf6",
                             AccessFailedCount = 0,
                             ActiveAccount = false,
-                            ConcurrencyStamp = "1d27b5de-af48-4903-a660-343c56ed8b5a",
+                            ConcurrencyStamp = "4b24e605-8ddc-4100-8111-62268847f8e3",
                             Email = "administracion@frro.utn.edu.ar",
                             EmailConfirmed = true,
                             FirstChargeData = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMINISTRACION@FRRO.UTN.EDU.AR",
                             NormalizedUserName = "ADMINISTRACION@FRRO.UTN.EDU.AR",
-                            PasswordHash = "AQAAAAEAACcQAAAAEPVf3Ca+R7eFHSExf3mZOI5XEfdHvOAC20hUKIS4h3nejuIpUg4XvYW2xWrs0byG1g==",
+                            PasswordHash = "AQAAAAEAACcQAAAAENfkR+OOM+xEzUqpO84aCjBYIgnaKF+kBpB1h+EdOaXEyBG9dP6jPbDscAXBC/hg9Q==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "e0510352-4ca8-4c31-a481-258f05e46445",
+                            SecurityStamp = "763905db-75f8-4fda-9316-fd5be58cd2c8",
                             TwoFactorEnabled = false,
                             UserName = "administracion@frro.utn.edu.ar",
                             FirstName = "Administracion",

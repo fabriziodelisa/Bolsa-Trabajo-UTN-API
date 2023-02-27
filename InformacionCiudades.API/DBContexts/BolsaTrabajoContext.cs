@@ -87,6 +87,14 @@ namespace ApiBolsaTrabajoUTN.API.DBContexts
                 }
             );
 
+            modelBuilder.Entity<Student>()
+                .Property(s => s.SkillsId)
+                .HasConversion(
+                    v => string.Join(',', v),
+                    v => v.Split(',', StringSplitOptions.RemoveEmptyEntries)
+                            .Select(int.Parse)
+                            .ToList());
+
             base.OnModelCreating(modelBuilder);
         }
     }

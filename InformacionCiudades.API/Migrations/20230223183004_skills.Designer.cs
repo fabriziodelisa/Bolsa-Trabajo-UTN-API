@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ApiBolsaTrabajoUTN.API.Migrations
 {
     [DbContext(typeof(BolsaTrabajoContext))]
-    [Migration("20221111181942_FinalMig")]
-    partial class FinalMig
+    [Migration("20230223183004_skills")]
+    partial class skills
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -394,16 +394,16 @@ namespace ApiBolsaTrabajoUTN.API.Migrations
                             Id = "02174cf0–9412–4cfe-afbf-59f706d72cf6",
                             AccessFailedCount = 0,
                             ActiveAccount = false,
-                            ConcurrencyStamp = "a5b09ced-fa57-42d0-8f8c-2dcd3ec0d0c5",
+                            ConcurrencyStamp = "5595cbe9-5c15-4108-8faa-fc46df6680d3",
                             Email = "administracion@frro.utn.edu.ar",
                             EmailConfirmed = true,
                             FirstChargeData = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMINISTRACION@FRRO.UTN.EDU.AR",
                             NormalizedUserName = "ADMINISTRACION@FRRO.UTN.EDU.AR",
-                            PasswordHash = "AQAAAAEAACcQAAAAEKPyZpZDsIfgW3ou4ivheYZxfITv4qabKpII2APzfQMy24FNZwzJpIpq7zpGIHINpw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEA0vXXhtPdu8KV09Qf+HEYvlm2inGMCnFhBoMrjmY2vObmMEtjjBMOgKiAYnJ33DZg==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "770b35ae-b659-4e74-a2d8-188423bb2d5e",
+                            SecurityStamp = "3632fb34-aa09-45d9-b036-403d6a86c39e",
                             TwoFactorEnabled = false,
                             UserName = "administracion@frro.utn.edu.ar",
                             FirstName = "Administracion",
@@ -531,6 +531,10 @@ namespace ApiBolsaTrabajoUTN.API.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Sex")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("SkillsId")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<int>("Turn")
